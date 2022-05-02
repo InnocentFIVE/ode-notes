@@ -1,0 +1,179 @@
+\documentclass{ctexart}
+\usepackage{geometry}[b5paper,scale=0.85]
+\usepackage{fontenc}
+\usepackage{fontspec}
+\usepackage{tcolorbox}
+\usepackage{textcomp}
+\usepackage[dutch]{babel}
+\usepackage{amsmath,amsthm,amssymb,amstext,amsfonts,mathrsfs}
+\usepackage{tabu,multirow}
+\usepackage{caption}
+\usepackage{tikz,pgfplots}
+\usepackage{extarrows}
+\usepackage{footnote}
+\usepackage{transparent}
+\usepackage{unicode-math}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\setCJKmainfont{C300-老报宋.ttf}
+\setmathfont{Garamond-Math.otf}[StylisticSet={7,9,10,6}]
+\setmainfont{EBGaramond-Regular.otf}
+\everymath{\displaystyle}
+
+\begin{document}
+\setcounter{section}{-1}
+\section{符号约定}
+\section{一些一阶ODE的初等解法}
+\section{存在性定理和唯一性定理}
+首先考虑比较普遍的情况：
+\[
+	y'=f(x,y)
+	.\]
+此时若 \(f\) 在矩形区域 \(\widetilde{R}:\left\{ (x,y):\left| x-x_0 \right| \leqslant a,\, \left\vert y-y_0 \right\vert \leqslant b \right\} \)上连续且满足 Lipschitz 条件：
+\[
+	\exists L>0,\, \mathrm{s.t.}\,\forall (x,y_1),(x,y_2)\in \widetilde{R},\,  \left| f(x,y_1)-f(x,y_2) \right|\leqslant L \left\vert y_1-y_2 \right\vert
+	.\]
+对 I.V.P : \(y(x_0)=y_0\)，\textbf{存在且仅存在}一个解在矩形区域: \(\hat{R}:\left\{ (x,y):\left| x-x_0 \right| \leqslant h,\, \left\vert y-y_0 \right\vert \leqslant b \right\}\)上成立，其中 \(h\) 满足：
+\[
+	h=\min\left\{ a,\frac{b}{M} \right\} ,\,M=\max\left| f(x,y) \right| \left( (x,y)\in \widetilde{R} \right)
+	.\]
+对方程：
+\[
+	y'=f(x,y),\qquad y(x_0)=y_0 \tag{\(\Omega \)}
+	.\]
+\begin{enumerate}
+	\item 首先证明求解该I.V.P等价求解：
+	      \[
+		      y=y_0+\int_0^x f(t,y(t)) \,\mathrm{d}t \tag{\(\Gamma \)}
+		      .\]
+	      充分性：不妨设 \(\psi (x)\) 是(\(\Omega \))的解，则有：
+	      \[
+		      \frac{\mathrm{d}\psi }{\mathrm{d}x}=f(x,\psi )
+		      .\]
+	      由于连续直接积分得到：
+	      \[
+		      \psi (x)-\psi (0)=\int_{x_0}^x f(t,\psi (t)) \,\mathrm{d}t
+		      .\]
+	      必要性：\(\psi (x)\) 是 (\(\Gamma  \))的解，对 \(x\) 作微分就有：
+	      \[
+		      \frac{\mathrm{d}\psi }{\mathrm{d}x}=f(x,\psi )
+		      .\]
+	      \rightline{\(\blacksquare\)}
+	\item 设立 Picard 序列：
+	      \[
+		      \begin{cases}
+			      \\[-2.2em]\
+			      \psi_0(x)=y_0 ,                                             \\
+			      \psi _1(x)=y_0+\int_{x_0}^x \psi (t,\psi _0) \,\mathrm{d}t, \\
+			      \vdots                                                      \\
+			      \psi _1(x)=y_0+\int_{x_0}^x \psi (t,\psi _0) \,\mathrm{d}t. \\
+		      \end{cases}
+	      \]
+	      然后是证明在 \(\hat{R}\) 上面，以下方程成立：
+	      \[
+		      \left\vert  \psi_n(x)-y_0 \right\vert \leqslant b,\,\forall \left\vert x-x_0 \right\vert \leqslant h
+		      .\]
+	\item 然后是证明 Picard 序列一致收敛“
+	\item 接下来是证明存在性
+	\item 最后是唯一性
+\end{enumerate}
+另外地，Lipschitz条件可以变成更强的对 \(y\) 偏导连续条件。
+\subsection{解的延拓}
+由唯一性定理，在 \(\left\vert x-x_0 \right\vert \leqslant h\)内解存在且唯一，如果 \(f(x,y)\)在 \(\hat{G}\)上面内闭满足Lipschitz条件，那这个解可以延拓到任意接近 \(\hat{G}\)的边界。
+\subsection{解对初值的连续性}如果 \(f(x,y)\)满足上面那些条件，则它的唯一解 \(\psi (x,x_0,y_0)\) 对 \(x,x_0,y_0\)都是连续的，若 \(\frac{\partial f}{\partial y} \)连续，则是可微的。此处有（不加证明）：
+\[
+	\begin{cases}
+		\\[-2.2em]\
+		\frac{\partial \psi}{\partial x_0}=-f(x_0,y_0)\exp \left( \int_{x_0}^x \frac{\partial f}{\partial y}\Bigg|_{y=\psi } \,\mathrm{d}t  \right) \\
+		\frac{\partial \psi}{\partial y_0}=\exp \left( \int_{x_0}^x \frac{\partial f}{\partial y}\Bigg|_{y=\psi } \,\mathrm{d}t  \right)
+	\end{cases}
+	.\]
+\section{高阶ODE}
+\subsection{齐次线性微分方程的解的结构}
+考虑一种普遍的情况：
+\[
+	\mathcal{L} [x]=0\tag{HOM}
+	.\]
+其中 \(\mathcal{L} \)代表线性算符：
+\[
+	\mathcal{L} = \sum\limits_{i=0}^{n} a_i\mathcal{D} ^i
+	.\]
+为了考虑函数是否有线性关系，定义 Wronsky 矩阵如下：
+\[
+	\mathcal{W} =\begin{bmatrix}
+		x_1         & x_2         & \cdots & x_n         \\
+		x_1'        & x_2'        & \cdots & x_n'        \\
+		\vdots      & \vdots      &        & \vdots      \\
+		x_1^{(n-1)} & x_2^{(n-1)} & \cdots & x_n^{(n-1)} \\
+	\end{bmatrix}
+	.\]
+上面的 \(x_j\) 都是函数。
+
+同时用线性代数的方法考虑线性相关/无关，比如多项式的基 \(1,t,t^2 ,t^3 ,\cdots ,t^{n}\)是线性无关的（废话）。
+另外有关 Wronsky 行列式的一些定理：
+\begin{enumerate}
+    \item 如果函数 \(x_1,x_2,\cdots x_n\)在区间 \(I\)上是线性相关的，则在该区间上 Wronsky行列式恒为0：
+    \begin{itemize}
+        \item 证明如下：
+
+        按照线性代数的知识，如果要线性相关则需要存在一组不全为零的常数 \(c_1,c_2,\cdots c_n\)使得：
+        \[
+        \sum\limits_{j=1}^{n} c_j x_j\equiv 0
+        .\]
+        在区间上面\textbf{恒成立}，将该式连续求导 \(n-1\) 次：
+        \[
+            \sum\limits_{j=1}^{n} c_j x_j^{(m)}=0,\qquad m=0,1,\cdots n-1
+        .\]
+        这其实就是：
+        \[
+       \symbfcal{W}\cdot \symbfit{c}  = \symbf 0 \tag{\(\Theta \)}
+        .\]
+        其中 
+        \[
+        \symbfit c=\begin{bmatrix}
+            c_1 \\    c_2 \\    \vdots \\    c_n \\\end{bmatrix}
+        .\]
+        由于 \(x_j\) 线性无关，因此不全为零的常数 \(\left\{ c_1,c_2,\cdots c_n \right\} \)存在，这意味着 \((\Theta )\) 这个方程存在至少两个解（还有零解），因此 \( \left\vert\mathcal{W}  \right\vert=0  \)。
+        
+        另外，逆定理一般不成立。
+    \end{itemize}
+    \item  如果函数 \(x_1,x_2,\cdots x_n\)\textbf{是(HOM) 的解}，且在区间 \(I\)上是线性无关的，则在该区间上 Wronsky行列式恒不为0：
+    \begin{itemize}
+        \item 这个是 (HOM) 的解的条件非常重要，没有它不成立的（因为不能用唯一性定理）。证明如下：
+        
+        用反证法，如果 \(\mathcal{W} (t_0)=0\)，那么
+        \[
+        \symbfcal W(t_0)\cdot \symbfit c=\symbf 0
+        .\]
+        有非零解，那么考虑此时的
+        \[
+        x=\sum\limits_{j=1}^{n} c_j x_j
+        .\]
+        当然是 (HOM) 的解，同时注意到：
+        \[
+        \begin{bmatrix}
+            x(t_0) \\    x'(t_0) \\    \vdots \\    x^{(n-1)}(t_0) \\\end{bmatrix}= \symbfcal W(t_0)\cdot \symbfit c=\symbf 0
+        .\]
+        这意味着初始条件也确定了，同时留意到 \(x\equiv 0\) 也是满足I.V.P的，因此由唯一性得到 
+\[
+    \sum\limits_{j=1}^{n} c_j x_j=0
+.\]
+        还记得此的 \(c_j\) 不全为0，这意味着 \(x_1,x_2,\cdots x_n\)线性相关，矛盾！因此证毕。
+    \end{itemize}
+    \item 如果对应 \(n\) 阶的齐次线性微分方程 \(\mathcal{L} [x]=0\) ，我们找到了其 \(n\) 个线性无关解，那么这 \(n\) 个解的张成构成了方程的解空间。
+    \begin{itemize}
+        \item 易知这 \(n\) 个解的张成被包含于方程的解空间，同时对于张成元素 \(\symbfit x\cdot \symbfit c\)中的 \(\symbfit c\)的每一个元素函数无关，即：
+        \[
+        \begin{vmatrix}
+            \frac{\partial x}{\partial c_1} & \frac{\partial x}{\partial c_2}& \cdots    & \frac{\partial x}{\partial c_n} \\
+            \frac{\partial x'}{\partial c_1} &\frac{\partial x'}{\partial c_2} & \cdots    & \frac{\partial x'}{\partial c_n} \\
+            \vdots & \vdots &  & \vdots \\
+            \frac{\partial x^{(n-1)}}{\partial c_1} &\frac{\partial x^{(n-1)}}{\partial c_2} & \cdots   & \frac{\partial x^{(n-1)}}{\partial c_n} \\
+        \end{vmatrix}\neq 0
+        .\]
+    \end{itemize}
+\end{enumerate}
+\section{线性微分方程组}
+
+
+\end{document}
