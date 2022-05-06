@@ -1,179 +1,366 @@
 \documentclass{ctexart}
-\usepackage{geometry}[b5paper,scale=0.85]
-\usepackage{fontenc}
+
+\usepackage[b5paper,scale=0.8]{geometry}
 \usepackage{fontspec}
 \usepackage{tcolorbox}
-\usepackage{textcomp}
-\usepackage[dutch]{babel}
-\usepackage{amsmath,amsthm,amssymb,amstext,amsfonts,mathrsfs}
+
+\usepackage{amsthm,amssymb}
+
 \usepackage{tabu,multirow}
+
 \usepackage{caption}
+
 \usepackage{tikz,pgfplots}
+\usepackage{ulem}
 \usepackage{extarrows}
+
 \usepackage{footnote}
-\usepackage{transparent}
+
 \usepackage{unicode-math}
+\usepackage{pxrubrica}
 \usepackage{fancyhdr}
+\usepackage{xcolor}
 \pagestyle{fancy}
-\setCJKmainfont{C300-老报宋.ttf}
-\setmathfont{Garamond-Math.otf}[StylisticSet={7,9,10,6}]
-\setmainfont{EBGaramond-Regular.otf}
+
+\xeCJKDeclareSubCJKBlock{symbolCJK}{"2018 , "201C , "300C , "300E , "3014 , "FF08 , "FF3B , "FF5B ,"3008 , "300A , "3016 , "3010 ,"2014 , "2026 , "3001 , "3002 , "FF0C , "FF0E , "FF1A , "FF1B ,"FF01 ,"FF1F , "FF05 , "3015 , "FF09 , "FF3D , "FF5D , "3009 ,"300B , "3017 , "3011 , "2019 , "201D , "300D , "300F}
+
+\setCJKmainfont[symbolCJK=Source Han Serif SC]{GenWanMin TW TTF}
+
+\setmathfont{Garamond-Math.otf}[StylisticSet={2, 7, 9}]
+\setmathfont{Garamond-Math.otf}[StylisticSet={2, 7, 9, 8}, version=a]
+\renewcommand{\symcal}[1]{{\mathversion{a}\mbox{$\symscr{#1}$}}}
+\newcommand{\dx}{\symscr{D} _t (x)}
+\setmainfont{EB Garamond}[Ligatures=Rare]
+\setmathfont[range = "0211C]{Latin Modern Math}
 \everymath{\displaystyle}
 
 \begin{document}
 \setcounter{section}{-1}
-\section{符号约定}
-\section{一些一阶ODE的初等解法}
-\section{存在性定理和唯一性定理}
-首先考虑比较普遍的情况：
-\[
-	y'=f(x,y)
-	.\]
-此时若 \(f\) 在矩形区域 \(\widetilde{R}:\left\{ (x,y):\left| x-x_0 \right| \leqslant a,\, \left\vert y-y_0 \right\vert \leqslant b \right\} \)上连续且满足 Lipschitz 条件：
-\[
-	\exists L>0,\, \mathrm{s.t.}\,\forall (x,y_1),(x,y_2)\in \widetilde{R},\,  \left| f(x,y_1)-f(x,y_2) \right|\leqslant L \left\vert y_1-y_2 \right\vert
-	.\]
-对 I.V.P : \(y(x_0)=y_0\)，\textbf{存在且仅存在}一个解在矩形区域: \(\hat{R}:\left\{ (x,y):\left| x-x_0 \right| \leqslant h,\, \left\vert y-y_0 \right\vert \leqslant b \right\}\)上成立，其中 \(h\) 满足：
-\[
-	h=\min\left\{ a,\frac{b}{M} \right\} ,\,M=\max\left| f(x,y) \right| \left( (x,y)\in \widetilde{R} \right)
-	.\]
-对方程：
-\[
-	y'=f(x,y),\qquad y(x_0)=y_0 \tag{\(\Omega \)}
-	.\]
-\begin{enumerate}
-	\item 首先证明求解该I.V.P等价求解：
-	      \[
-		      y=y_0+\int_0^x f(t,y(t)) \,\mathrm{d}t \tag{\(\Gamma \)}
-		      .\]
-	      充分性：不妨设 \(\psi (x)\) 是(\(\Omega \))的解，则有：
-	      \[
-		      \frac{\mathrm{d}\psi }{\mathrm{d}x}=f(x,\psi )
-		      .\]
-	      由于连续直接积分得到：
-	      \[
-		      \psi (x)-\psi (0)=\int_{x_0}^x f(t,\psi (t)) \,\mathrm{d}t
-		      .\]
-	      必要性：\(\psi (x)\) 是 (\(\Gamma  \))的解，对 \(x\) 作微分就有：
-	      \[
-		      \frac{\mathrm{d}\psi }{\mathrm{d}x}=f(x,\psi )
-		      .\]
-	      \rightline{\(\blacksquare\)}
-	\item 设立 Picard 序列：
-	      \[
-		      \begin{cases}
-			      \\[-2.2em]\
-			      \psi_0(x)=y_0 ,                                             \\
-			      \psi _1(x)=y_0+\int_{x_0}^x \psi (t,\psi _0) \,\mathrm{d}t, \\
-			      \vdots                                                      \\
-			      \psi _1(x)=y_0+\int_{x_0}^x \psi (t,\psi _0) \,\mathrm{d}t. \\
-		      \end{cases}
-	      \]
-	      然后是证明在 \(\hat{R}\) 上面，以下方程成立：
-	      \[
-		      \left\vert  \psi_n(x)-y_0 \right\vert \leqslant b,\,\forall \left\vert x-x_0 \right\vert \leqslant h
-		      .\]
-	\item 然后是证明 Picard 序列一致收敛“
-	\item 接下来是证明存在性
-	\item 最后是唯一性
-\end{enumerate}
-另外地，Lipschitz条件可以变成更强的对 \(y\) 偏导连续条件。
-\subsection{解的延拓}
-由唯一性定理，在 \(\left\vert x-x_0 \right\vert \leqslant h\)内解存在且唯一，如果 \(f(x,y)\)在 \(\hat{G}\)上面内闭满足Lipschitz条件，那这个解可以延拓到任意接近 \(\hat{G}\)的边界。
-\subsection{解对初值的连续性}如果 \(f(x,y)\)满足上面那些条件，则它的唯一解 \(\psi (x,x_0,y_0)\) 对 \(x,x_0,y_0\)都是连续的，若 \(\frac{\partial f}{\partial y} \)连续，则是可微的。此处有（不加证明）：
-\[
-	\begin{cases}
-		\\[-2.2em]\
-		\frac{\partial \psi}{\partial x_0}=-f(x_0,y_0)\exp \left( \int_{x_0}^x \frac{\partial f}{\partial y}\Bigg|_{y=\psi } \,\mathrm{d}t  \right) \\
-		\frac{\partial \psi}{\partial y_0}=\exp \left( \int_{x_0}^x \frac{\partial f}{\partial y}\Bigg|_{y=\psi } \,\mathrm{d}t  \right)
-	\end{cases}
-	.\]
-\section{高阶ODE}
-\subsection{齐次线性微分方程的解的结构}
-考虑一种普遍的情况：
-\[
-	\mathcal{L} [x]=0\tag{HOM}
-	.\]
-其中 \(\mathcal{L} \)代表线性算符：
-\[
-	\mathcal{L} = \sum\limits_{i=0}^{n} a_i\mathcal{D} ^i
-	.\]
-为了考虑函数是否有线性关系，定义 Wronsky 矩阵如下：
-\[
-	\mathcal{W} =\begin{bmatrix}
-		x_1         & x_2         & \cdots & x_n         \\
-		x_1'        & x_2'        & \cdots & x_n'        \\
-		\vdots      & \vdots      &        & \vdots      \\
-		x_1^{(n-1)} & x_2^{(n-1)} & \cdots & x_n^{(n-1)} \\
-	\end{bmatrix}
-	.\]
-上面的 \(x_j\) 都是函数。
 
-同时用线性代数的方法考虑线性相关/无关，比如多项式的基 \(1,t,t^2 ,t^3 ,\cdots ,t^{n}\)是线性无关的（废话）。
-另外有关 Wronsky 行列式的一些定理：
-\begin{enumerate}
-    \item 如果函数 \(x_1,x_2,\cdots x_n\)在区间 \(I\)上是线性相关的，则在该区间上 Wronsky行列式恒为0：
-    \begin{itemize}
-        \item 证明如下：
+\section*{前言}
+这篇文章（如果写得完的话）应该是一篇 ODE 的小短文，按照笔者的想法，笔者更倾向于将叙述形式变为两个人之间的对话，这两个人就叫做“朱鹭子”和“琪露诺”吧（笑），至于为什么……那只是因为笔者喜欢罢了（笑）。
 
-        按照线性代数的知识，如果要线性相关则需要存在一组不全为零的常数 \(c_1,c_2,\cdots c_n\)使得：
-        \[
-        \sum\limits_{j=1}^{n} c_j x_j\equiv 0
-        .\]
-        在区间上面\textbf{恒成立}，将该式连续求导 \(n-1\) 次：
-        \[
-            \sum\limits_{j=1}^{n} c_j x_j^{(m)}=0,\qquad m=0,1,\cdots n-1
-        .\]
-        这其实就是：
-        \[
-       \symbfcal{W}\cdot \symbfit{c}  = \symbf 0 \tag{\(\Theta \)}
-        .\]
-        其中 
-        \[
-        \symbfit c=\begin{bmatrix}
-            c_1 \\    c_2 \\    \vdots \\    c_n \\\end{bmatrix}
-        .\]
-        由于 \(x_j\) 线性无关，因此不全为零的常数 \(\left\{ c_1,c_2,\cdots c_n \right\} \)存在，这意味着 \((\Theta )\) 这个方程存在至少两个解（还有零解），因此 \( \left\vert\mathcal{W}  \right\vert=0  \)。
-        
-        另外，逆定理一般不成立。
-    \end{itemize}
-    \item  如果函数 \(x_1,x_2,\cdots x_n\)\textbf{是(HOM) 的解}，且在区间 \(I\)上是线性无关的，则在该区间上 Wronsky行列式恒不为0：
-    \begin{itemize}
-        \item 这个是 (HOM) 的解的条件非常重要，没有它不成立的（因为不能用唯一性定理）。证明如下：
-        
-        用反证法，如果 \(\mathcal{W} (t_0)=0\)，那么
-        \[
-        \symbfcal W(t_0)\cdot \symbfit c=\symbf 0
-        .\]
-        有非零解，那么考虑此时的
-        \[
-        x=\sum\limits_{j=1}^{n} c_j x_j
-        .\]
-        当然是 (HOM) 的解，同时注意到：
-        \[
-        \begin{bmatrix}
-            x(t_0) \\    x'(t_0) \\    \vdots \\    x^{(n-1)}(t_0) \\\end{bmatrix}= \symbfcal W(t_0)\cdot \symbfit c=\symbf 0
-        .\]
-        这意味着初始条件也确定了，同时留意到 \(x\equiv 0\) 也是满足I.V.P的，因此由唯一性得到 
+由于笔者才疏学浅，其中必定错漏百出，请多指教。
+
+\rightline{\ruby[g]{小飞舞}{Innocent\ FIVE}}
+\newpage
+\tableofcontents
+\newpage
+
+\section{什么是ODE}
+朱鹭子：ODE被称为“常微分方程”，是一种奇怪的方程，它代表了一些奇怪的量之间的奇怪关系，我记得你是学过微积分的吧？
+
+琪露诺：呃……学过一点（挠头）。
+
+朱鹭子：那就好，线性代数呢？
+
+琪露诺：emmmm…… 只看过那本同济的……
+
+朱鹭子：我的天……那本啊……算了也没关系，都一样的……行，那我开始说了啊……
+\section{一阶ODE的初等解法}
+朱鹭子：一阶的ODE在某种意义上是最简单的ODE了，所以我们可以先来研究它。我们知道，ODE事关待求解函数 \(x(t)\) 的导数，这个导数可能是很高阶的，比如：
+
 \[
-    \sum\limits_{j=1}^{n} c_j x_j=0
+\symscr{D} ^n_t (x)=f(t,x)
 .\]
-        还记得此的 \(c_j\) 不全为0，这意味着 \(x_1,x_2,\cdots x_n\)线性相关，矛盾！因此证毕。
-    \end{itemize}
-    \item 如果对应 \(n\) 阶的齐次线性微分方程 \(\mathcal{L} [x]=0\) ，我们找到了其 \(n\) 个线性无关解，那么这 \(n\) 个解的张成构成了方程的解空间。
-    \begin{itemize}
-        \item 易知这 \(n\) 个解的张成被包含于方程的解空间，同时对于张成元素 \(\symbfit x\cdot \symbfit c\)中的 \(\symbfit c\)的每一个元素函数无关，即：
-        \[
-        \begin{vmatrix}
-            \frac{\partial x}{\partial c_1} & \frac{\partial x}{\partial c_2}& \cdots    & \frac{\partial x}{\partial c_n} \\
-            \frac{\partial x'}{\partial c_1} &\frac{\partial x'}{\partial c_2} & \cdots    & \frac{\partial x'}{\partial c_n} \\
-            \vdots & \vdots &  & \vdots \\
-            \frac{\partial x^{(n-1)}}{\partial c_1} &\frac{\partial x^{(n-1)}}{\partial c_2} & \cdots   & \frac{\partial x^{(n-1)}}{\partial c_n} \\
-        \end{vmatrix}\neq 0
-        .\]
-    \end{itemize}
-\end{enumerate}
-\section{线性微分方程组}
 
+此时我们……
 
+琪露诺：等等等等，这个 \(\symscr{D} \) 是什么……
+
+朱鹭子：哦这个啊，我们管它叫“求导算符”，这里这样写指的是对 \( t\) 求 \(n\)次导，同时，我们也默认 \(x\) 是关于 \(t\) 的函数。我么继续，上面这个式子是一个 \(n\)阶的ODE，我们不想讨论它，我们直接来看最简单的：
+\[
+\symscr{D} _t (x)=f(t)g(x)
+.\]
+这种被称为“变量分离方程”。
+\subsection{变量分离方程}
+朱鹭子：这种我们可以这样做：
+\[
+ \frac{\symscr{D} _t(x)}{g(x)}= f(t)
+.\]
+两边积分就可以得到：
+\[
+\int \frac{1}{g(x)} \,\mathrm{d}x =\int f(t) \,\mathrm{d}t \tag{A}
+.\]
+
+琪露诺：诶等等，这个 \(\symscr{D} _t(x)\) 到哪里去了？
+
+朱鹭子：啊这个的话……实际上是有
+\[
+\int \frac{1}{g(x)} \,\mathrm{d}x =\int \frac{\symscr{D} _t(x)}{g(x)} \,\mathrm{d}t 
+.\]
+这个，这个你不是有学的吗？
+
+琪露诺：呃我忘了……
+
+朱鹭子：啊这……好，现在我们看 A 方程的两边，左边只和 \(x\) 有关，右边只和 \(t\)有关，那么我们实际上就把 \(x(t)\)解出来了，虽然用的是隐式方程的表示法。
+
+琪露诺：原来如此，这有什么要注意的地方吗？
+
+朱鹭子：有，积分记得加上常数。接下来我们来看另外一种方程。
+\subsection{线性微分方程}
+朱鹭子：好，我们来看看这种：
+\[
+\dx{}+p(t)x=f(t)\tag{B}
+.\]
+这种被称为线性微分方程。
+
+琪露诺：诶……这个线性指的是什么意思呢……
+
+朱鹭子：我们可以这样理解。假设 \(x_1\)和 \(x_2\)都是方程  B 的解，那么我们考虑：
+\[
+x_3=cx_1+(1-c)x_2
+.\]
+这个是不是方程B的解呢？
+
+琪露诺：emmmm好像是的。
+
+朱鹭子：对，没错，这里实际上是有：
+\[
+\begin{cases}
+    \\[-2.2em]\
+    \symscr{D} _t^n(x_1+x_2)=\symscr{D} _t^n(x_1)+\symscr{D} _t^n(x_2),\\
+    \symscr{D} _t^n(cx_1)=c\cdot \symscr{D} _t^n(x_1).
+\end{cases}\tag{C}
+\]
+这里指的是求导算符的函数线性，另外我们考虑更普遍的形式：
+\[
+\begin{aligned}
+    &\symscr{L}_1 =\symscr{D} _t^n +a_{n-1}(t)\symscr{D} _t^{n-1}+\cdots a_1(t)\symscr{D} _t +a_0(t)=\symscr{D} _t^{n-1}+\sum\limits_{i=1}^{n-1} a_{i}(t)\symscr{D} _t^i ,\\ 
+    &\symscr{L}_2 =\symscr{D} _t^n +b_{n-1}(t)\symscr{D} _t^{n-1}+\cdots b_1(t)\symscr{D} _t +b_0(t)=\symscr{D} _t^{n-1}+\sum\limits_{i=1}^{n-1} b_{i}(t)\symscr{D} _t^i.
+\end{aligned}
+\]
+那么算符 \(\symscr{L}_1 \)和 \(\symscr{L} _2\)满足：
+\[
+\left(\symscr{L} _1+\symscr{L} _2 \right) (x)=\symscr{L} _1(x)+\symscr{L} _2 (x)
+.\]
+这被称为算符线性。
+
+因此合并起来就是：
+
+\[
+\left( \symscr{L} _1+\symscr{L} _2 \right) \left( x_1+x_2 \right) =\symscr{L} _1(x_1)+\symscr{L} _1(x_2)+\symscr{L} _2(x_1)+\symscr{L} _2(x_2)
+.\]
+
+琪露诺：哦哦，原来线性指的是我可以随意拆掉括号啊……
+
+朱鹭子：不可以哦，只是满足C方程罢了，你只能在规定的范围内行动。虽说如此，线性方程确实是比较简单的一类。好，我们来看B方程，这个怎么解呢？
+
+琪露诺：我在寺子屋里见过这些题，一般来说左边都是一些函数的导数，然后两边积分就可以求出函数出来。
+
+朱鹭子：没错，但是在这里，这个 \(p(x)\) 是如此随机，左边很可能不是个新函数的导数，我们应该怎么办呢？
+
+琪露诺：emmmm呜哇哇……
+
+朱鹭子：事实上，我们可以乘上一个新的函数，改变左边那一坨的结构：
+\[
+B \implies h(t)\dx{}+h(t)p(t)x=f(t)h(t)\tag{D}
+.\]
+
+琪露诺：可是这样左边还是很怪啊，看起来根本不像个导数……
+
+朱鹭子：是的，所以我们硬来，考虑新的函数 \(h(t)x\)，那么它的导数就是：
+\[
+\symscr{D} _t\left( h(t) x(t)  \right)= h(t) \dx +\symscr{D} _t(h(t))x
+.\]
+这样我们观察D式，我们可以强行要求：
+\[
+h(t)p(t)=\symscr{D} _t\left( h(t) \right) 
+.\]
+
+琪露诺：看起来像那个巫女的作风……
+
+朱鹭子：不是哦，\sout{灵梦哪有那么聪明}。好了，接下来我们的任务就是解出这个奇怪的 \(h(t)\)，还记得变量分离方程吗？\(h(t)\)的约束就是这个变量分离方程哦。
+
+琪露诺：记得，所以我们只要：
+\[
+    h(t)p(t)=\symscr{D} _t\left( h(t) \right) \implies \int \frac{1}{h(t)} \,\mathrm{d}h =\int p(t) \,\mathrm{d}t 
+.\]
+
+这意味着：
+
+\[
+\ln h(t)= \int p(t) \,\mathrm{d}t \implies h(t)=\symrm{e} ^{\int p(t) \,\mathrm{d}t }
+.\]
+
+朱鹭子：不对哦，你积分没加常数。
+
+琪露诺：呜哇……那加了常数之后，就是：
+\[
+    \ln h(t)= \int p(t) \,\mathrm{d}t +c_1\implies h(t)=\symrm{e} ^{c_1}\cdot \symrm{e} ^{\int p(t) \,\mathrm{d}t }
+.\]
+
+是这样吗？
+
+朱鹭子：其实你可以不加的，因为你有一个积分号没有被消掉……但先不管这个，我们可以看到 \(h\)我们已经求出来了，接下来呢？
+
+琪露诺：那这个  \(c_1\)怎么确定啊？
+
+朱鹭子：不用确定，都是满足条件的不是吗？为了容易算我们就让它是0好了。
+
+琪露诺：哦哦，那这样子C方程就是：
+\[
+\symscr{D} _t(h(t)x)=f(t)h(t)
+.\]
+
+这是一个变量分离方程，我可以对它进行积分：
+\[
+h(t)x= \int f(t)h(t) \,\mathrm{d}t \implies x= \frac{\displaystyle \int f(t)h(t) \,\mathrm{d}t}{h(t)}
+.\]
+
+最后是代入 \(h(t)\)的方程得到：
+\[
+x=\frac{\displaystyle \int f(t)\symrm{e} ^{\int p(t) \,\mathrm{d}t } \,\mathrm{d}t}{\symrm{e} ^{\int p(t) \,\mathrm{d}t }}
+.\]
+
+哇，这啥啊……
+
+朱鹭子：你做的是正确的，这就是B方程的解啦。
+
+\subsection{常数变易法}
+
+琪露诺：原来如此，所以这一节我完全懂了对吧。
+
+朱鹭子：不是哦，再和你说些东西，我们回过头考虑一种更简单的情况：
+\[
+\dx+p(t)x=0
+.\]
+
+琪露诺：我知道我知道，这是分离变量方程！
+
+朱鹭子：对，他的解是 \(x=c_1\exp \left(- \int p(t) \,\mathrm{d}t  \right) \) ，我们反倒可以这样考虑，这个 \(c_1\) 并不是一个常数，而是一个函数 \(c_1(t)\)，此时 \(x=c_1(t)\exp \left(- \int p(t) \,\mathrm{d}t  \right)\)反倒是方程B的解，那么会发生什么事呢？
+
+琪露诺：我猜猜……将这个新东西带进去之后会得到一个新的方程。
+
+朱鹭子：没错，我们试试看：
+\[
+\begin{aligned}
+    &\phantom{=}\ \,\,\dx+p(t)x={\color{brown}\symscr{D} _t\left( c_1(t)\exp \left(- \int p(t) \,\mathrm{d}t  \right) \right)} +p(t) c_1(t)\exp \left(- \int p(t) \,\mathrm{d}t  \right) 
+    \\ 
+    &={\color{brown}\symscr{D} _t(c_1(t))\exp \left(- \int p(t) \,\mathrm{d}t  \right)+c_1(t)\exp \left(- \int p(t) \,\mathrm{d}t  \right)(-p(t))}+p(t) c_1(t)\exp \left(- \int p(t) \,\mathrm{d}t  \right) \\
+&= \symscr{D} _t(c_1(t))\exp \left(- \int p(t) \,\mathrm{d}t  \right) =f(t)
+\end{aligned}
+\]
+
+琪露诺：所以这个 \(c_1(t)\)就满足：
+\[
+c_1'(t)=f(t)\exp \left(\int p(t) \,\mathrm{d}t  \right) \implies c_1(t)=\int \left[ f(t)\exp \left(\int p(t) \,\mathrm{d}t  \right)  \right]  \,\mathrm{d}t 
+.\]
+
+天……这太多积分号了叭……
+
+朱鹭子：确实，但这玩意不是和你之前求的B方程的解差不多吗？
+
+琪露诺：哦也是，那这个方法有什么用呢？
+
+朱鹭子：用处多了，以后我们在解更普遍的方程会用到这个解法，这被称为\textbf{常数变易法}。
+
+琪露诺：哦……
+
+朱鹭子：接下来我们看些更神奇的。
+
+\subsection{恰当微分方程}
+考虑一些更通用的情况：
+\[
+\dx=f(x,t)
+.\]
+
+我们可以把它写成微分形式：
+
+\[
+f(x,t)\,\symrm{d} t-\symrm{d} x=0
+.\]
+
+再考虑更一般的情况：
+
+\[
+T(x,t)\,\symrm{d} t+ X(x,t)\,\symrm{d} x=0
+.\]
+
+琪露诺：这是啥……
+
+朱鹭子：看到了吗？这其实是微分方程的一种特殊写法，看到这你想到了什么？
+
+琪露诺：emmm……第二类线积分？
+
+朱鹭子：没错！第二类线积分里面有些很好算的情况，那就是“路径无关”的时候，此时应该由什么判别呢？
+
+琪露诺：emmm由Green公式应该有：
+
+\[
+\frac{\partial T}{\partial x}=\frac{\partial X}{\partial t}
+.\]
+
+朱鹭子：在函数性质良好的前提下，可以这么做，那么如果是路径无关的话接下来这么求解方程呢？
+
+琪露诺：呃……
+
+朱鹭子：事实上，路径无关场就是梯度场，这意味着存在一个函数 \(u\) 使得：
+\[
+\frac{\partial u}{\partial t}=T,\qquad \frac{\partial u}{\partial x}=X
+.\]
+所以方程就变成了：
+\[
+    \frac{\partial u}{\partial t}\,\symrm{d} t+ \frac{\partial u}{\partial x}\,\symrm{d} x=0
+.\]
+
+左边就是 \(u\)的全微分啦，所以我们就有：
+
+\[
+u=c_1
+.\]
+
+这样就解出了 \(x\)了。
+
+琪露诺：那如果没有路径无关怎么办？
+
+朱鹭子：你可以想一下，我们之前怎么解决不是全微分的问题的。
+
+琪露诺：emmm难道你说的是，乘上一个新的函数？
+
+朱鹭子：可以这样做，看看吧：
+\[
+\frac{\partial u}{\partial t}=hT,\qquad \frac{\partial u}{\partial x}=hX
+.\]
+
+接下来呢？
+
+琪露诺：呃……不知道了。
+
+朱鹭子：事实上我们可以考虑Young定理：
+\[
+\frac{\partial ^2u}{\partial x \partial t}=\frac{\partial ^2u}{\partial t \partial u}\implies \frac{\partial (hT)}{\partial x}=\frac{\partial (hX)}{\partial t}
+.\]
+
+接下来我们可以用乘法法则分离它们：
+\[
+X \frac{\partial h}{\partial t}-T \frac{\partial h}{\partial x}=\left( \frac{\partial T}{\partial x}-\frac{\partial X}{\partial t} \right) h
+.\]
+
+琪露诺：好的，那这个方程怎么解？
+
+朱鹭子：事实上这是一个偏微分方程……单纯解它比解原来的ODE更困难。
+
+琪露诺：啊这……这不就是……寄了吗？
+
+朱鹭子：差不多吧，不过的确有一些比较简单的情况。
+
+\begin{itemize}
+    \item 当 \( \frac{\frac{\partial T}{\partial x}-\frac{\partial X}{\partial t}}{X} =p(t)\) 与 \(x\) 无关的时候。我们有：
+    \[
+    h(t,x)=\exp \left( \int p(t)\,\mathrm{d}t  \right) 
+    .\]
+    \item 当 \( \frac{\frac{\partial T}{\partial x}-\frac{\partial X}{\partial t}}{T} =q(x)\) 与 \(t\) 无关的时候。我们有：
+    \[
+        h(t,x)=\exp \left(- \int q(x)\,\mathrm{d}x \right) 
+    .\]
+    \item 当 \( {\frac{\partial T}{\partial x}-\frac{\partial X}{\partial t}}=p(t)X-q(x)T\)的时候。我们有：
+    \[
+    h(t,x)=c_1 \exp \left( \int p(t) \,\mathrm{d}t +\int q(x) \,\mathrm{d}x  \right) 
+    .\]
+\end{itemize}
+
+琪露诺：前两个还好，第三个也太那啥了，这个只有天才才能看出来吧。
+
+朱鹭子：这个不管，反正算是比较简单的情况了（笑）。当然你也可以直接用看就把这个 \(h\)（我们管它叫积分因子）找出来。
 \end{document}
