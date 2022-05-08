@@ -25,7 +25,8 @@
 \xeCJKDeclareSubCJKBlock{symbolCJK}{"2018 , "201C , "300C , "300E , "3014 , "FF08 , "FF3B , "FF5B ,"3008 , "300A , "3016 , "3010 , "2026 , "3001 , "3002 , "FF0C , "FF0E , "FF1A , "FF1B ,"FF01 ,"FF1F , "FF05 , "3015 , "FF09 , "FF3D , "FF5D , "3009 ,"300B , "3017 , "3011 , "2019 , "201D , "300D , "300F}
 \xeCJKDeclareSubCJKBlock{symbolCJKpozhe}{"2014}
 
-\setCJKmainfont[symbolCJK=Source Han Serif SC,symbolCJKpozhe=方正纤雅宋简体]{GenWanMin TW TTF}
+\setCJKmainfont[symbolCJK=EB Garamond,symbolCJKpozhe=方正纤雅宋简体,BoldFont=GenYoMin TW B]{GenWanMin TW TTF}
+\newCJKfontfamily{\sansgsgtw}{GenSekiGothic TW}
 \newtcbtheorem[number within=section]{tho}{定理}%
   {colback=gray!5,colframe=gray!35!black,fonttitle=\bfseries,arc=0mm}{th}
 
@@ -33,9 +34,32 @@
 \setmathfont{Garamond-Math.otf}[StylisticSet={2, 7, 9, 8}, version=a]
 \renewcommand{\symcal}[1]{{\mathversion{a}\mbox{$\symscr{#1}$}}}
 \newcommand{\dx}{\symscr{D} _t (x)}
-\setmainfont{EB Garamond}[Ligatures=Rare]
+\setmainfont{EB Garamond}[Ligatures = Rare,Ligatures = Historic]
 \setmathfont[range = "0211C]{Latin Modern Math}
 \everymath{\displaystyle}
+
+
+\catcode`\，=13
+\def，{,\kern0.5em}
+\catcode`\。=13
+\def。{.\kern0.5em}
+\catcode`\：=13
+\def：{:\kern0.5em}
+\catcode`\；=13
+\def；{;}
+\catcode`\！=13
+\def！{!}
+\catcode`\？=13
+\def？{\,?\kern0.5em}
+\catcode`\（=13
+\def（{\raisebox{0.28ex}{\,(}}
+\catcode`\）=13
+\def）{\raisebox{0.28ex}{)\,}}
+\catcode`\“=13
+\def“{``}
+\catcode`\”=13
+\def”{''}
+
 
 \begin{document}
 \setcounter{section}{-1}
@@ -582,4 +606,10 @@ y=f(x) \,\mbox{或者}\, f: \overline{\symcal{I} } \subseteq\symbb{R}     \mapst
     \rightline{\Huge\parbox{1em}{\fontsize{60pt}{80pt}{\textbf{八云蓝和琪露诺}}}\hspace{2em}}
 \end{spacing}
 \clearpage
+
+st 
+
+\textit{Paradise Loſt}
+
+
 \end{document}
