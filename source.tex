@@ -1044,7 +1044,7 @@ x= \int_{t_0}^t f(t,x) \,\mathrm{d}s + x_0
 蓝：\(\symbb{I}\)是一开始我们定下的 \(t\)的范围，但实际上这个式子确实太广泛了，因此我们需要新的条件，这个条件可以有很多，我们可以尝试下Lipschitz条件：
 \begin{itemize}
 	\item 为了方便我们不妨限制 \(\symbb{F} \)函数的值域，由于那些函数必然是连续的，那我的 \(\symbb{I}\) 的长度足够小时，函数值域的长度也会任意小，不妨设函数值域是 \(\symbb{J}\)。
- \item 接下来我声明函数 \(f\) 在 \(\symbb{I}\times \symbb{J}\)上面满足，对任意的 \((t,x_1),(t,x_2)\in I\times J\)，都有存在一个常数 \(L>0\)满足：
+ \item 接下来我声明函数 \(f\) 在 \(\symbb{I}\times \symbb{J}\)上面满足，对任意的 \((t,x_1),(t,x_2)\in\symbb I\times\symbb J\)，都有存在一个常数 \(L>0\)满足：
  \[
 \left\vert  f(t,x_1)-f(t,x_2) \right\vert \leqslant  L \cdot \left\vert x_1-x_2 \right\vert 
  .\]
@@ -1066,10 +1066,10 @@ x= \int_{t_0}^t f(t,x) \,\mathrm{d}s + x_0
 
 蓝：没错，而且缩小\(I\)反而同样会使 \(L\)不增。因此我们可以认为当 \(I\)足够小的时候，\(\symscr{P}\)是一个在完备赋范空间上面的压缩映射，接下来我们只需要利用Banach不动点定理：必然\textbf{唯一存在}一个不动点（实际上就是定义在 \(I\) 上的连续函数）满足：
 \[
-\symscr{P} (X)=X \implies\int_{t_0}^t f(t,X) \,\mathrm{d}s + x_0=X
+\symscr{P} (\symcal X)=\symcal X \implies\int_{t_0}^t f(t,\symcal X) \,\mathrm{d}s + x_0=\symcal X
 .\]
 
-两边求导就得到了 \(X\)是这个ODE解。
+两边求导就得到了 \(\symcal X\)是这个ODE解。
 
 莉格露：真是巧妙的证明！
 
