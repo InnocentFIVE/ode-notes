@@ -11,10 +11,7 @@
 
 \setmainfont{EB Garamond}[Ligatures=Rare]
 \setmathfont{Garamond-Math.otf}[StylisticSet={2, 7, 9}]
-\setmathfont{Garamond-Math.otf}[StylisticSet={2, 7, 9, 8}, version=a]
-
-
-\everymath{\displaystyle}
+\setmathfont{Garamond-Math.otf}[StylisticSet={2, 7, 9, 8}, version=a]\everymath{\displaystyle}
 \begin{document}
 
 \begin{tikzpicture}
@@ -39,7 +36,6 @@
                     color=gray,domain=0:1,
                 ]
                 {\i/20+ (x*\i)/(\i-20)}
-                %\closedcycle
                 ;
             }
         \addplot[
