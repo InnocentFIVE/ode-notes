@@ -1,57 +1,49 @@
-\documentclass{ctexart}
-
-\usepackage[b5paper,scale=0.8]{geometry}
+\documentclass{article}
+\usepackage{ctex}
 \usepackage{fontspec}
+\usepackage{amsmath}
+\usepackage[b5paper,scale=0.8]{geometry}
 \usepackage{tcolorbox}
-\usepackage[utf8]{inputenc}
-\usepackage{amsthm,amssymb}
-\usepackage{realscripts}
 \usepackage{tabu,multirow}
 \usepackage{setspace}
 \usepackage{caption}
-\usepackage{csquotes}
+\usepackage{pxrubrica}
 \usepackage{tikz,pgfplots,tikz-cd}
 \usepackage{ulem}
 \usepackage{tabu}
 \usepackage{extarrows}
-\usepackage[]{hyperref}
+\usepackage{hyperref}
 \usepackage{footnote}
-\usepackage{microtype}
+
 \usepackage{unicode-math}
-\usepackage{pxrubrica}
+
 \usepackage{fancyhdr}
 \usepackage{xcolor}
-\usepackage[]{lipsum}
-\pagestyle{fancy}
-\tcbuselibrary{skins, breakable, theorems, most}
-\xeCJKDeclareSubCJKBlock{symbolCJK}{"2018 , "201C , "300C , "300E , "3014 , "FF08 , "FF3B , "FF5B ,"3008 , "300A , "3016 , "3010 , "2026 , "3002 , "FF0C , "FF0E , "FF1A , "FF1B ,"FF01 ,"FF1F , "FF05 , "3015 , "FF09 , "FF3D , "FF5D , "3009 ,"300B , "3017 , "3011 , "2019 , "201D , "300D , "300F}
-\xeCJKDeclareSubCJKBlock{symbolCJKpozhe}{"2014,"3001}
 
-
-
-\newfontfamily\emoji{TwemojiMozilla.ttf}
-\setCJKmainfont[symbolCJK=EB Garamond,symbolCJKpozhe=方正纤雅宋简体,BoldFont=GenYoMin TW B]{GenWanMin TW TTF}
-\newCJKfontfamily{\sansgsgtw}{GenSekiGothic TW}
-\newtcbtheorem[number within=section]{tho}{定理}%
-  {colback=gray!5,colframe=gray!35!black,fonttitle=\bfseries,arc=0mm}{th}
-
+\setCJKmainfont[CharRange={"2014}]{FZXYSJW.TTF}
 \setmathfont{Garamond-Math.otf}[StylisticSet={2, 7, 9}]
 \setmathfont{Garamond-Math.otf}[StylisticSet={2, 7, 9, 8}, version=a]
+\setCJKmainfont[BoldFont = GenYoMin-B.ttc]{GenWanMin TW TTF}
+
+
+
+\newfontface\emojifontsettings{Seguiemj.ttf}[Renderer=HarfBuzz]
+\newcommand{\emoji}[1]{{\emojifontsettings#1}}
+\defaultfontfeatures{RawFeature={+calt,+swsh,+liga,+hlig,+clig,+dlig,+tnum,+lnum}}
+
+\tcbuselibrary{skins, breakable, theorems, most}
+\pagestyle{fancy}
+
+\newtcbtheorem[number within=section]{tho}{定理}{colback=gray!5,colframe=gray!35!black,fonttitle=\bfseries,arc=0mm}{th}
+
+\setmainfont{EBGaramond12-Regular.otf}[ItalicFont = EBGaramond12-Italic.otf, Renderer = OpenType]
+
+\setmathfont[range = "0211C]{Latin Modern Math}
+
+\everymath{\displaystyle}
 \renewcommand{\symcal}[1]{{\mathversion{a}\mbox{$\symscr{#1}$}}}
 \newcommand{\dx}{\symscr{D} _t (x)}
 \newcommand{\newsout}[1]{\kern0ex\raisebox{0.25ex}{\sout{\raisebox{-0.25ex}{#1}}}\kern0ex}
-
-\defaultfontfeatures{%
-RawFeature={
-	+calt,+swsh,+liga,+hlig,+clig,+dlig,+tnum,+lnum
-	}
-  }
-  
-\setmainfont{EBGaramond12-Regular.otf}[ItalicFont = EBGaramond12-Italic.otf]%[Ligatures = Rare,Ligatures = Historic,Style=Historic]
-\setmathfont[range = "0211C]{Latin Modern Math}
-\everymath{\displaystyle}
-
-
 
 \def\uppartial{\symup\partial}
 \renewcommand{\textbf}[1]{\mbox{\bfseries#1}}
@@ -64,7 +56,7 @@ RawFeature={
 \catcode`\；=13
 \def；{;}
 \catcode`\！=13
-\def！{!}
+\def！{\,!\,}
 \catcode`\？=13
 \def？{\,?\kern0.5em}
 \catcode`\（=13
@@ -81,6 +73,8 @@ RawFeature={
 \def「{\mbox{\kern-0.35em\char"300C}}
 \catcode`\」=13
 \def」{\mbox{\char"300D\kern-0.35em}}
+
+
 
 
 
@@ -770,15 +764,63 @@ x_{\rm new}= \sum\limits_{i=1}^{k} c_i x_i
 \symscr{L} \left( \sum\limits_{i=1}^{k} c_i x_i \right) =\sum\limits_{i=1}^{k}\symscr{L}\left(  c_i x_i\right) =\sum\limits_{i=1}^{k} c_i\underset{0}{\underbrace{\symscr{L}\left(  x_i\right)}}=0
 .\]
 
-上面的等号分别用到了 \(\symscr{L} \)算子的\hyperref[linearofl]{函数线性}的两个方面。这实际上被称为\textbf{叠加原理}。
+上面的等号分别用到了 \(\symscr{L} \)算子的\hyperref[linearofl]{\underline{函数线性}}的两个方面。这实际上被称为\textbf{叠加原理}。
 
-琪露诺：{\emoji 😂🤣🤣🤣}
+琪露诺：\emoji{😅}
 
+朱鹭子：？
 
+琪露诺：啊没……\emoji{🥶}
 
+朱鹭子：用正常的话来说，就是\(x_1(t),\cdots x_k(t)\)的\textbf{张成}也属于原方程（HOMs）的解空间。而接下来我们需要一个可以衡量这些函数是否线性相关的工具。
 
+琪露诺：为什么要研究他们是不是线性相关的啊……
 
+朱鹭子：因为如果有线性相关的话，证明这些函数之间并不是真正独立的，有些函数可以用其他函数表示。这就意味着你所得到的并不是 \(k\)个解。
 
+琪露诺：原来如此，所以是要用行列式还是什么吗？
+
+朱鹭子：确实可以用行列式：首先看下针对函数的的线性相关/无关：
+\begin{itemize}
+	\item 如果存在不全为 0 的常数 \(c_1,\cdots ,c_k\)，以及函数 \(x_1(t),\cdots x_k(t)\) 使得：
+	\[
+	\sum\limits_{i=1}^{k} c_i x_i(t)\equiv 0
+	.\]
+	在 \(t \in\symcal I\)上面恒成立，这意味着这些函数在区间 \(\symcal{I} \) 上线性相关，否则就是线性无关。
+\end{itemize}
+
+实际上就是把线性相关的容差扩展到区间上来（大致来说）。
+
+琪露诺：看起来很之前的线性相关一样。
+
+朱鹭子：但实际上是不一样的。同样，我们可以用行列式的值是否为0来判断（实际上不能）一坨东西是不是真的线性相关，比如Wronsky行列式：
+\[
+\symscr{W}_t \left( x_1,\cdots x_k \right) \coloneq \begin{vmatrix}
+	x_1(t) & x_2(t) & \cdots  & x_k(t) \\
+	x_1'(t) & x_2'(t) & \cdots  & x_k'(t) \\
+	\vdots & \vdots &  & \vdots \\
+	x_1^{(k-1)}(t) & x_2^{(k-1)}(t) & \cdots  & x_k^{(k-1)}(t) \\
+\end{vmatrix}
+.\]
+
+琪露诺：诶？为什么和求导有关系？
+
+朱鹭子：因为如果线性相关那坨方程： \(\sum\limits_{i=1}^{k} c_i x_i(t)\equiv 0\) ，那么左右两边求导亦为0，这就意味着不管是 \(c_i(t)\) 的多少阶导都是线性相关的（当然建立在可以导那么多次的情况下），实际上是给这些函数一些条件，让他们刚好可以凑成一对行列式。
+%事实上对于无穷可导的函数来说，Wronsky行列式为0和函数线性无关是等价的，但对非无穷可导函数不行。
+不管如何，这个行列式可以在某种程度上反应函数是否是线性相关的。
+事实上有以下这些定理：
+\begin{itemize}
+	\item 如果函数们线性相关，那么她们的Wronsky行列式为0。
+这个其实可以轻易得到存在一组非0的常数 \(C_1,\cdots C_n\) 使得：
+\[
+\sum\limits_{i=1}^{k} C_i(t)x_i(t)=0\xlongequal[]{\mbox{\tiny 连续求导 \(k\) 次}} \begin{bmatrix}
+	\sum\limits_{i=1}^{k} C_i x_i(t) \\    \sum\limits_{i=1k}^{k} C_i x_i'(t) \\    \vdots \\    \sum\limits_{i=1}^{k} C_i x^{(k-1)}(t) \\\end{bmatrix}
+\equiv \symbf 0 \implies\symbfscr{W} \cdot\symbfit C \equiv\symbf 0
+.\]
+
+其中我们不妨设 \(\symbfscr{W}\) 是Wronsky矩阵（即Wronsky行列式去掉行列式符号的形式），而 \(\symbfit C \) 是一个系数矩阵 \(\begin{bmatrix}
+	C_1 &    C_2 &  \cdots  &    C_k & \end{bmatrix}^{\rm T}\)，我们知道 \(\symbfit C\) 是有非零解的，这意味着 \(\symscr{W} \equiv 0\)
+\end{itemize}
 
 
 
