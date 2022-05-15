@@ -1,70 +1,62 @@
-\documentclass{ctexart}
-
-\usepackage[b5paper,scale=0.8]{geometry}
+\documentclass{article}
+\usepackage{ctex}
 \usepackage{fontspec}
+\usepackage{amsmath}
+\usepackage[b5paper,scale=0.8]{geometry}
 \usepackage{tcolorbox}
-\usepackage[utf8]{inputenc}
-\usepackage{amsthm,amssymb}
-\usepackage{realscripts}
 \usepackage{tabu,multirow}
 \usepackage{setspace}
 \usepackage{caption}
-\usepackage{csquotes}
+\usepackage{pxrubrica}
 \usepackage{tikz,pgfplots,tikz-cd}
 \usepackage{ulem}
 \usepackage{tabu}
 \usepackage{extarrows}
-\usepackage[]{hyperref}
+\usepackage{hyperref}
 \usepackage{footnote}
-\usepackage{microtype}
+
 \usepackage{unicode-math}
-\usepackage{pxrubrica}
+
 \usepackage{fancyhdr}
 \usepackage{xcolor}
-\usepackage[]{lipsum}
-\pagestyle{fancy}
-\tcbuselibrary{skins, breakable, theorems, most}
-\xeCJKDeclareSubCJKBlock{symbolCJK}{"2018 , "201C , "300C , "300E , "3014 , "FF08 , "FF3B , "FF5B ,"3008 , "300A , "3016 , "3010 , "2026 , "3002 , "FF0C , "FF0E , "FF1A , "FF1B ,"FF01 ,"FF1F , "FF05 , "3015 , "FF09 , "FF3D , "FF5D , "3009 ,"300B , "3017 , "3011 , "2019 , "201D , "300D , "300F}
-\xeCJKDeclareSubCJKBlock{symbolCJKpozhe}{"2014,"3001}
 
-
-
-\newfontfamily\emoji{TwemojiMozilla.ttf}
-\setCJKmainfont[symbolCJK=EB Garamond,symbolCJKpozhe=方正纤雅宋简体,BoldFont=GenYoMin TW B]{GenWanMin TW TTF}
-\newCJKfontfamily{\sansgsgtw}{GenSekiGothic TW}
-\newtcbtheorem[number within=section]{tho}{定理}%
-  {colback=gray!5,colframe=gray!35!black,fonttitle=\bfseries,arc=0mm}{th}
-
+\setCJKmainfont[CharRange={"2014}]{FZXYSJW.TTF}
 \setmathfont{Garamond-Math.otf}[StylisticSet={2, 7, 9}]
 \setmathfont{Garamond-Math.otf}[StylisticSet={2, 7, 9, 8}, version=a]
+\setCJKmainfont[BoldFont = GenYoMin-B.ttc]{GenWanMin TW TTF}
+
+
+
+\newfontface\emojifontsettings{Seguiemj.ttf}[Renderer=HarfBuzz]
+\newcommand{\emoji}[1]{{\emojifontsettings#1}}
+\defaultfontfeatures{RawFeature={+calt,+swsh,+liga,+hlig,+clig,+dlig,+tnum,+lnum}}
+
+\tcbuselibrary{skins, breakable, theorems, most}
+\pagestyle{fancy}
+
+\newtcbtheorem[number within=section]{tho}{定理}{colback=gray!5,colframe=gray!35!black,fonttitle=\bfseries,arc=0mm}{th}
+
+\setmainfont{EBGaramond12-Regular.otf}[ItalicFont = EBGaramond12-Italic.otf, Renderer = OpenType]
+
+\setmathfont[range = "0211C]{Latin Modern Math}
+
+\everymath{\displaystyle}
 \renewcommand{\symcal}[1]{{\mathversion{a}\mbox{$\symscr{#1}$}}}
 \newcommand{\dx}{\symscr{D} _t (x)}
 \newcommand{\newsout}[1]{\kern0ex\raisebox{0.25ex}{\sout{\raisebox{-0.25ex}{#1}}}\kern0ex}
 
-\defaultfontfeatures{%
-RawFeature={
-	+calt,+swsh,+liga,+hlig,+clig,+dlig,+tnum,+lnum
-	}
-  }
-  
-\setmainfont{EBGaramond12-Regular.otf}[ItalicFont = EBGaramond12-Italic.otf]%[Ligatures = Rare,Ligatures = Historic,Style=Historic]
-\setmathfont[range = "0211C]{Latin Modern Math}
-\everymath{\displaystyle}
-
-
-
 \def\uppartial{\symup\partial}
 \renewcommand{\textbf}[1]{\mbox{\bfseries#1}}
 \catcode`\，=13
-\def，{\mbox{\kern0.05em,\kern0.45em}}
+\def，{, }
 \catcode`\。=13
-\def。{\mbox{\kern0.05em.\kern0.45em}}
+\def。{. }
 \catcode`\：=13
-\def：{:\kern0.5em}
+\def：{: }
 \catcode`\；=13
-\def；{;}
+\def；{; }
 \catcode`\！=13
-\def！{!}
+\def！{\,!\,}
 \catcode`\？=13
 \def？{\,?\kern0.5em}
 \catcode`\（=13
@@ -81,6 +73,8 @@ RawFeature={
 \def「{\mbox{\kern-0.35em\char"300C}}
 \catcode`\」=13
 \def」{\mbox{\char"300D\kern-0.35em}}
+
+
 
 
 
@@ -182,7 +176,7 @@ RawFeature={
 	\end{cases}\tag{C}
 \]
 这里指的是求导算符的函数线性，另外我们考虑更普遍的形式：
-\[\label{linearofl}	
+\[\label{linearofl}
 	\begin{aligned}
 		 & \symscr{L}_1 =\symscr{D} _t^n +a_{n-1}(t)\symscr{D} _t^{n-1}+\cdots a_1(t)\symscr{D} _t +a_0(t)=\symscr{D} _t^{n-1}+\sum\limits_{i=1}^{n-1} a_{i}(t)\symscr{D} _t^i , \\
 		 & \symscr{L}_2 =\symscr{D} _t^n +b_{n-1}(t)\symscr{D} _t^{n-1}+\cdots b_1(t)\symscr{D} _t +b_0(t)=\symscr{D} _t^{n-1}+\sum\limits_{i=1}^{n-1} b_{i}(t)\symscr{D} _t^i.
@@ -695,10 +689,10 @@ RawFeature={
 \[
 	\begin{cases}
 		\\[-2.2em]\
-		F(t,x,x')=0 ,\\
+		F(t,x,x')=0 , \\
 		\ \frac{\uppartial F}{\uppartial x'}=0.
 	\end{cases}
-	\]
+\]
 
 将这玩意把 \(x'\)消去就是包络线要满足的方程了，同理，这只是其中一个条件而已。
 
@@ -710,7 +704,7 @@ RawFeature={
 
 朱鹭子：这倒是有个出名的例子，叫做Clairaut微分方程：
 \[
-	x=t\dx+f\left( \dx\tag{ſ} \right) 
+	x=t\dx+f\left( \dx\tag{ſ} \right)
 	.\]
 
 琪露诺：这是什么奇怪的记号……积分号吗？
@@ -747,18 +741,18 @@ RawFeature={
 
 朱鹭子：事实上的确比一般的一阶微分方程要麻烦不少：
 \[
-\symscr{L} (x)= f(t)
-.\]
+	\symscr{L} (x)= f(t)
+	.\]
 
 其中，我们认为 \(\symscr{L} \)是一个线性算子，就像之前提到的一样。接下来我们来考虑下最基本的齐次方程：
 \[
-\symscr{L} (x)=0\tag{HOMs}
-.\]
+	\symscr{L} (x)=0\tag{HOMs}\label{HOMs}
+	.\]
 
 我们来研究它解的结构。首先，如果（假如有的话） \(x_1(t),\cdots x_k(t)\) 都是它的解，那么这个呢：
 \[
-x_{\rm new}= \sum\limits_{i=1}^{k} c_i x_i
-.\]
+	x_{\rm new}= \sum\limits_{i=1}^{k} c_i x_i
+	.\]
 
 实际上就是 \(x_1(t),\cdots x_k(t)\) 的线性组合，这个是不是ODE的解呢？
 
@@ -767,24 +761,203 @@ x_{\rm new}= \sum\limits_{i=1}^{k} c_i x_i
 朱鹭子：实际上我们可以这样子：
 
 \[
-\symscr{L} \left( \sum\limits_{i=1}^{k} c_i x_i \right) =\sum\limits_{i=1}^{k}\symscr{L}\left(  c_i x_i\right) =\sum\limits_{i=1}^{k} c_i\underset{0}{\underbrace{\symscr{L}\left(  x_i\right)}}=0
+	\symscr{L} \left( \sum\limits_{i=1}^{k} c_i x_i \right) =\sum\limits_{i=1}^{k}\symscr{L}\left(  c_i x_i\right) =\sum\limits_{i=1}^{k} c_i\underset{0}{\underbrace{\symscr{L}\left(  x_i\right)}}=0\label{djyl}
+	.\]
+
+上面的等号分别用到了 \(\symscr{L} \)算子的\hyperref[linearofl]{\underline{函数线性}}的两个方面。这实际上被称为\textbf{叠加原理}。
+
+琪露诺：\emoji{😅}
+
+朱鹭子：？
+
+琪露诺：啊没……\emoji{🥶}
+
+朱鹭子：用正常的话来说，就是\(x_1(t),\cdots x_k(t)\)的\textbf{张成}也属于原方程\hyperref[HOMs]{\underline{（HOMs）}}的解空间。而接下来我们需要一个可以衡量这些函数是否线性相关的工具。
+
+琪露诺：为什么要研究他们是不是线性相关的啊……
+
+朱鹭子：因为如果有线性相关的话，证明这些函数之间并不是真正独立的，有些函数可以用其他函数表示。这就意味着你所得到的并不是 \(k\)个解。
+
+琪露诺：原来如此，所以是要用行列式还是什么吗？
+
+朱鹭子：确实可以用行列式：首先看下针对函数的的线性相关/无关：
+\begin{itemize}
+	\item 如果存在不全为 0 的常数 \(c_1,\cdots ,c_k\)，以及函数 \(x_1(t),\cdots x_k(t)\) 使得：
+	      \[
+		      \sum\limits_{i=1}^{k} c_i x_i(t)\equiv 0
+		      .\]
+	      在 \(t \in\symcal I\)上面恒成立，这意味着这些函数在区间 \(\symcal{I} \) 上线性相关，否则就是线性无关。
+\end{itemize}
+
+实际上就是把线性相关的容差扩展到区间上来（大致来说）。
+
+琪露诺：看起来很之前的线性相关一样。
+
+朱鹭子：但实际上是不一样的。同样，我们可以用行列式的值是否为0来判断（实际上不能）一坨东西是不是真的线性相关，比如Wronsky行列式：
+\[
+	\symscr{W}_t \left( x_1,\cdots x_k \right) \coloneq \begin{vmatrix}
+		x_1(t)         & x_2(t)         & \cdots & x_k(t)         \\
+		x_1'(t)        & x_2'(t)        & \cdots & x_k'(t)        \\
+		\vdots         & \vdots         &        & \vdots         \\
+		x_1^{(k-1)}(t) & x_2^{(k-1)}(t) & \cdots & x_k^{(k-1)}(t) \\
+	\end{vmatrix}
+	.\]
+
+琪露诺：诶？为什么和求导有关系？
+
+朱鹭子：因为如果线性相关那坨方程： \(\sum\limits_{i=1}^{k} c_i x_i(t)\equiv 0\) ，那么左右两边求导亦为0，这就意味着不管是 \(c_i(t)\) 的多少阶导都是线性相关的（当然建立在可以导那么多次的情况下），实际上是给这些函数一些条件，让他们刚好可以凑成一对行列式。
+不管如何，这个行列式可以在某种程度上反应函数是否是线性相关的。
+事实上有以下这些定理：
+\begin{itemize}
+	\item 如果函数们线性相关，那么她们的Wronsky行列式为0。
+
+	      这个其实可以轻易得到存在一组非0的常数 \(C_1,\cdots C_n\) 使得：
+	      \[
+		      \sum\limits_{i=1}^{k} C_i(t)x_i(t)=0\xlongequal[]{\mbox{\tiny 连续求导 \(k\) 次}} \begin{bmatrix}
+			      \sum\limits_{i=1}^{k} C_i x_i(t) \\    \sum\limits_{i=1k}^{k} C_i x_i'(t) \\    \vdots \\    \sum\limits_{i=1}^{k} C_i x^{(k-1)}(t) \\\end{bmatrix}
+		      \equiv \symbf 0 \implies\symbfscr{W} \cdot\symbfit C \equiv\symbf 0
+		      .\]
+
+	      其中我们不妨设 \(\symbfscr{W}\) 是Wronsky矩阵（即Wronsky行列式去掉行列式符号的形式），而 \(\symbfit C \) 是一个系数矩阵 \(\begin{bmatrix}
+		      C_1 &    C_2 &  \cdots  &    C_k \end{bmatrix}^{\rm T}\)，我们知道 \(\symbfit C\) 是有非零解的，这意味着 \(\symscr{W} \equiv 0\).
+	      另外要指出的事情是，其逆定理一般是不成立的，举个例子吧：\(1,t,\cdots t^{k-1},\symrm{e} ^{-1 / x^2 }\)，这一些函数，注意到当 \(t=0\)时，\(\symrm{e} ^{-1 / x^2 }\)的每一阶导都为零，所以此时Wronsky行列式必然有一列全是0，此时行列式为0，但实际上这个函数序列是线性无关的。
+	\item 另外一个同样重要的是，如果 \(x_1,\cdots, x_k\) 都是方程 \(\symscr{L} (x)=0\) 的解，那么上面这个“逆定理”反而是成立的。实际上我们可以用的除了刚才那些，还有由于这些函数是ODE的解而使用的存在唯一性定理。
+\end{itemize}
+
+琪露诺：为什么这里满足存在唯一性定理的条件呢？
+
+朱鹭子：这里会涉及到高阶微分方程的解的存在唯一性，事实上我们可以把它变成 \(n\) 个一阶线性方程，实际上就是一个线性方程组，具体的存在唯一性这里不再阐述。暂且解决完这个之后，我们继续：
+\begin{itemize}
+	\item ……另外一个同样重要的是，如果 \(x_1,\cdots, x_k\) 都是方程 \(\symscr{L} (x)=0\) 的解，那么上面这个“逆定理”反而是成立的。实际上我们可以用的除了刚才那些，还有由于这些函数是ODE的解而使用的存在唯一性定理。
+ 事实上，这个所谓逆定理指的是：如果 \(x_1,\cdots, x_k\) 都是方程 \(\symscr{L} (x)=0\) 的解且在 \(t \in\symcal{I} \) 上面线性无关，则 \(\symscr{W}_t \left( x_1,\cdots x_k \right)\neq 0,\,\forall t\in\symcal{I} \)。我们可以采用反证法，如果真的有这么一个 \(t_0\) 存在，使得 \(\symscr{W}_t \left( x_1,\cdots x_k \right)\big|_{t_0} \coloneq \symscr{W}( t_0 ) =0 \)，那么事实上考虑这样的方程组：
+ \[
+	\symbfscr{W}\left( t_0 \right) \cdot \symbfit C \equiv 0
+ .\]
+ 注意这只是针对 \(t_0\) 一个点的方程，由于 \(\symscr{W}( t_0 ) =0\)，上面这个方程必然有非零解 \(C_1,\cdots ,C_k\)，则考虑下面这个函数：
+ \[
+ x_{\rm add}(t)=\sum\limits_{i=1}^{k} C_i x_i(t),\, t\in\symcal{I} \label{gouzaoofxadd}
+ .\]
+
+ 由于\hyperref[dlyl]{\underline{叠加原理}}，\(x_{\rm add}(t)=\)是方程\hyperref[HOMs]{\underline{（HOMs）}}的解。那它满足的初始条件是什么呢？
+\end{itemize}
+
+琪露诺：诶？为什么要考察初始条件，这不就一个普通的叠加吗？
+
+朱鹭子：你得想清楚我们这些 \(C_1,\cdots ,C_k\)是怎么来的。
+
+琪露诺：\(\symbfscr{W}\left( t_0 \right) \cdot \symbfit C \equiv= 0\) 的解？那就意味着……
+\[
+	\begin{bmatrix}
+		\sum\limits_{i=1}^{k} C_i x_i(t_0) \\    \sum\limits_{i=1k}^{k} C_i x_i'(t_0) \\    \vdots \\    \sum\limits_{i=1}^{k} C_i x^{(k-1)}(t_0) \\\end{bmatrix}
+	\equiv \symbf 0 \implies \sum\limits_{i=1}^{k} C_i x_i^{(m)}(t_0)\equiv 0,\,m=0,1,\cdots k-1
 .\]
 
-上面的等号分别用到了 \(\symscr{L} \)算子的\hyperref[linearofl]{函数线性}的两个方面。这实际上被称为\textbf{叠加原理}。
+这个是什么初始条件……
 
-琪露诺：{\emoji 😂🤣🤣🤣}
+朱鹭子：你想想这个初始条件是足够确定唯一解的吗？
 
+琪露诺：诶？你这话是什么意思哇，这不全都是写确定的函数 \(x_1,\cdots, x_k\) 吗？
 
+朱鹭子：我们要讨论的可不是这个。事实上，这些初值条件实际上等价于：
+\[
+x_{\rm add}^{(i)}(t)\equiv 0,\,i=0,1,\cdots k-1
+.\]
 
+刚好 \(k\) 个，事实上对于一个 \(k\) 阶方程，这 \(k\) 个初始条件足以确定一个唯一解，那么实际上我们可以认为 \(x_{\rm add}(t)\) 是一个 \(k\) 解ODE的\textbf{唯一}解。你意识到什么问题没有？
 
+琪露诺：啊？没什么问题哇，类比一阶微分方程的结论，这确实是一个有 \(k\) 个初始条件决定的唯一解。
 
+朱鹭子：不是，你看看初始条件都是些什么吧。
 
+琪露诺：全是0？
 
+朱鹭子：对，这实际上意味着这是一个零向量……
 
+琪露诺：哦哦哦所以实际上 \(x\equiv 0\) 也是一个解，然后因为解唯一，所以 \(x_{\rm add}\equiv 0\)。
 
+朱鹭子：没错，然后捏？
 
+琪露诺：\emoji{😨}
 
+朱鹭子：注意到我们是怎么样\hyperref[gouzaoofxadd]{\underline{（构造）}} \(x_{\rm add}\) 的：
+\[
+	x_{\rm add}(t)=\sum\limits_{i=1}^{k} C_i x_i(t),\, t\in\symcal{I}
+.\]
 
+这意味着 
+\[
+	\sum\limits_{i=1}^{k} C_i x_i(t)\equiv 0
+.\]
+
+琪露诺：哦哦然而事实上根本不可能有这件是存在吧，由于 \(C_1,\cdots ,C_k\)不全为零，这意味着 \(x_1,\cdots x_k\)线性相关了！
+
+朱鹭子：确实，但一开始我们就认为 \(x_1,\cdots x_k\) 是线性无关的，因此导出了矛盾，所以
+\[
+	\symscr{W}_t \left( x_1,\cdots x_k \right) \neq 0,\,\forall t\in\symcal{I}
+.\]
+
+这个是成立的。在刚才的讨论中，我们意识到对于这样的Wronsky矩阵，在某一点处为0就可以推出定义域上的函数值都是0。
+
+琪露诺：这是为什么哇？
+
+朱鹭子：这个嘛……你可以去问问那个九尾妖狐，在这里（喝水）没什么时间说这个。好，我们知道了大致有关Wronsky行列式的两个结论，在这里总结一下：
+\begin{itemize}
+	\item 如果 \(x_1,\cdots x_k\) 在 \(\symcal{I} \)线性相关，则在 \(\symcal{I} \) 上Wronsky行列式恒为零。
+ \item 如果\(x_1,\cdots x_k\) 是方程 \(\symscr{L} (x)=0\) 的解，且在 \(\symcal{I} \)线性无关，则在 \(\symcal{I} \) 上Wronsky行列式恒不为零。
+\end{itemize}
+
+事实上第一个可以等价于：
+\[
+\boxed{\mbox{如果只要有一点 \(t_0\) 对应的 Wronsky 行列式不为零，则\(x_1,\cdots x_k\)线性无关。}}
+\]
+
+琪露诺：这不就是逆否命题吗？
+
+朱鹭子：有用的，我们继续，接下来对于一个 \(n\) 解的线性方程，我们总是可以找到它的 \(n\) 个解，线性相关也能接受，然后给出 \(n\) 个初始条件，这些初始条件我们可以任意选取。
+
+琪露诺：为什么哇？
+
+朱鹭子：因为首先，存在唯一性定理保证这个初始条件对应的解必然存在且唯一，此时我们要验证的其实是上面 \(n\) 个解线性无关的情况存在，为了保证这样，我们需要看一下盒子里的内容，保证Wronsky 行列式至少有一点不为零，实际上这一点就对应了初始条件。看，如果Wronsky 行列式长这样：
+\[
+\symscr{W} (t_0)=\begin{vmatrix}
+	1 & 0 & \cdots  & 0 \\
+	0 & 1 & \cdots  & 0 \\
+	\vdots & \vdots &  & \vdots \\
+	0 & 0 & \cdots  & 1 \\
+\end{vmatrix}=1
+.\]
+
+实际上对应了初始条件。
+
+琪露诺：为什么要是这样一个对角阵呢？
+
+朱鹭子：只是让他不为0罢了，实际上这个行列式对应了初始条件：
+\[
+\begin{bmatrix}
+	x_1(t_0) & x_1'(t_0) & \cdots  & x_1^{(n-1)}(t_0) \\
+	x_2(t_0) & x_2'(t_0) & \cdots  & x^{(n-1)}_2(t_0) \\
+	\vdots & \vdots &  & \vdots \\
+	x_n(t_0) & x_n'(t_0) & \cdots  & x_n^{(n-1)}(t_0) \\
+\end{bmatrix}=\begin{bmatrix}
+	1 & 0 & \cdots  & 0 \\
+	0 & 1 & \cdots  & 0 \\
+	\vdots & \vdots &  & \vdots \\
+	0 & 0 & \cdots  & 1 \\
+\end{bmatrix}
+.\]
+
+这个实际上对应了 \(n\) 组初始条件，每组条件对应一个解 \(x_i(t)\)，由于存在唯一性定理，这些解 \(x_1,\cdots ,x_n\)必然存在，而且她们对应的 Wronsky 行列式在 \(t=t_0\) 处不为0，这就意味着这实际上是 \(n\) 阶方程的 \(n\) 个线性无关解。
+
+琪露诺：但是实际上 \(n\) 阶方程最多也有 \(n\) 个解吧？
+
+朱鹭子：线性方程， \(n\) 解线性方程的通解最多只有 \(n\) 个独立参数，这所谓的通解可以表示为：
+\[
+x_{\rm G}=\sum\limits_{i=1}^{n} c_i x_i
+.\]
+
+其中 \(x_i\) 是方程的一组线性无关解。这意味着一个 \(n\) 阶齐次线性ODE\textbf{必然}有 \(n\) 个线性无关的解。这被称为该ODE的基本解组。
+
+琪露诺：但这只是齐次的呀，如果不是齐次的话怎么找积分因子呢
 
 
 
@@ -910,6 +1083,4 @@ x_{\rm new}= \sum\limits_{i=1}^{k} c_i x_i
 % \[
 % 	\frac{\mathrm{d}x}{\mathrm{d}t}=f(t,x),\,x(t_0)=x_0
 % 	.\]
-\itshape
-st
 \end{document}
