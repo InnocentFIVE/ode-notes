@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[twoside]{article}
 \usepackage{ctex}
 \usepackage{fontspec}
 \usepackage{amsmath}
@@ -26,61 +26,96 @@
 \setCJKmainfont[CharRange="2014]{FZXYSJW.TTF}
 
 
+	\fancypagestyle{forsection}
+	{
+		\fancyhf{}
+		\renewcommand{\headrulewidth}{0pt}
+	\fancyfoot[RO]{\vskip-8em\rotatebox[origin=rb]{-90}{{\LARGE\char"2619}\enspace{\bfseries\Roman{page}}\enspace{\LARGE\char"2767}}\kern-3em}
+	\fancyfoot[LE]{\vskip-8em\hspace{-3em}\rotatebox[origin=lb]{90}{{\LARGE\char"2619}\enspace{\bfseries\Roman{page}}\enspace{\LARGE\char"2767}}}
+	\fancyfoot[C]{}
+	\fancyhead[C,L,R]{}
+	}
 
-\newfontface\emojifontsettings{Seguiemj.ttf}[Renderer=HarfBuzz]
-\newcommand{\emoji}[1]{{\emojifontsettings#1}}
-\defaultfontfeatures{RawFeature={+calt,+swsh,+liga,+hlig,+clig,+dlig,+tnum,+lnum}}
 
-\tcbuselibrary{skins, breakable, theorems, most}
-\pagestyle{fancy}
 
-\newtcbtheorem[number within=section]{tho}{定理}{colback=gray!20,colframe=gray!150,fonttitle=\bfseries,arc=0mm,leftrule=0mm,toprule=0mm,bottomrule=1mm,rightrule=0mm}{th}
 
-\setmainfont{EB Garamond}[ItalicFont = EBGaramond12-Italic.otf, Renderer = OpenType]
+	\fancyfoot[RO]{\vskip-8em\rotatebox[origin=r]{-90}{{\LARGE ☙}\enspace{\bfseries\Roman{page}}\enspace{\LARGE ❧}}\kern-2.5em}
+	\fancyfoot[LE]{\vskip-8em\hspace{-2.5em}\rotatebox[origin=l]{90}{{\LARGE ☙}\enspace{\bfseries\Roman{page}}\enspace{\LARGE ❧}}}
+	\fancyfoot[C]{}
 
-\setmathfont[range = "0211C]{Latin Modern Math}
 
-%\everymath{\displaystyle}
-\renewcommand{\symcal}[1]{{\mathversion{a}\mbox{$\symscr{#1}$}}}
-\newcommand{\dx}{\symscr{D} _t (x)}
-\newcommand{\newsout}[1]{\kern0ex\raisebox{0.25ex}{\sout{\raisebox{-0.25ex}{#1}}}\kern0ex}
 
-\def\uppartial{\symup\partial}
-\renewcommand{\textbf}[1]{\mbox{\bfseries#1}}
-\catcode`\，=13
-\def，{, }
-\catcode`\。=13
-\def。{. }
-\catcode`\：=13
-\def：{: }
-\catcode`\；=13
-\def；{; }
-\catcode`\！=13
-\def！{\,!\,}
-\catcode`\？=13
-\def？{\,?\kern0.5em}
-\catcode`\（=13
-\def（{\raisebox{0.28ex}{\,(}}
-\catcode`\）=13
-\def）{\raisebox{0.28ex}{)\,}}
-\catcode`\“=13
-\def“{``}
-\catcode`\”=13
-\def”{''}
-\catcode`\、=13
-\def、{\mbox{\char"3001\kern-0.35em}}
-\catcode`\「=13
-\def「{\mbox{\kern-0.35em\char"300C}}
-\catcode`\」=13
-\def」{\mbox{\char"300D\kern-0.35em}}
+	\newfontface\emojifontsettings{Seguiemj.ttf}[Renderer=HarfBuzz]
+	\newfontface\mathsection{Garamond-Math.otf}
+	\newcommand{\emoji}[1]{{\emojifontsettings#1}}
+	\defaultfontfeatures{RawFeature={+calt,+swsh,+liga,+hlig,+clig,+dlig,+tnum,+lnum}}
+
+	\tcbuselibrary{skins, breakable, theorems, most}
+	\pagestyle{fancy}
+
+	\newtcbtheorem[number within=section]{tho}{定理}{colback=gray!20,colframe=gray!150,fonttitle=\bfseries,arc=0mm,leftrule=0mm,toprule=0mm,bottomrule=1mm,rightrule=0mm}{th}
+
+	\setmainfont{EB Garamond}[ItalicFont = EBGaramond12-Italic.otf, Renderer = OpenType]
+	\newfontface\zapfinolig{Zapfino Extra LT Two}[Renderer = OpenType,RawFeature={+calt,+swsh,+liga,+hlig,+clig,+dlig,+tnum,+lnum}]
+
+	\setmathfont[range = "0211C]{Latin Modern Math}
+
+	%\everymath{\displaystyle}
+	\renewcommand{\symcal}[1]{{\mathversion{a}\mbox{$\symscr{#1}$}}}
+	\newcommand{\dx}{\symscr{D} _t (x)}
+	\newcommand{\newsout}[1]{\kern0ex\raisebox{0.25ex}{\sout{\raisebox{-0.25ex}{#1}}}\kern0ex}
+
+	\def\uppartial{\symup\partial}
+	\renewcommand{\textbf}[1]{\mbox{\bfseries#1}}
+	\catcode`\，=13
+	\def，{, }
+	\catcode`\。=13
+	\def。{. }
+	\catcode`\：=13
+	\def：{: }
+	\catcode`\；=13
+	\def；{; }
+	\catcode`\！=13
+	\def！{\,!\,}
+	\catcode`\？=13
+	\def？{\,?\kern0.5em}
+	\catcode`\（=13
+	\def（{\raisebox{0.28ex}{\,(}}
+	\catcode`\）=13
+	\def）{\raisebox{0.28ex}{)\,}}
+	\catcode`\“=13
+	\def“{``}
+	\catcode`\”=13
+	\def”{''}
+	\catcode`\、=13
+	\def、{\mbox{\char"3001\kern-0.35em}}
+	\catcode`\「=13
+	\def「{\mbox{\kern-0.35em\char"300C}}
+	\catcode`\」=13
+	\def」{\mbox{\char"300D\kern-0.35em}}
 
 
 
 
 \begin{document}
-\titleformat{\section}[display]{}{\newpage\filright\enspace\textbf{\rule{1cm}{0.5pt}\enspace{\LARGE\char"E001\enspace}\raisebox{0.8ex}{\textit{SECTION}}~\enspace\LARGE\textit{\arabic{section}}\enspace\char"E002}\enspace\titlerule}{1em}{\vskip-3ex\Large\bfseries\rightline}
-\titleformat{\subsection}[hang]{}{\filright\raisebox{-1.3ex}{\huge\char"B6}\kern-2.3ex{\color{white}\arabic{subsection}}\enspace}{0.5em}{\bfseries}
 
+
+
+\titleformat{\section}[display]
+{}{\newpage\thispagestyle{forsection}
+	\filright{\hrule width 1cm\vskip-1.95em}\hspace*{1cm}
+	\enspace
+	{\LARGE\char"E001}
+	\enspace
+	\raisebox{0.8ex}{$\underset{\mbox{\tiny\textit{SECTION}}}{\textbf{\textit{\Huge{\arabic{section}}}}}$}
+	\enspace{\LARGE\char"E002}
+	\enspace
+	\titlerule}{1em}{\vspace{-3ex}\Large\bfseries\rightline}
+
+\titleformat{\subsection}[hang]
+{}{\filright\raisebox{-1.3ex}{\huge\char"B6}\kern-2.3ex{\color{white}\arabic{subsection}}\enspace}{0.5em}{\bfseries}
+
+\pagestyle{empty}
 \setlength{\lineskip}{5pt}
 \setlength{\lineskiplimit}{2.5pt}
 
@@ -99,10 +134,10 @@
 \phantom{2}
 \vspace{2em}
 \begin{spacing}{2}
-	\thispagestyle{empty}
 	\rightline{\Huge\parbox{1em}{\fontsize{60pt}{80pt}{\bfseries 朱鹭子和琪露诺}}\hspace{2em}}
 \end{spacing}
 \clearpage
+\pagestyle{fancy}
 \section{什么是ODE}
 朱鹭子：ODE被称为“\ruby[g]{常微分方程}{{Ordinary Differential Equation}}”，是一种奇怪的方程，它代表了一些奇怪的量之间的奇怪关系，我记得你是学过微积分的吧？
 
@@ -732,9 +767,10 @@
 朱鹭子：事实上的确是这样，在这里就先不验证了，但不管怎么样，记住有奇解存在这件事还是相当重要的。
 
 
-\section{高阶微分方程}
+\section{高阶线性微分方程}
 
-朱鹭子：这里我们算是基本把一阶ODE的方法讨论得差不多了，接下来是有关高阶微分方程的一些理论。
+\subsection{高阶线性微分方程的解的结构}
+朱鹭子：这里我们算是基本把一阶ODE的方法讨论得差不多了，接下来是有关高阶线性微分方程的一些理论。
 
 琪露诺：听上去非常恐怖的样子……
 
@@ -964,6 +1000,8 @@
 
 朱鹭子：猜……倒是的确有这种，不过这里暂且先不论。这里主要讨论的是常数变易法。
 
+
+\subsection{高阶线性微分方程与常数变易法}
 琪露诺：\emoji{😥}，细说。
 
 朱鹭子：呃……其实就是把 \(c_1,\cdots ,c_n\) 这些常数全部变成函数。
@@ -1180,12 +1218,12 @@
 \[
 	\begin{aligned}
 		(\mathrm{SOL}^n) & = \underset{\symscr{D} _t\left(\sum_{j=1}^{n} \symscr{D} _t^{n_-1}(x_j)c_j   \right) \,=\, \sum_{j=1}^{n}\symscr{D} ^n_t(x_j)c_j+\symscr{D} _t^{n-1}(x_j)\symscr{D} (c_j)}{\underbrace{\symscr{D} _t\left(  \symscr{D} _t^{n-1}(x_{\rm Sol}) \right)}} + \sum_{i=1}^{n} a_i(t)
-		\sum_{j=1}^{n} c_j\symscr{D} _t^j(x_j)                                                                                                                                                                                                                                                                                          \\
+		\sum_{j=1}^{n} c_j\symscr{D} _t^j(x_j)                                                                                                                                                                                                                                                               \\
 		                 & =\sum_{j=1}^{n}\symscr{D} ^n_t(x_j)c_j+\symscr{D} _t^{n-1}(x_j)\symscr{D}_t (c_j)+\sum_{j=1}^{n} c_j\sum_{i=1}^{n} a_i(t)
-		\symscr{D} _t^j(x_j)                                                                                                                                                                                                                                                                                                                   \\
+		\symscr{D} _t^j(x_j)                                                                                                                                                                                                                                                                                 \\
 		                 & =\underset{\sum_{j=1}^{n} c_j\symscr{L} (x_j)=0}{\underbrace{\sum_{j=1}^{n} c_j\left( \symscr{D} _t^n(x_j)+\sum_{i=1}^{n} a_i(t)\symscr{D} _t^i(x_j) \right)}}+\sum_{j=1}^{n}\symscr{D} _t^{n-1}(x_j)\symscr{D} _t(c_j)=\sum_{j=1}^{n}\symscr{D} _t^{n-1}(x_j)\symscr{D} _t(c_j).
 	\end{aligned}
-	\]
+\]
 
 琪露诺：\emoji{😪😪😪😪😪}
 
@@ -1216,8 +1254,8 @@
 		\sum_{i=1}^{n} \symscr{D} _t(c_i)\symscr{D}^{(n-1)} _t(x_i)
 	\end{bmatrix}= \symbfscr W(t) \cdot \begin{bmatrix}
 		\symscr{D} _t(c_1) \\   \symscr{D} _t(c_2) \\    \vdots \\    \symscr{D} _t(c_n) \\\end{bmatrix}=\begin{bmatrix}
-			0 \\      \vdots \\    0 \\    f(t) \\\end{bmatrix}
-.\]
+		0 \\      \vdots \\    0 \\    f(t) \\\end{bmatrix}
+	.\]
 
 琪露诺：噢噢噢噢噢噢噢噢哦哦哦哦哦哦哦！！！！！！！！！！！！我懂了！！！所以你的意思是说，由于 \(x_1,\cdots ,x_n\) 一开始就是线性无关的，所以 \(\symbfscr W\) 的行列式必然横恒不为零，所以它必然恒有逆！
 
@@ -1225,19 +1263,19 @@
 \[
 	\begin{bmatrix}
 		\symscr{D} _t(c_1) \\   \symscr{D} _t(c_2) \\    \vdots \\    \symscr{D} _t(c_n) \\\end{bmatrix} = \symbfscr W^{-1}(t)\cdot\begin{bmatrix}
-			0 \\      \vdots \\    0 \\    f(t) \\\end{bmatrix} 
-.\]
+		0 \\      \vdots \\    0 \\    f(t) \\\end{bmatrix}
+	.\]
 
 然后观察到 \(f(t)\) 对应的向量只有最后一个元素，因此实际上只有 \( \symbfscr W^{-1}(t)\) 的最后一列是有用的，因此利用Cramer法则（我们求解的是 \( \symscr{D} _t(c_i)\)所以最后还要积分一下）就可以化成：
 \[
 	x_{\rm Sol}= \sum_{i=1}^{n} x_i(t) \, \cdot \int\dfrac{{
-		\begin{vmatrix}
-			\scriptstyle x_1(t)         & \scriptstyle x_2(t)                       & \scriptstyle \cdots & \scriptstyle 0      & \scriptstyle \cdots & \scriptstyle x_n(t)                     \\[-3pt]
-			\scriptstyle x_1'(t)        & \scriptstyle x_2'(t)                      & \scriptstyle \cdots & \scriptstyle 0      & \scriptstyle \cdots & \scriptstyle x_n'(t)                    \\[-3pt]
-			\scriptstyle \vdots         & \scriptstyle \vdots                       & \scriptstyle \cdots & \scriptstyle \vdots & \scriptstyle \cdots & \scriptstyle \vdots                     \\[-3pt]
-			\scriptstyle x_1^{(n-1)}(t) & \!\! \!\scriptstyle x_n^{(n-1)}(t) \!\!\! & \scriptstyle \cdots & \scriptstyle 1      & \scriptstyle \cdots & \!\! \!\scriptstyle x_n^{(n-1)}(t) \!\! \\[3pt]
-		\end{vmatrix}\kern-4em\raisebox{1.8em}{$\kern-8em\overset{i}{\overbrace{\phantom{zzxvxvxvxx3wixcb}}}$\kern 4.6em}}}{\symscr{W} (t)}f(t) \,\mathrm{d}t
-.\]
+				\begin{vmatrix}
+					\scriptstyle x_1(t)         & \scriptstyle x_2(t)                       & \scriptstyle \cdots & \scriptstyle 0      & \scriptstyle \cdots & \scriptstyle x_n(t)                     \\[-3pt]
+					\scriptstyle x_1'(t)        & \scriptstyle x_2'(t)                      & \scriptstyle \cdots & \scriptstyle 0      & \scriptstyle \cdots & \scriptstyle x_n'(t)                    \\[-3pt]
+					\scriptstyle \vdots         & \scriptstyle \vdots                       & \scriptstyle \cdots & \scriptstyle \vdots & \scriptstyle \cdots & \scriptstyle \vdots                     \\[-3pt]
+					\scriptstyle x_1^{(n-1)}(t) & \!\! \!\scriptstyle x_n^{(n-1)}(t) \!\!\! & \scriptstyle \cdots & \scriptstyle 1      & \scriptstyle \cdots & \!\! \!\scriptstyle x_n^{(n-1)}(t) \!\! \\[3pt]
+				\end{vmatrix}\kern-4em\raisebox{1.8em}{$\kern-8em\overset{i}{\overbrace{\phantom{zzxvxvxvxx3wixcb}}}$\kern 4.6em}}}{\symscr{W} (t)}f(t) \,\mathrm{d}t
+	.\]
 
 琪露诺：原来是这样……但是感觉无论是对人类还是对妖怪来说计算量都是太大了吧？
 
@@ -1245,8 +1283,8 @@
 
 琪露诺：二阶的话也是代进去嘛，不过倒是有计算可行性：
 \[
-x_{\rm Sol}= x_1(t)\int \dfrac{-x_2(t)}{\symscr{W}(t)}  \,\mathrm{d}t+x_2(t)\int \dfrac{x_1(t)}{\symscr{W}(t) } \,\mathrm{d}t  
-.\]
+	x_{\rm Sol}= x_1(t)\int \dfrac{-x_2(t)f(t)}{\symscr{W}(t)}  \,\mathrm{d}t+x_2(t)\int \dfrac{x_1(t)f(t)}{\symscr{W}(t) } \,\mathrm{d}t
+	.\]
 
 看起来正常多了，虽然解一个二阶方程用Cramer法则就是有大病。
 
@@ -1254,7 +1292,10 @@ x_{\rm Sol}= x_1(t)\int \dfrac{-x_2(t)}{\symscr{W}(t)}  \,\mathrm{d}t+x_2(t)\int
 
 琪露诺：\textbf{*不}。而且这种方法要求我们知道基本解组，这要求我们对齐次的方程了如指掌才行。
 
-朱鹭子：确实……求这些一般是很难的……
+朱鹭子：确实……求这些一般是很难的……在这里将给出一个比较重要的种类，那就是常系数齐次微分方程。经过之前的讨论，我们知道只要求出线性微分方程的基本解组就能得出其非齐次方程的解，这样子我们只需要考虑基本解组就可以了。
+
+\subsection{常系数线性微分方程的基本解组}
+
 
 
 \newpage
