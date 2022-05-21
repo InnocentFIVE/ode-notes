@@ -13,13 +13,18 @@ Dont build the ".tex" arbitrarily, it **must be** contribute to the "none .error
 
 ## !important
 
-I divided the note into two parts, the first is the strange conversation between Cirno et Tokiko. I dont want Tokiko to say too much and tired so, I put some **INPORTANT** content into the part 2 "Ran et Chen".
+I divided the note into two parts, the first is the strange conversation between Cirno et Tokiko. I dont want Tokiko to say too much and tired so, I put some **IMPORTANT** content into the part 2 "Ran et Chen".
 
 Yep, thats it.
 
 ~~Luna is so cute, right?~~
 
 ![66158923_p1](https://user-images.githubusercontent.com/104732548/169655356-17fdb0d6-bf80-42cb-84a2-e2751685d081.png)
+
 (PID:66158923)
 
+LILY! LILY! LILY!
+LILY! LILY! LILY!
+LILY! LILY! LILY!
+LILY! LILY! LILY!
 LILY! LILY! LILY!
