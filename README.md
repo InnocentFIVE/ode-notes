@@ -1,11 +1,11 @@
 # ode-notes
 
-this.source.tex is the little notes from *Ordinary differential Equation E4* by Gaoxiong Wang.
-Actually, it is the copy of book and I just translate the content into hte Touhou shape.
+this.source.tex is the little notes from *Ordinary Differential Equation E4* by Gaoxiong Wang.
+Actually, it is the copy of book and I just transfrom the content into the Touhou shape.
 
 ~~Cirno is so cute, right?~~
 
-Now Ill *TRANSLATE* the *Linear ODEs*.
+Now I*ll* *TRANSLATE* the chapter *Linear ODEs*.
 
 Dont build the ".tex" arbitrarily, it **must be** contribute to the "none .errors and none PDF". Just read the PDF instead.
 
