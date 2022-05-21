@@ -46,7 +46,7 @@
 
 
 	\newfontface\emojifontsettings{Seguiemj.ttf}[Renderer=HarfBuzz]
-	\newfontface\mathsection{Garamond-Math.otf}
+
 	\newcommand{\emoji}[1]{{\emojifontsettings#1}}
 	\defaultfontfeatures{RawFeature={+calt,+swsh,+liga,+hlig,+clig,+dlig,+tnum,+lnum}}
 
@@ -985,7 +985,7 @@
 
 琪露诺：但是实际上 \(n\) 阶方程最多也有 \(n\) 个解吧？
 
-朱鹭子：线性方程， \(n\) 解线性方程的通解最多只有 \(n\) 个独立参数，这所谓的通解可以表示为：
+朱鹭子：线性方程， \(n\) 阶线性方程的通解最多只有 \(n\) 个独立参数，这所谓的通解可以表示为：
 \[
 	x_{\rm G}=\sum_{i=1}^{n} c_i x_i
 	.\]
@@ -1036,13 +1036,13 @@
 	% 		\end{vNiceMatrix}}{\symscr{W} (t)}f(t) \,\mathrm{d}t
 	% 	.\]
 	\[
-		x_{\rm All}= \sum_{i=1}^{n} x_i(t) \, \cdot \int\dfrac{{
-					\begin{vmatrix}
-						\scriptstyle x_1(t)         & \scriptstyle x_2(t)                       & \scriptstyle \cdots & \scriptstyle 0      & \scriptstyle \cdots & \scriptstyle x_n(t)                     \\[-3pt]
-						\scriptstyle x_1'(t)        & \scriptstyle x_2'(t)                      & \scriptstyle \cdots & \scriptstyle 0      & \scriptstyle \cdots & \scriptstyle x_n'(t)                    \\[-3pt]
-						\scriptstyle \vdots         & \scriptstyle \vdots                       & \scriptstyle \cdots & \scriptstyle \vdots & \scriptstyle \cdots & \scriptstyle \vdots                     \\[-3pt]
-						\scriptstyle x_1^{(n-1)}(t) & \!\! \!\scriptstyle x_n^{(n-1)}(t) \!\!\! & \scriptstyle \cdots & \scriptstyle 1      & \scriptstyle \cdots & \!\! \!\scriptstyle x_n^{(n-1)}(t) \!\! \\[3pt]
-					\end{vmatrix}\kern-4em\raisebox{1.8em}{$\kern-8em\overset{i}{\overbrace{\phantom{zzxvxvxvxx3wixcb}}}$\kern 4.6em}}}{\symscr{W} (t)}f(t) \,\mathrm{d}t
+		x_{\rm Sol}= \sum_{i=1}^{n} x_i(t) \, \cdot \int\left(  \raisebox{-2.5em}{\(\dfrac{{
+			\begin{vmatrix}
+				\scriptstyle x_1(t)         & \scriptstyle x_2(t)                       & \scriptstyle \cdots & \scriptstyle 0      & \scriptstyle \cdots & \scriptstyle x_n(t)                     \\[-3pt]
+				\scriptstyle x_1'(t)        & \scriptstyle x_2'(t)                      & \scriptstyle \cdots & \scriptstyle 0      & \scriptstyle \cdots & \scriptstyle x_n'(t)                    \\[-3pt]
+				\scriptstyle \vdots         & \scriptstyle \vdots                       & \scriptstyle \cdots & \scriptstyle \vdots & \scriptstyle \cdots & \scriptstyle \vdots                     \\[-3pt]
+				\scriptstyle x_1^{(n-1)}(t) & \!\! \!\scriptstyle x_n^{(n-1)}(t) \!\!\! & \scriptstyle \cdots & \scriptstyle 1      & \scriptstyle \cdots & \!\! \!\scriptstyle x_n^{(n-1)}(t) \!\! \\[3pt]
+			\end{vmatrix}\kern-4em\raisebox{1.8em}{$\kern-8em\overset{i}{\overbrace{\phantom{zzxvxvxvxx3wixcb}}}$\kern 4.6em}}}{\symscr{W} (t)}\)}f(t) \right) \,\mathrm{d}t
 		.\]
 \end{tho}
 
@@ -1171,7 +1171,7 @@
 
 朱鹭子：是为了方便计算，且听我说。我们看看刚才的 \(x_{\rm Sol}=\sum_{i=1}^{n} c_i(t)x_i(t)\)，左右两边求导得到：
 \[
-	\symscr{D} _t\left( x_{\rm Sol} \right) = \sum_{i=1}^{n}\symscr{D} _t(c_i)x_i+\symscr{D} _t(x_i)c_i =\underset{0}{\underbrace{ \sum_{i=1}^{n}\symscr{D} _t(c_i)x_i}}+\sum_{i=1}^{n}\symscr{D} _t(x_i)c_i=\sum_{i=1}^{n}\symscr{D} _t(x_i)c_i
+	\symscr{D} _t\left( x_{\rm Sol} \right) = \sum_{i=1}^{n}\left(  \symscr{D} _t(c_i)x_i+\symscr{D} _t(x_i)c_i\right)  =\underset{0}{\underbrace{ \sum_{i=1}^{n}\symscr{D} _t(c_i)x_i}}+\sum_{i=1}^{n}\symscr{D} _t(x_i)c_i=\sum_{i=1}^{n}\symscr{D} _t(x_i)c_i
 	.\]
 
 看！这样我们实际上就简化了 \(\symscr{D} _t\left( x_{\rm Sol} \right) \)，只通过一次条件，另外，我问一下为什么我要消去这个 \(\sum_{i=1}^{n}\symscr{D} _t(c_i)x_i\) 而不是 \(\sum_{i=1}^{n}\symscr{D} _t(x_i)c_i\)？
@@ -1202,7 +1202,7 @@
 朱鹭子：没错，事实上我可以一直这样做，直到我用完了 \(n-1\) 个条件：只要带上 \(\symscr{D} _t(c_i)\) 的求和就让他为零，这样我就可以保证对 \(x_{\rm Sol}\) 的导数阶数和对 \(x_i\) 的导数阶数相等，因此我给出的 \(n-1\) 个条件和推论应该是：
 \[
 	\begin{bmatrix}
-		\sum_{i=1}^{n} \symscr{D} _t(c_i)x_i \\    \sum_{i=1}^{n} \symscr{D} _t(c_i)\symscr{D} _t(x_i) \\    \vdots \\    \sum_{i=1}^{n} \symscr{D} _t(c_i)\symscr{D}^{(n-2)} _t(x_i) \\\end{bmatrix}=\symbf 0 \implies \begin{bmatrix}
+		\sum_{i=1}^{n} \symscr{D} _t(c_i)x_i \\    \sum_{i=1}^{n} \symscr{D} _t(c_i)\symscr{D} _t(x_i) \\    \vdots \\    \sum_{i=1}^{n} \symscr{D} _t(c_i)\symscr{D}^{n-2} _t(x_i) \\\end{bmatrix}=\symbf 0 \implies \begin{bmatrix}
 		\symscr{D} _t(x_{\rm Sol}) \\ \symscr{D} ^2_t(x_{\rm Sol})    \\   \vdots  \\    \symscr{D} _t^{n-1}(x_{\rm Sol}) \\\end{bmatrix}=\begin{bmatrix}
 		\sum_{i=1}^{n}\symscr{D} _t(x_i)c_i \\    \sum_{i=1}^{n} \symscr{D} _t^2(x_i)c_i \\    \vdots \\  \sum_{i=1}^{n} \symscr{D} _t^{n_-1}(x_i)c_i   \\\end{bmatrix}
 	.\]
@@ -1234,7 +1234,7 @@
 
 琪露诺：那这有什么用呢？
 
-朱鹭子：看，我们刚才给出了 \(n-1\) 个方程，但实际上我们要解出 \(c_i\) 必然还需要一个，而 \(x_{\rm Sol}=\sum_{i=1}^{bn} x_i(t) c_i(t)\) 并不能算解出 \(c_i\) 的方程，因为我们本身就要解出 \(c_i\) 才知道 \(x_{\rm Sol}\) 的，而这 \(\sum_{j=1}^{n}\symscr{D} _t^{n-1}(x_j)\symscr{D} _t(c_j) =f(t)\)就是最后的方程，如果把这个方程和我们写出来的那 \(n-1\)方程一起写出来：
+朱鹭子：看，我们刚才给出了 \(n-1\) 个方程，但实际上我们要解出 \(c_i\) 必然还需要一个，而 \(x_{\rm Sol}=\sum_{i=1}^{n} x_i(t) c_i(t)\) 并不能算解出 \(c_i\) 的方程，因为我们本身就要解出 \(c_i\) 才知道 \(x_{\rm Sol}\) 的，而这 \(\sum_{j=1}^{n}\symscr{D} _t^{n-1}(x_j)\symscr{D} _t(c_j) =f(t)\)就是最后的方程，如果把这个方程和我们写出来的那 \(n-1\)方程一起写出来：
 \[
 	\begin{bmatrix}
 		\sum_{i=1}^{n} \symscr{D} _t(c_i)x_i \\    \sum_{i=1}^{n} \symscr{D} _t(c_i)\symscr{D} _t(x_i) \\    \vdots \\    \sum_{i=1}^{n} \symscr{D} _t(c_i)\symscr{D}^{(n-2)} _t(x_i) \\
@@ -1252,12 +1252,17 @@
 	\begin{bmatrix}
 		\sum_{i=1}^{n} \symscr{D} _t(c_i)x_i \\    \sum_{i=1}^{n} \symscr{D} _t(c_i)\symscr{D} _t(x_i) \\    \vdots \\    \sum_{i=1}^{n} \symscr{D} _t(c_i)\symscr{D}^{(n-2)} _t(x_i) \\
 		\sum_{i=1}^{n} \symscr{D} _t(c_i)\symscr{D}^{(n-1)} _t(x_i)
-	\end{bmatrix}= \symbfscr W(t) \cdot \begin{bmatrix}
+	\end{bmatrix}= \underset{\symbfscr W(t)}{\underbrace{\begin{bmatrix}
+		x_1                & x_2                & \cdots & x_n                \\
+		\symscr{D} _t(x_1) & \symscr{D} _t(x_2) & \cdots & \symscr{D} _t(x_n) \\
+		\vdots             & \vdots             &        & \vdots             \\
+		\symscr{D}^{n-1} _t(x_1) & \symscr{D}^{n-1} _t(x_2)     & \cdots & \symscr{D}^{n-1} _t(x_n)     \\
+	\end{bmatrix} }}\cdot \begin{bmatrix}
 		\symscr{D} _t(c_1) \\   \symscr{D} _t(c_2) \\    \vdots \\    \symscr{D} _t(c_n) \\\end{bmatrix}=\begin{bmatrix}
 		0 \\      \vdots \\    0 \\    f(t) \\\end{bmatrix}
 	.\]
 
-琪露诺：噢噢噢噢噢噢噢噢哦哦哦哦哦哦哦！！！！！！！！！！！！我懂了！！！所以你的意思是说，由于 \(x_1,\cdots ,x_n\) 一开始就是线性无关的，所以 \(\symbfscr W\) 的行列式必然横恒不为零，所以它必然恒有逆！
+琪露诺：噢噢噢噢噢噢噢噢哦哦哦哦哦哦哦！！！！！！！！！！！！我懂了！！！所以你的意思是说，由于 \(x_1,\cdots ,x_n\) 一开始就是线性无关的，所以 \(\symbfscr W\) 的行列式必然恒不为零，所以它必然恒有逆！
 
 朱鹭子：在区间 \(\symcal{I} \) 上。没错，所以这样子我们就可以知道：
 \[
@@ -1268,13 +1273,13 @@
 
 然后观察到 \(f(t)\) 对应的向量只有最后一个元素，因此实际上只有 \( \symbfscr W^{-1}(t)\) 的最后一列是有用的，因此利用Cramer法则（我们求解的是 \( \symscr{D} _t(c_i)\)所以最后还要积分一下）就可以化成：
 \[
-	x_{\rm Sol}= \sum_{i=1}^{n} x_i(t) \, \cdot \int\dfrac{{
-				\begin{vmatrix}
-					\scriptstyle x_1(t)         & \scriptstyle x_2(t)                       & \scriptstyle \cdots & \scriptstyle 0      & \scriptstyle \cdots & \scriptstyle x_n(t)                     \\[-3pt]
-					\scriptstyle x_1'(t)        & \scriptstyle x_2'(t)                      & \scriptstyle \cdots & \scriptstyle 0      & \scriptstyle \cdots & \scriptstyle x_n'(t)                    \\[-3pt]
-					\scriptstyle \vdots         & \scriptstyle \vdots                       & \scriptstyle \cdots & \scriptstyle \vdots & \scriptstyle \cdots & \scriptstyle \vdots                     \\[-3pt]
-					\scriptstyle x_1^{(n-1)}(t) & \!\! \!\scriptstyle x_n^{(n-1)}(t) \!\!\! & \scriptstyle \cdots & \scriptstyle 1      & \scriptstyle \cdots & \!\! \!\scriptstyle x_n^{(n-1)}(t) \!\! \\[3pt]
-				\end{vmatrix}\kern-4em\raisebox{1.8em}{$\kern-8em\overset{i}{\overbrace{\phantom{zzxvxvxvxx3wixcb}}}$\kern 4.6em}}}{\symscr{W} (t)}f(t) \,\mathrm{d}t
+	x_{\rm Sol}= \sum_{i=1}^{n} x_i(t) \, \cdot \int\left(  \raisebox{-2.5em}{\(\dfrac{{
+		\begin{vmatrix}
+			\scriptstyle x_1(t)         & \scriptstyle x_2(t)                       & \scriptstyle \cdots & \scriptstyle 0      & \scriptstyle \cdots & \scriptstyle x_n(t)                     \\[-3pt]
+			\scriptstyle x_1'(t)        & \scriptstyle x_2'(t)                      & \scriptstyle \cdots & \scriptstyle 0      & \scriptstyle \cdots & \scriptstyle x_n'(t)                    \\[-3pt]
+			\scriptstyle \vdots         & \scriptstyle \vdots                       & \scriptstyle \cdots & \scriptstyle \vdots & \scriptstyle \cdots & \scriptstyle \vdots                     \\[-3pt]
+			\scriptstyle x_1^{(n-1)}(t) & \!\! \!\scriptstyle x_n^{(n-1)}(t) \!\!\! & \scriptstyle \cdots & \scriptstyle 1      & \scriptstyle \cdots & \!\! \!\scriptstyle x_n^{(n-1)}(t) \!\! \\[3pt]
+		\end{vmatrix}\kern-4em\raisebox{1.8em}{$\kern-8em\overset{i}{\overbrace{\phantom{zzxvxvxvxx3wixcb}}}$\kern 4.6em}}}{\symscr{W} (t)}\)}f(t) \right) \,\mathrm{d}t
 	.\]
 
 琪露诺：原来是这样……但是感觉无论是对人类还是对妖怪来说计算量都是太大了吧？
@@ -1296,8 +1301,258 @@
 
 \subsection{常系数线性微分方程的基本解组}
 
+朱鹭子：对于任意一个线性方程，我们不可能得到它的基本解组，但是如果 \(\symscr{L} \) 是不随时间改变而改变的，即 \(\symscr{L} \) 中所有的 \(a_i(t)\) 都是常数，那么这样一个方程我们是很容易得到它的基本解组的。
 
+琪露诺：果然还是只能搞最基本简单的方程啊……
 
+朱鹭子：的确是这样，我们看下面这个方程：
+\[
+\symscr{L}_c (x)\coloneq\symscr{D} _t^n(x)+ \sum_{i=1}^{n-1} a_i\symscr{D} ^i_t(x)=0
+.\]
+我们称为常系数线性齐次微分方程。
+
+琪露诺：变成了常数之后应该好搞很多吧？
+
+朱鹭子：是，我们不妨考虑 \( x =\symrm{e} ^{\lambda t}\) 。至于为什么要这么设，实际上是因为对于一阶的：\( \dx+ax=0\) 的解是 \(x= c_1\symrm{e} ^{-at}\) ，所以我们照葫芦画瓢：
+\[
+	\symscr{L}_c (x) = \symscr{D} _t^n\left( \symrm{e} ^{\lambda t} \right) + \sum_{i=1}^{n-1} a_i\symscr{D} ^i_t\left( \symrm{e} ^{\lambda t} \right) 
+	=\left( \lambda ^n+ \sum_{i=1}^{n-1} a_i \lambda ^i \right)\symrm{e} ^{\lambda t}=0\implies \lambda ^n+ \sum_{i=1}^{n-1} a_i \lambda ^i =0
+\]
+
+琪露诺：哇！变成最基本的代数方程了！接下来不就是解那个 \(n\) 阶方程就可以了吗？
+
+朱鹭子：实际上也没有这么简单，这个方程被称为常系数线性齐次方程组的特征方程，事实上：
+\begin{enumerate}
+	\setcounter{enumi}{0}
+	\item 如果方程 \(\lambda ^n+ \sum_{i=1}^{n-1} a_i \lambda ^i =0\) 有 \(n\) 个不同的解 \(\lambda_1,\cdots ,\lambda _n \) 那么这个常系数线性齐次分方程的基本解组就是 \( \symrm{e} ^{\lambda _1t},\cdots ,\symrm{e} ^{\lambda_nt}\)。
+\end{enumerate}
+ 
+琪露诺：这不是没什么问题吗？
+
+朱鹭子：但实际上，这只是最好的情况，如果特征方程有重根呢？
+
+琪露诺：啊？那也不一样……等等，有重根就意味着实际上这些 \(\symrm{e} ^{\lambda _it}\) 没有 \(n\) 个！那也就是说会有其他解。
+
+朱鹭子：的确，事实上：
+\begin{enumerate}
+	\setcounter{enumi}{1}
+	\item 如果方程 \(\lambda ^n+ \sum_{i=1}^{n-1} a_i \lambda ^i =0\) 有根 \(\lambda _1,\cdots \lambda_k\) 对应重数 \(m_1,\cdots ,m_k\) ，其中 \(\sum_{i=1}^{k} m_i=n\) ，那么这个常系数线性齐次分方程的基本解组就是：
+\[
+t^j\symrm{e} ^{\lambda_i t},\,j=0,1,\cdots m_i-1,\,i=1,\cdots k
+.\]
+\end{enumerate}
+
+琪露诺：？这啥，怎么那么多符号，看不懂的啦……
+
+朱鹭子：举个例子，如果特征方程是这样的 \((\lambda -5)^n(\lambda -1)(\lambda -4)^m\) ，那么它对应的常系数线性齐次分方程的基本解组就是：
+\[
+	\begin{aligned}
+	&\symrm{e} ^{5t},t\symrm{e} ^{5t},\cdots t^{n-1}\symrm{e} ^{5t}, \\ 
+	&\symrm{e} ^{t},\\
+	&\symrm{e} ^{5t},t\symrm{e} ^{4t},\cdots ,t^{m-1}\symrm{e} ^{4t}.
+	\end{aligned}
+\]
+
+琪露诺：这样下去倒的确是 \(n\) 个线性无关解没错了，但为什么是在前面乘上 \(t^i\)  呢？
+
+朱鹭子：常数变易法\emoji{😂}。实际上这个确实不好怎么说明。
+
+琪露诺：又来\emoji{🤔}……
+
+朱鹭子：不妨只设只有一个重根 \(\lambda_1 \) ，重数为 \(m_1\) ，则用常数变易法设这根对应的解是 \( c(t)\symrm{e} ^{\lambda t}\)。则：
+\[
+\symscr{D} _t^k (c(t)\symrm{e} ^{\lambda t})=\symrm{e} ^{\lambda t}\sum_{i=0}^{k} \binom{k}{i}\lambda ^i\symscr{D} ^{k-i}_t(c)
+.\]
+
+琪露诺：？这是求 \(k\) 阶导？
+
+朱鹭子：是，事实上这是依赖高阶导数的Leibniz公式：
+\[
+	\symscr{D} _t^k(a\cdot b)= \sum_{i=0}^{k} \binom{k}{i}\symscr{D} ^{k-i}_t(a)\cdot \symscr{D} ^{i}_t(b)
+.\]
+
+考虑到这个 \(\sum_{i=0}^{k} \binom{k}{i}\lambda ^i\symscr{D} ^{k-i}_t(c)\)也是常系数线性的，那么实际上：
+\[
+\begin{aligned}
+	\symscr{L} _c(c(t)\symrm{e} ^{\lambda t}) &= \symrm{e} ^{\lambda t}\sum_{i=0}^{n} \binom{n}{i}\lambda ^i\symscr{D} ^{n-i}_t(c)+\sum\limits_{k=1}^{n-1} a_i\symrm{e} ^{\lambda t}\sum_{i=0}^{k} \binom{k}{i}\lambda ^i\symscr{D} ^{k-i}_t(c)\\ 
+	&=\symrm{e} ^{\lambda t}\underline{\left( \sum_{i=0}^{n} \binom{n}{i}\lambda ^i\symscr{D} ^{n-i}_t(c)+ \sum\limits_{k=1}^{n-1} a_i\sum_{i=0}^{k} \binom{k}{i}\lambda ^i\symscr{D} ^{k-i}_t(c)\right) }=0.
+\end{aligned}
+\]
+
+则下划线部分也是常系数线性的，因此不妨设为 \(\overline{\symscr{L} _c}(c)\)。
+
+琪露诺：\emoji{😪😪😪😪😪😪}，计算量太大了吧。
+
+朱鹭子：确实，但我们目的不是为了计算，只要是它是常系数线性的就可以，现在已经变成：
+\[
+\symscr{L} _c(c\cdot\symrm{e} ^{\lambda t}) = \overline{\symscr{L} _c}(c)\symrm{e} ^{\lambda t}=0\implies\overline{\symscr{L} _c}(c)=0
+.\]
+
+琪露诺：所以我们要解一个新的常系数线性？
+
+朱鹭子：当然不可能直接解，为了方便讨论，我们不妨设两个线性算符的对应的特征方程为：
+\[
+\begin{aligned}
+	\symscr{L} : \lambda ^n +\sum\limits_{i=1}^{n-1} a_i \lambda ^i\eqcolon A(\lambda ), \\ 
+	\overline{\symscr{L}} : \lambda ^n +\sum\limits_{i=1}^{n-1} b_i \lambda ^i\eqcolon B(\lambda ).
+\end{aligned}
+\]
+
+琪露诺：诶为什么这个超级怪的 \( \overline{\symscr{L} }\) 的 \(n\) 阶导数前面的系数也是 1 呢？
+
+朱鹭子：这个啊，仔细看上面这个方程：
+\[
+	B(\lambda )=\underline{\sum_{i=0}^{n} \binom{n}{i}\lambda ^i\symscr{D} ^{n-i}_t(c)}+ \sum\limits_{k=1}^{n-1} a_i\sum_{i=0}^{k} \binom{k}{i}\lambda ^i\symscr{D} ^{k-i}_t(c)
+.\]
+
+实际上能产生 \(n\) 阶导数的也只有下换线部分吧？你把 \(i=0\)代进去即可，其他看起来很恐怖，但是其实都是常数（只不过很复杂）罢了，这里我们完全可以不考虑。接下来就是线性算符和特征方程之间的关系：
+\[
+	\symscr{L} (\symrm{e} ^{kx})=A(k)\symrm{e} ^{kx},\,\overline{\symscr{L}} (\symrm{e} ^{kx})=B(k)\symrm{e} ^{kx}
+.\]
+
+琪露诺：对，因为 \(\symrm{e} ^{kx}\) 求导不会变，所以完全可以提出来，再加上求导算符乘上的都是常数，所以最后实际上变成了一个 \(\symrm{e} ^{kx}\) 乘上一个固定多项式的情形。
+
+朱鹭子：没错，接下来是重点，要知道我们还有这个哇：
+\[
+\symscr{L} (c \cdot \symrm{e} ^{kx})=\overline{\symscr{L} }(c)\symrm{e} ^{kx}
+.\]
+
+注意到 \(\overline{\symscr{L} }\) 的定义虽然复杂，但实际上并没有和 \(t\) 有关系，也就是说不管是什么样的函数 \(c\) 上式都是满足的。
+
+琪露诺：看起来好像有点形状了……但是我令 \(c=t^i\) 并不能得到什么哇？
+
+朱鹭子：接下来看：
+\[
+	\symscr{L} ( \symrm{e} ^{k x}\cdot \symrm{e} ^{\lambda x})=\overline{\symscr{L} }(\symrm{e} ^{k x})\symrm{e} ^{\lambda x}=\underline{B(k)\symrm{e} ^{(k+\lambda )x}}
+.\]
+
+同时
+\[
+	\symscr{L} ( \symrm{e} ^{k x}\cdot \symrm{e} ^{\lambda x}) =\underline{ A(\lambda +k)\symrm{e} ^{(k+\lambda )x}}
+.\]
+
+注意下划线部分，我们可以得到：
+\[
+	A(\lambda +k)=B(k)
+.\]
+
+琪露诺：哇，所以这就是把这个抽象的多项式表达出来了？
+
+朱鹭子：确实，但是还有哦，之前过了，这个 \(\lambda \) 是多项式 \(A\) 的 \(m\)重根，这意味着：
+\[
+\symscr{D} _k^i(A(\lambda +k))\bigr|_{k=0} =\symscr{D} _k^i(B(k))\bigr|_{k=0}=0,\,i=0,1,\cdots m-1
+.\]
+
+琪露诺：所以是依靠 \(\lambda \) 是 \(A\) 的 \(m\) 重零点来推出这个的吗？
+
+朱鹭子：的确，所以你也看到了， \(0\) 是多项式 \(B(k)\) 的 \(m\) 阶零点，因此？
+
+琪露诺：啊？这不又会到了一开始有多重根的情况了吗？
+
+朱鹭子：看起来好像是这样子，但实际上不一样哦，如果 \(B(k)\) 是这样子的话，那不就意味着 \(B(k)\) 的形式是：
+\[
+k^n+\sum\limits_{i=m}^{n-1} b_ik^i
+.\]
+
+对应的常系数线性微分方程实际上就变成：
+\[
+	\symscr{D} ^n_t(x)+\sum\limits_{i=m}^{n-1} b_i \symscr{D} ^i_t(x)=0
+.\]
+
+琪露诺：诶？是可以等价的吗，原来还可以从特征方程反推常系数微分方程的哇。
+
+朱鹭子：为什么不可以呢？还记得我们最初的特征方程怎么得到的吗：
+\[
+\symscr{L} _c \coloneq\symscr{D} ^n_t+ \sum\limits_{i=1}^{n-1} a_i\symscr{D} _t^i \implies\mbox{特征方程}= \lambda  ^n+ \sum\limits_{i=1}^{n-1} a_i\lambda^i 
+.\]
+
+这不全是一对一的吗？你不用担心说什么奇怪的 \(\symrm{e} ^{kt}\)变换会害了方程，让它脱离和常系数微分方程的关系，实际上没这回事。
+
+琪露诺：诶？原来这么神奇，看起来好巧妙……
+
+朱鹭子：那我们继续吧，我们知道为了求解 \(c\) ，我们要面对微分方程是：
+\[
+	\symscr{D} ^n_t(c)+\sum\limits_{i=m}^{n-1} b_i \symscr{D} ^i_t(c)=0
+.\]
+
+琪露诺：这不还是一个 \(n\) 阶吗？
+
+朱鹭子：对，但是它除了各种各样我们不清楚的指数解，还有其他解哦，你看它最小阶数的导数都是 \(m\) 次捏。
+
+琪露诺：\emoji{🤔🤔🤔🤔🤔🤔🤔🤔🤔}……难不成你只的是：
+\[
+1,t,\cdots t^{m-1}
+.\]
+这些吗？
+
+朱鹭子：没错，更准确来说是他们的线性组合，所以实际上我们要求的 \(c\) 就是这些了。
+
+琪露诺：但那些指数解不会影响吗？
+
+朱鹭子：不会，由于 \(c\) 是指数，那么 \(c\cdot\symrm{e} ^{\lambda t}\) 也是指数，实际上对应方程 \(\symscr{L} _c(x)=0\) 的另一个指数解，这里完全可以忽略，因为这个解必然包含在\(\symscr{L} _c(x)=0\)的解中，并不会造成影响。更恰当地说，由于 \(A(\lambda +k)=B(k)\) 这个关系的存在，使得两个方程紧紧联系在一起，他们解的差别也仅仅是差个常数罢了。所以对于指数解这种只影响特征多项式的，是丝毫不影响的，都是相互对应的。
+
+琪露诺：好吧，所以因为这样我才可以独立讨论所有重根？
+
+朱鹭子：没错。当然，还有一件事是你要证明：
+\[
+	t^j\symrm{e} ^{\lambda_i t},\,j=0,1,\cdots m_i-1,\,i=1,\cdots k
+.\]
+是（在任何区域上）线性无关的。
+
+琪露诺：看起来是那么地显然……
+
+朱鹭子：你可以尝试下Taylor展开，由于这些函数性质良好，所以可以胡乱来（笑）。
+
+琪露诺：算了，我可没那心情。啊对了，还有个问题，如果根式复根怎么办呢？
+
+朱鹭子：复根啊，你只需要用到Euler三角公式：
+\[
+\symrm{e} ^{\symrm{i} b}=\cos b+\symrm{i} \sin b
+.\]
+所以实际上对应的是 \(\cos bt\)和\(\sin bt\)……
+
+琪露诺：等等！为什么一个根可以对应两个线性无关…… \(\cos bt\) 和 \(\sin bt\) 应该都是线性无关的吧……除了 \(b=0\) ？
+
+朱鹭子：没错。
+
+琪露诺：那这样子我有 \(n\) 个不同的复根不就对应了 \(2n\) 个线性无关解了吗？
+
+朱鹭子：好问题，事实上，复根总是成对出现的。对于一个多项式 \(P\)：
+\[
+P(a +b\symrm{i}  )=0 \iff P(a-b\symrm{i} )=0
+.\]
+
+所以实际上是两个复根同时对应了 \(\cos bt\) 和 \(\sin bt\) 。
+
+琪露诺：为什么复根是成对出现的哇？
+
+朱鹭子：嗯……实际上，对于这样的复根我们管它叫“共轭”……
+
+琪露诺：这些我知道，但是为什么……
+
+朱鹭子：对于一个\textbf{实系数}多项式：
+\[
+P(\lambda ) = \sum\limits_{i=1}^{n} a_i \lambda ^i
+.\]
+
+我们可以考虑共轭运算 \(^*\)，由于共轭满足以下性质：
+\[
+\begin{aligned}
+ &a^*+b^*=(a+b)^*,\\ 
+&(a^n)^*=(a^*)^n,\,a,b\in\symbb{C} ,\,n\in\symbb{R} .
+\end{aligned}
+\]
+
+所以实际上：
+\[
+	P(\lambda^* ) = \sum\limits_{i=1}^{n} a_i (\lambda^* )^i  = \sum\limits_{i=1}^{n}  (a_i\lambda^i ) ^*=\left( \sum\limits_{i=1}^{n}  a_i\lambda^i \right) ^*=P(\lambda )^*
+.\]
+
+因此如果 \(P(r)=0 \iff P(r^*)=0\)。
+
+琪露诺：哇，原来如此。感觉世界一下子那啥起来了。
+
+朱鹭子：那啥……
 \newpage
 \phantom{2}
 \vspace{2em}
