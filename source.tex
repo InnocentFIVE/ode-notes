@@ -25,7 +25,8 @@
 \setCJKmainfont[BoldFont = GenYoMin-B.ttc]{GenWanMin TW TTF}
 \setCJKmainfont[CharRange="2014]{FZXYSJW.TTF}
 
-
+\newcommand{\Ai}{\mathop{\rm Ai}}
+\newcommand{\Bi}{\mathop{\rm Bi}}
 \fancypagestyle{forsection}
 {
 \fancyhf{}
@@ -63,6 +64,8 @@
 %\everymath{\displaystyle}
 \renewcommand{\symcal}[1]{{\mathversion{a}\mbox{$\symscr{#1}$}}}
 \newcommand{\dx}{\symscr{D} _t (x)}
+\newcommand{\dw}{\symscr{D} _z (w)}
+\newcommand{\ddw}{\symscr{D}^2 _z (w)}
 \newcommand{\newsout}[1]{\kern0ex\raisebox{0.25ex}{\sout{\raisebox{-0.25ex}{#1}}}\kern0ex}
 
 \def\uppartial{\symup\partial}
@@ -100,17 +103,16 @@
 \begin{document}
 
 
-
 \titleformat{\section}[display]
 {}{\newpage\thispagestyle{forsection}
-\filright{\hrule width 1cm\vskip-1.95em}\hspace*{1cm}
-\enspace
-{\LARGE\char"E001}
-\enspace
-\raisebox{0.8ex}{$\underset{\mbox{\tiny\textit{SECTION}}}{\textbf{\textit{\Huge{\arabic{section}}}}}$}
-\enspace{\LARGE\char"E002}
-\enspace
-\titlerule}{1em}{\vspace{-3ex}\Large\bfseries\rightline}
+	\filright{\hrule width 1cm\vskip-1.95em}\hspace*{1cm}
+	\enspace
+	{\LARGE\char"E001}
+	\enspace
+	\raisebox{0.8ex}{$\underset{\mbox{\tiny\textit{SECTION}}}{\textbf{\textit{\Huge{\arabic{section}}}}}$}
+	\enspace{\LARGE\char"E002}
+	\enspace
+	\titlerule}{1em}{\vspace{-3ex}\Large\bfseries\rightline}
 
 \titleformat{\subsection}[hang]
 {}{\filright\raisebox{-1.3ex}{\huge\char"B6}\kern-2.3ex{\color{white}\arabic{subsection}}\enspace}{0.5em}{\bfseries}
@@ -134,7 +136,7 @@
 \phantom{2}
 \vspace{2em}
 \begin{spacing}{2}
-\rightline{\Huge\parbox{1em}{\fontsize{60pt}{80pt}{\bfseries 朱鹭子和琪露诺}}\hspace{2em}}
+	\rightline{\Huge\parbox{1em}{\fontsize{60pt}{80pt}{\bfseries 朱鹭子和琪露诺}}\hspace{2em}}
 \end{spacing}
 \clearpage
 \pagestyle{fancy}
@@ -152,8 +154,8 @@
 朱鹭子：一阶的ODE在某种意义上是最简单的ODE了，所以我们可以先来研究它。我们知道，ODE事关待求解函数 \(x(t)\) 的导数，这个导数可能是很高阶的，比如：
 
 \[
-\symscr{D} ^n_t (x)=f(t,x)
-.\]
+	\symscr{D} ^n_t (x)=f(t,x)
+	.\]
 
 此时我们……
 
@@ -161,25 +163,25 @@
 
 朱鹭子：哦这个啊，我们管它叫“求导算符”，这里这样写指的是对 \( t\) 求 \(n\)次导，同时，我们也默认 \(x\) 是关于 \(t\) 的函数。我么继续，上面这个式子是一个 \(n\)阶的ODE，我们不想讨论它，我们直接来看最简单的：
 \[
-\symscr{D} _t (x)=f(t)g(x)
-.\]
+	\symscr{D} _t (x)=f(t)g(x)
+	.\]
 这种被称为“变量分离方程”。
 \subsection{变量分离方程}
 朱鹭子：这种我们可以这样做：
 \[
-\dfrac{\symscr{D} _t(x)}{g(x)}= f(t)
-.\]
+	\dfrac{\symscr{D} _t(x)}{g(x)}= f(t)
+	.\]
 两边积分就可以得到：
 \[
-\int \dfrac{1}{g(x)} \,\mathrm{d}x =\int f(t) \,\mathrm{d}t \tag{A}
-.\]
+	\int \dfrac{1}{g(x)} \,\mathrm{d}x =\int f(t) \,\mathrm{d}t \tag{A}
+	.\]
 
 琪露诺：诶等等，这个 \(\symscr{D} _t(x)\) 到哪里去了？
 
 朱鹭子：啊这个的话……实际上是有
 \[
-\int \dfrac{1}{g(x)} \,\mathrm{d}x =\int \dfrac{\symscr{D} _t(x)}{g(x)} \,\mathrm{d}t
-.\]
+	\int \dfrac{1}{g(x)} \,\mathrm{d}x =\int \dfrac{\symscr{D} _t(x)}{g(x)} \,\mathrm{d}t
+	.\]
 这个，这个你不是有学的吗？
 
 琪露诺：呃我忘了……
@@ -192,45 +194,45 @@
 \subsection{线性微分方程}
 朱鹭子：好，我们来看看这种：
 \[
-\dx{}+p(t)x=f(t)\tag{B}
-.\]
+	\dx{}+p(t)x=f(t)\tag{B}
+	.\]
 这种被称为线性微分方程。
 
 琪露诺：\emoji{🤔}诶……这个线性指的是什么意思呢……
 
 朱鹭子：我们可以这样理解。假设 \(x_1\)和 \(x_2\)都是方程  B 的解，那么我们考虑：
 \[
-x_3=cx_1+(1-c)x_2
-.\]
+	x_3=cx_1+(1-c)x_2
+	.\]
 这个是不是方程B的解呢？
 
 琪露诺：\emoji{😥}好像是的。
 
 朱鹭子：对，没错，这里实际上是有：
 \[
-\begin{cases}\\[-2em]
-	\symscr{D} _t^n(x_1+x_2)=\symscr{D} _t^n(x_1)+\symscr{D} _t^n(x_2), \\
-	\symscr{D} _t^n(cx_1)=c\cdot \symscr{D} _t^n(x_1).
-\end{cases}\tag{C}
+	\begin{cases}\\[-2em]
+		\symscr{D} _t^n(x_1+x_2)=\symscr{D} _t^n(x_1)+\symscr{D} _t^n(x_2), \\
+		\symscr{D} _t^n(cx_1)=c\cdot \symscr{D} _t^n(x_1).
+	\end{cases}\tag{C}
 \]
 这里指的是求导算符的函数线性，另外我们考虑更普遍的形式：
 \[\label{linearofl}
-\begin{aligned}
-		& \symscr{L}_1 =\symscr{D} _t^n +a_{n-1}(t)\symscr{D} _t^{n-1}+\cdots a_1(t)\symscr{D} _t +a_0(t)=\symscr{D} _t^{n-1}+\sum_{i=1}^{n-1} a_{i}(t)\symscr{D} _t^i , \\
-		& \symscr{L}_2 =\symscr{D} _t^n +b_{n-1}(t)\symscr{D} _t^{n-1}+\cdots b_1(t)\symscr{D} _t +b_0(t)=\symscr{D} _t^{n-1}+\sum_{i=1}^{n-1} b_{i}(t)\symscr{D} _t^i.
-\end{aligned}
+	\begin{aligned}
+		 & \symscr{L}_1 =\symscr{D} _t^n +a_{n-1}(t)\symscr{D} _t^{n-1}+\cdots a_1(t)\symscr{D} _t +a_0(t)=\symscr{D} _t^{n-1}+\sum_{i=1}^{n-1} a_{i}(t)\symscr{D} _t^i , \\
+		 & \symscr{L}_2 =\symscr{D} _t^n +b_{n-1}(t)\symscr{D} _t^{n-1}+\cdots b_1(t)\symscr{D} _t +b_0(t)=\symscr{D} _t^{n-1}+\sum_{i=1}^{n-1} b_{i}(t)\symscr{D} _t^i.
+	\end{aligned}
 \]
 那么算符 \(\symscr{L}_1 \)和 \(\symscr{L} _2\)满足：
 \[
-\left(\symscr{L} _1+\symscr{L} _2 \right) (x)=\symscr{L} _1(x)+\symscr{L} _2 (x)
-.\]
+	\left(\symscr{L} _1+\symscr{L} _2 \right) (x)=\symscr{L} _1(x)+\symscr{L} _2 (x)
+	.\]
 这被称为算符线性。
 
 因此合并起来就是：
 
 \[
-\left( \symscr{L} _1+\symscr{L} _2 \right) \left( x_1+x_2 \right) =\symscr{L} _1(x_1)+\symscr{L} _1(x_2)+\symscr{L} _2(x_1)+\symscr{L} _2(x_2)
-.\]
+	\left( \symscr{L} _1+\symscr{L} _2 \right) \left( x_1+x_2 \right) =\symscr{L} _1(x_1)+\symscr{L} _1(x_2)+\symscr{L} _2(x_1)+\symscr{L} _2(x_2)
+	.\]
 
 琪露诺：哦哦，原来线性指的是我可以随意拆掉括号啊……
 
@@ -244,19 +246,19 @@ x_3=cx_1+(1-c)x_2
 
 朱鹭子：事实上，我们可以乘上一个新的函数，改变左边那一坨的结构：
 \[
-B \implies h(t)\dx{}+h(t)p(t)x=f(t)h(t)\tag{D}
-.\]
+	B \implies h(t)\dx{}+h(t)p(t)x=f(t)h(t)\tag{D}
+	.\]
 
 琪露诺：可是这样左边还是很怪啊，看起来根本不像个导数……
 
 朱鹭子：是的，所以我们硬来，考虑新的函数 \(h(t)x\)，那么它的导数就是：
 \[
-\symscr{D} _t\left( h(t) x(t)  \right)= h(t) \dx +\symscr{D} _t(h(t))x
-.\]
+	\symscr{D} _t\left( h(t) x(t)  \right)= h(t) \dx +\symscr{D} _t(h(t))x
+	.\]
 这样我们观察D式，我们可以强行要求：
 \[
-h(t)p(t)=\symscr{D} _t\left( h(t) \right)
-.\]
+	h(t)p(t)=\symscr{D} _t\left( h(t) \right)
+	.\]
 
 琪露诺：看起来像那个巫女的作风……
 
@@ -264,21 +266,21 @@ h(t)p(t)=\symscr{D} _t\left( h(t) \right)
 
 琪露诺：记得，所以我们只要：
 \[
-h(t)p(t)=\symscr{D} _t\left( h(t) \right) \implies \int \dfrac{1}{h(t)} \,\mathrm{d}h =\int p(t) \,\mathrm{d}t
-.\]
+	h(t)p(t)=\symscr{D} _t\left( h(t) \right) \implies \int \dfrac{1}{h(t)} \,\mathrm{d}h =\int p(t) \,\mathrm{d}t
+	.\]
 
 这意味着：
 
 \[
-\ln h(t)= \int p(t) \,\mathrm{d}t \implies h(t)=\symrm{e} ^{\int p(t) \,\mathrm{d}t }
-.\]
+	\ln h(t)= \int p(t) \,\mathrm{d}t \implies h(t)=\symrm{e} ^{\int p(t) \,\mathrm{d}t }
+	.\]
 
 朱鹭子：不对哦，你积分没加常数。
 
 琪露诺：呜哇……那加了常数之后，就是：
 \[
-\ln h(t)= \int p(t) \,\mathrm{d}t +c_1\implies h(t)=\symrm{e} ^{c_1}\cdot \symrm{e} ^{\int p(t) \,\mathrm{d}t }
-.\]
+	\ln h(t)= \int p(t) \,\mathrm{d}t +c_1\implies h(t)=\symrm{e} ^{c_1}\cdot \symrm{e} ^{\int p(t) \,\mathrm{d}t }
+	.\]
 
 是这样吗？
 
@@ -290,18 +292,18 @@ h(t)p(t)=\symscr{D} _t\left( h(t) \right) \implies \int \dfrac{1}{h(t)} \,\mathr
 
 琪露诺：哦哦，那这样子C方程就是：
 \[
-\symscr{D} _t(h(t)x)=f(t)h(t)
-.\]
+	\symscr{D} _t(h(t)x)=f(t)h(t)
+	.\]
 
 这是一个变量分离方程，我可以对它进行积分：
 \[
-h(t)x= \int f(t)h(t) \,\mathrm{d}t \implies x= \dfrac{\displaystyle \int f(t)h(t) \,\mathrm{d}t}{h(t)}
-.\]
+	h(t)x= \int f(t)h(t) \,\mathrm{d}t \implies x= \dfrac{\displaystyle \int f(t)h(t) \,\mathrm{d}t}{h(t)}
+	.\]
 
 最后是代入 \(h(t)\)的方程得到：
 \[
-x=\dfrac{\displaystyle \int f(t)\symrm{e} ^{\int p(t) \,\mathrm{d}t } \,\mathrm{d}t}{\symrm{e} ^{\int p(t) \,\mathrm{d}t }}
-.\]
+	x=\dfrac{\displaystyle \int f(t)\symrm{e} ^{\int p(t) \,\mathrm{d}t } \,\mathrm{d}t}{\symrm{e} ^{\int p(t) \,\mathrm{d}t }}
+	.\]
 
 哇，这啥啊……
 
@@ -313,8 +315,8 @@ x=\dfrac{\displaystyle \int f(t)\symrm{e} ^{\int p(t) \,\mathrm{d}t } \,\mathrm{
 
 朱鹭子：不是哦，再和你说些东西，我们回过头考虑一种更简单的情况：
 \[
-\dx+p(t)x=0
-.\]
+	\dx+p(t)x=0
+	.\]
 
 琪露诺：我知道我知道，这是分离变量方程！
 
@@ -324,18 +326,18 @@ x=\dfrac{\displaystyle \int f(t)\symrm{e} ^{\int p(t) \,\mathrm{d}t } \,\mathrm{
 
 朱鹭子：没错，我们试试看：
 \[
-\begin{aligned}
-		& \phantom{=}\ \,\,\dx+p(t)x=\underline{\symscr{D} _t\left( c_1(t)\exp \left(- \int p(t) \,\mathrm{d}t  \right) \right)} +p(t) c_1(t)\exp \left(- \int p(t) \,\mathrm{d}t  \right)
-	\\
-		& =\underline{\symscr{D} _t(c_1(t))\exp \left(- \int p(t) \,\mathrm{d}t  \right)+c_1(t)\exp \left(- \int p(t) \,\mathrm{d}t  \right)(-p(t))}+p(t) c_1(t)\exp \left(- \int p(t) \,\mathrm{d}t  \right) \\
-		& = \symscr{D} _t(c_1(t))\exp \left(- \int p(t) \,\mathrm{d}t  \right) =f(t).
-\end{aligned}
+	\begin{aligned}
+		 & \phantom{=}\ \,\,\dx+p(t)x=\underline{\symscr{D} _t\left( c_1(t)\exp \left(- \int p(t) \,\mathrm{d}t  \right) \right)} +p(t) c_1(t)\exp \left(- \int p(t) \,\mathrm{d}t  \right)
+		\\
+		 & =\underline{\symscr{D} _t(c_1(t))\exp \left(- \int p(t) \,\mathrm{d}t  \right)+c_1(t)\exp \left(- \int p(t) \,\mathrm{d}t  \right)(-p(t))}+p(t) c_1(t)\exp \left(- \int p(t) \,\mathrm{d}t  \right) \\
+		 & = \symscr{D} _t(c_1(t))\exp \left(- \int p(t) \,\mathrm{d}t  \right) =f(t).
+	\end{aligned}
 \]
 
 琪露诺：所以这个 \(c_1(t)\)就满足：
 \[
-c_1'(t)=f(t)\exp \left(\int p(t) \,\mathrm{d}t  \right) \implies c_1(t)=\int \left[ f(t)\exp \left(\int p(t) \,\mathrm{d}t  \right)  \right]  \,\mathrm{d}t
-.\]
+	c_1'(t)=f(t)\exp \left(\int p(t) \,\mathrm{d}t  \right) \implies c_1(t)=\int \left[ f(t)\exp \left(\int p(t) \,\mathrm{d}t  \right)  \right]  \,\mathrm{d}t
+	.\]
 
 天……这太多积分号了叭……
 
@@ -352,20 +354,20 @@ c_1'(t)=f(t)\exp \left(\int p(t) \,\mathrm{d}t  \right) \implies c_1(t)=\int \le
 \subsection{恰当微分方程}
 考虑一些更通用的情况：
 \[
-\dx=f(x,t)
-.\]
+	\dx=f(x,t)
+	.\]
 
 我们可以把它写成微分形式：
 
 \[
-f(x,t)\,\symrm{d} t-\symrm{d} x=0
-.\]
+	f(x,t)\,\symrm{d} t-\symrm{d} x=0
+	.\]
 
 再考虑更一般的情况：
 
 \[
-T(x,t)\,\symrm{d} t+ X(x,t)\,\symrm{d} x=0
-.\]
+	T(x,t)\,\symrm{d} t+ X(x,t)\,\symrm{d} x=0
+	.\]
 
 琪露诺：这是啥……
 
@@ -378,8 +380,8 @@ T(x,t)\,\symrm{d} t+ X(x,t)\,\symrm{d} x=0
 琪露诺：\emoji{😥}由Green公式应该有：
 
 \[
-\dfrac{\uppartial T}{\uppartial x}=\dfrac{\uppartial X}{\uppartial t}
-.\]
+	\dfrac{\uppartial T}{\uppartial x}=\dfrac{\uppartial X}{\uppartial t}
+	.\]
 
 朱鹭子：在函数性质良好的前提下，可以这么做，那么如果是路径无关的话接下来这么求解方程呢？
 
@@ -387,18 +389,18 @@ T(x,t)\,\symrm{d} t+ X(x,t)\,\symrm{d} x=0
 
 朱鹭子：事实上，路径无关场就是梯度场，这意味着存在一个函数 \(u\) 使得：
 \[
-\dfrac{\uppartial u}{\uppartial t}=T,\qquad \dfrac{\uppartial u}{\uppartial x}=X
-.\]
+	\dfrac{\uppartial u}{\uppartial t}=T,\qquad \dfrac{\uppartial u}{\uppartial x}=X
+	.\]
 所以方程就变成了：
 \[
-\dfrac{\uppartial u}{\uppartial t}\,\symrm{d} t+ \dfrac{\uppartial u}{\uppartial x}\,\symrm{d} x=0
-.\]
+	\dfrac{\uppartial u}{\uppartial t}\,\symrm{d} t+ \dfrac{\uppartial u}{\uppartial x}\,\symrm{d} x=0
+	.\]
 
 左边就是 \(u\)的全微分啦，所以我们就有：
 
 \[
-u=c_1
-.\]
+	u=c_1
+	.\]
 
 这样就解出了 \(x\)了。
 
@@ -410,8 +412,8 @@ u=c_1
 
 朱鹭子：可以这样做，看看吧：
 \[
-\dfrac{\uppartial u}{\uppartial t}=hT,\qquad \dfrac{\uppartial u}{\uppartial x}=hX
-.\]
+	\dfrac{\uppartial u}{\uppartial t}=hT,\qquad \dfrac{\uppartial u}{\uppartial x}=hX
+	.\]
 
 接下来呢？
 
@@ -419,13 +421,13 @@ u=c_1
 
 朱鹭子：事实上我们可以考虑Young定理：
 \[
-\dfrac{\uppartial ^2u}{\uppartial x \uppartial t}=\dfrac{\uppartial ^2u}{\uppartial t \uppartial u}\implies \dfrac{\uppartial (hT)}{\uppartial x}=\dfrac{\uppartial (hX)}{\uppartial t}
-.\]
+	\dfrac{\uppartial ^2u}{\uppartial x \uppartial t}=\dfrac{\uppartial ^2u}{\uppartial t \uppartial u}\implies \dfrac{\uppartial (hT)}{\uppartial x}=\dfrac{\uppartial (hX)}{\uppartial t}
+	.\]
 
 接下来我们可以用乘法法则分离它们：
 \[
-X \dfrac{\uppartial h}{\uppartial t}-T \dfrac{\uppartial h}{\uppartial x}=\left( \dfrac{\uppartial T}{\uppartial x}-\dfrac{\uppartial X}{\uppartial t} \right) h
-.\]
+	X \dfrac{\uppartial h}{\uppartial t}-T \dfrac{\uppartial h}{\uppartial x}=\left( \dfrac{\uppartial T}{\uppartial x}-\dfrac{\uppartial X}{\uppartial t} \right) h
+	.\]
 
 琪露诺：好的，那这个方程怎么解？
 
@@ -436,18 +438,18 @@ X \dfrac{\uppartial h}{\uppartial t}-T \dfrac{\uppartial h}{\uppartial x}=\left(
 朱鹭子：差不多吧，不过的确有一些比较简单的情况。
 
 \begin{itemize}
-\item 当 \( \dfrac{\dfrac{\uppartial T}{\uppartial x}-\dfrac{\uppartial X}{\uppartial t}}{X} =p(t)\) 与 \(x\) 无关的时候。我们有：
-		\[
-			h(t,x)=\exp \left( \int p(t)\,\mathrm{d}t  \right)
-			.\]
-\item 当 \( \dfrac{\dfrac{\uppartial T}{\uppartial x}-\dfrac{\uppartial X}{\uppartial t}}{T} =q(x)\) 与 \(t\) 无关的时候。我们有：
-		\[
-			h(t,x)=\exp \left(- \int q(x)\,\mathrm{d}x \right)
-			.\]
-\item 当 \( {\dfrac{\uppartial T}{\uppartial x}-\dfrac{\uppartial X}{\uppartial t}}=p(t)X-q(x)T\)的时候。我们有：
-		\[
-			h(t,x)=c_1 \exp \left( \int p(t) \,\mathrm{d}t +\int q(x) \,\mathrm{d}x  \right)
-			.\]
+	\item 当 \( \dfrac{\dfrac{\uppartial T}{\uppartial x}-\dfrac{\uppartial X}{\uppartial t}}{X} =p(t)\) 与 \(x\) 无关的时候。我们有：
+	      \[
+		      h(t,x)=\exp \left( \int p(t)\,\mathrm{d}t  \right)
+		      .\]
+	\item 当 \( \dfrac{\dfrac{\uppartial T}{\uppartial x}-\dfrac{\uppartial X}{\uppartial t}}{T} =q(x)\) 与 \(t\) 无关的时候。我们有：
+	      \[
+		      h(t,x)=\exp \left(- \int q(x)\,\mathrm{d}x \right)
+		      .\]
+	\item 当 \( {\dfrac{\uppartial T}{\uppartial x}-\dfrac{\uppartial X}{\uppartial t}}=p(t)X-q(x)T\)的时候。我们有：
+	      \[
+		      h(t,x)=c_1 \exp \left( \int p(t) \,\mathrm{d}t +\int q(x) \,\mathrm{d}x  \right)
+		      .\]
 \end{itemize}
 
 琪露诺：前两个还好，第三个也太那啥了，这个只有天才才能看出来吧。
@@ -458,25 +460,25 @@ X \dfrac{\uppartial h}{\uppartial t}-T \dfrac{\uppartial h}{\uppartial x}=\left(
 
 朱鹭子：看你的直觉了……比如说这个？
 \[
-\left( x^2 +y^2 +x \right) \,\symrm{d} x +y \,\symrm{d} y=0
-.\]
+	\left( x^2 +y^2 +x \right) \,\symrm{d} x +y \,\symrm{d} y=0
+	.\]
 
 琪露诺：哇……看起来好难……哭……
 
 朱鹭子：看，其实我们仔细观察的话倒是可以看出一些对偶量：
 \[
-\left( x^2 +y^2  \right) \,\symrm{d} x +y \,\symrm{d} y+ x \,\symrm{d} x=0
-.\]
+	\left( x^2 +y^2  \right) \,\symrm{d} x +y \,\symrm{d} y+ x \,\symrm{d} x=0
+	.\]
 
 尝试 \(h=\dfrac{1}{x^2 +y^2 }\)，我们可以得到：
 \[
-\symrm{d} x+ \dfrac{x\,\symrm{d} x+y\,\symrm{d} y}{x^2 +y^2 }=0\implies \symrm{d} x+\symrm{d} \left( \dfrac{1}{2}\ln \left( x^2 +y^2  \right)  \right) =0
-.\]
+	\symrm{d} x+ \dfrac{x\,\symrm{d} x+y\,\symrm{d} y}{x^2 +y^2 }=0\implies \symrm{d} x+\symrm{d} \left( \dfrac{1}{2}\ln \left( x^2 +y^2  \right)  \right) =0
+	.\]
 
 所以最后的结果就是：
 \[
-x+ \dfrac{1}{2}\ln \left( x^2 +y^2  \right)=c_1
-.\]
+	x+ \dfrac{1}{2}\ln \left( x^2 +y^2  \right)=c_1
+	.\]
 
 琪露诺：这根本不是人能看出来的……
 
@@ -490,8 +492,8 @@ x+ \dfrac{1}{2}\ln \left( x^2 +y^2  \right)=c_1
 
 朱鹭子：我们来看一些隐式方程：
 \[
-x=f(t,x')
-.\]
+	x=f(t,x')
+	.\]
 
 这种反倒是将 \(x\) 分离出来了，此时怎么办呢？
 
@@ -508,19 +510,19 @@ x=f(t,x')
 朱鹭子：对咯：
 
 \[
-\dx= \dfrac{\uppartial f}{\uppartial t}+ \dfrac{\uppartial f}{\uppartial \left( x' \right) }\symscr{D} _t^2(x)
-.\]
+	\dx= \dfrac{\uppartial f}{\uppartial t}+ \dfrac{\uppartial f}{\uppartial \left( x' \right) }\symscr{D} _t^2(x)
+	.\]
 
 我们不妨设 \(p= \dx\)，那么这个方程就可以变为：
 
 \[
-p=\dfrac{\uppartial f}{\uppartial t}+ \dfrac{\uppartial f}{\uppartial p}\symscr{D} _t(p)
-.\]
+	p=\dfrac{\uppartial f}{\uppartial t}+ \dfrac{\uppartial f}{\uppartial p}\symscr{D} _t(p)
+	.\]
 
 琪露诺：可是这个方程不还是很怪吗？也不是有通解的那种……诶等等，这下好像 \(\symscr{D} _t(p)\)就分离出来了：
 \[
-\symscr{D} _t(p)= \dfrac{p-{\uppartial f}/{\uppartial t}}{{\uppartial f}/{\uppartial p}}
-.\]
+	\symscr{D} _t(p)= \dfrac{p-{\uppartial f}/{\uppartial t}}{{\uppartial f}/{\uppartial p}}
+	.\]
 
 接下来我只要按照前面三种方法做就可以解出 \(p\)，然后积分就可以得到 \(x\)了对吧？
 
@@ -531,8 +533,8 @@ p=\dfrac{\uppartial f}{\uppartial t}+ \dfrac{\uppartial f}{\uppartial p}\symscr{
 朱鹭子：最令人难受的应该是你解出来得到这个吧：
 
 \[
-\psi (t,p,c_1)=0
-.\]
+	\psi (t,p,c_1)=0
+	.\]
 
 你看，你甚至连通解的参数都是嵌在函数里面的，此时你不考虑参数方程还能怎么办呢？
 
@@ -540,17 +542,17 @@ p=\dfrac{\uppartial f}{\uppartial t}+ \dfrac{\uppartial f}{\uppartial p}\symscr{
 
 朱鹭子：啊，就里面这个 \(c_1\)，事实上对于一个 \(n\)阶的微分方程，它的通解将会长得像：
 \[
-x=\psi (t,c_1,c_2,\cdots ,c_n)
-.\]
+	x=\psi (t,c_1,c_2,\cdots ,c_n)
+	.\]
 
 其中 \(c_1,c_2,\cdots ,c_n\) 相互独立，这到时候说一下唯一性定理你可能会更明白一些。
 
 琪露诺：好吧，所以最后的参数方程就是：
 \[
-\begin{cases}\\[-2em]
-	\psi (t,p,c_1)=0, \\
-	x=f(t,p).
-\end{cases}
+	\begin{cases}\\[-2em]
+		\psi (t,p,c_1)=0, \\
+		x=f(t,p).
+	\end{cases}
 \]
 
 这样咯？那参数就是那个 \(t\)咯。
@@ -561,8 +563,8 @@ x=\psi (t,c_1,c_2,\cdots ,c_n)
 
 朱鹭子：的确，看看这种？
 \[
-t=f(x,x')
-.\]
+	t=f(x,x')
+	.\]
 
 这下反倒是自变量被分离出来了。
 
@@ -572,23 +574,23 @@ t=f(x,x')
 
 琪露诺：呜……首先我左右两边对 \(t\)求导：
 \[
-1=\dfrac{\uppartial f}{\uppartial x}\symscr{D} _t(x)+ \dfrac{\uppartial f}{\uppartial (x')}\symscr{D} _t^2(x)
-.\]
+	1=\dfrac{\uppartial f}{\uppartial x}\symscr{D} _t(x)+ \dfrac{\uppartial f}{\uppartial (x')}\symscr{D} _t^2(x)
+	.\]
 
 然后再设 \(p=\symscr{D} _t(x)\) ，这样子就行啦：
 \[
-1=\dfrac{\uppartial f}{\uppartial x}p+ \dfrac{\uppartial f}{\uppartial p}\symscr{D} _t(p)
-.\]
+	1=\dfrac{\uppartial f}{\uppartial x}p+ \dfrac{\uppartial f}{\uppartial p}\symscr{D} _t(p)
+	.\]
 
 朱鹭子：不错，这也有另外一种方法，那就是上来直接对 \(x\)求导：
 \[
-\symscr{D} _x(t)=\dfrac{\uppartial f}{\uppartial x}+\dfrac{\uppartial f}{\uppartial p}\symscr{D} _x(p)
-.\]
+	\symscr{D} _x(t)=\dfrac{\uppartial f}{\uppartial x}+\dfrac{\uppartial f}{\uppartial p}\symscr{D} _x(p)
+	.\]
 
 然后由于一阶微分形式的不变性，我们可以把它改写为：
 \[
-\dfrac{1}{p}=\dfrac{\uppartial f}{\uppartial x}+\dfrac{1}{p}\cdot \dfrac{\uppartial f}{\uppartial p}\symscr{D} _t(p)
-.\]
+	\dfrac{1}{p}=\dfrac{\uppartial f}{\uppartial x}+\dfrac{1}{p}\cdot \dfrac{\uppartial f}{\uppartial p}\symscr{D} _t(p)
+	.\]
 
 也和你写的一样哦。
 
@@ -597,21 +599,21 @@ t=f(x,x')
 朱鹭子：嗯，来点更怪的例子，如果你最后解出来是这样子的：
 
 \[
-\begin{cases}\\[-2em]
+	\begin{cases}\\[-2em]
 
-	x'=X(c) , \\
-	\ t=T(c).
-\end{cases}
+		x'=X(c) , \\
+		\ t=T(c).
+	\end{cases}
 \]
 
 这种情况呢？你该怎么得到——没有其他条件了—— 那个\(x\)呢？
 
 琪露诺：寄。我试试看，首先是：
 \[
-\symscr{D} _c(x)=\symscr{D} _t(x)\symscr{D} _c(t)= X(c)T'(c)\implies \begin{cases}\\[-2em]
-	x=\int   X(c)T'(c)\,\mathrm{d}c, \\
-	\ t=T(c).
-\end{cases}
+	\symscr{D} _c(x)=\symscr{D} _t(x)\symscr{D} _c(t)= X(c)T'(c)\implies \begin{cases}\\[-2em]
+		x=\int   X(c)T'(c)\,\mathrm{d}c, \\
+		\ t=T(c).
+	\end{cases}
 \]
 
 依据微分形式不变性好像是这样的？
@@ -627,30 +629,30 @@ t=f(x,x')
 琪露诺：存在性吗……感觉很枯燥……
 
 \begin{tho}[label=czwy]{存在唯一性定理}{}
-对于一个将导数分离出来的ODE：
-\[
-	\dx=f(t,x)
-	.\]
-如果 \(f\)在开区域 \(\overline{\symcal{I} }\) 上面满足：任意 \(\overline{\symcal{I} }\)中的闭矩形区域 \(\overline{\symcal{G}} \)上都满足Lipschitz条件：
-\[
-	\left\vert f(t,x_1)-f(t,x_2) \right\vert \leqslant L \left\vert x_1-x_2 \right\vert ,\,\forall (t,x_1),(t,x_2)\in \overline{\symcal{G}}
-	.\]
+	对于一个将导数分离出来的ODE：
+	\[
+		\dx=f(t,x)
+		.\]
+	如果 \(f\)在开区域 \(\overline{\symcal{I} }\) 上面满足：任意 \(\overline{\symcal{I} }\)中的闭矩形区域 \(\overline{\symcal{G}} \)上都满足Lipschitz条件：
+	\[
+		\left\vert f(t,x_1)-f(t,x_2) \right\vert \leqslant L \left\vert x_1-x_2 \right\vert ,\,\forall (t,x_1),(t,x_2)\in \overline{\symcal{G}}
+		.\]
 
-且有初始条件：\(x(t_0)=x_0\)，则存在解 \(x=X(t) \)在点 \((t_0,x_0)\)的邻域内有定义，且该解可以延拓到任意接近 \(\overline{\symcal{I} }\)的边界。
+	且有初始条件：\(x(t_0)=x_0\)，则存在解 \(x=X(t) \)在点 \((t_0,x_0)\)的邻域内有定义，且该解可以延拓到任意接近 \(\overline{\symcal{I} }\)的边界。
 \end{tho}
 
 琪露诺：???????这都啥啊……
 
 朱鹭子：这确实很怪……让我尝试说明一下。为了方便，我们先从单变量的实函数开始说明：
 \[
-y=f(x) \,\mbox{或者}\, f: \overline{\symcal{I} } \subseteq\symbb{R}     \mapsto  \symbb{R}
-.\]
+	y=f(x) \,\mbox{或者}\, f: \overline{\symcal{I} } \subseteq\symbb{R}     \mapsto  \symbb{R}
+	.\]
 如果存在常数 \(L\)使得：
 \[
-\left\vert f(a)-f(b) \right\vert \leqslant L \left\vert a-b \right\vert, \,\forall a,b\in  \overline{\symcal{I} }
-.\]
+	\left\vert f(a)-f(b) \right\vert \leqslant L \left\vert a-b \right\vert, \,\forall a,b\in  \overline{\symcal{I} }
+	.\]
 
-则我们称 \(f\)满足Lipschitz 条件，而 \(L_{\rm min}\)被称为Lipschitz常数，如果这个常数小于一，我们会称 \(f\)是\textbf{压缩映射}。这个我们先不管了，你只要先知道，如果 \(f\) 是在区域内满足Lipschitz条件，那么给出 \(x\)的一个初值条件时候，\(x\)唯一可解。
+则我们称 \(f\)满足Lipschitz 条件，而 \(L_{\mathrm{m}in}\)被称为Lipschitz常数，如果这个常数小于一，我们会称 \(f\)是\textbf{压缩映射}。这个我们先不管了，你只要先知道，如果 \(f\) 是在区域内满足Lipschitz条件，那么给出 \(x\)的一个初值条件时候，\(x\)唯一可解。
 
 另外一件事是，要确立一个函数的Lipschitz条件是非常麻烦的一件事，我们可以用：\(\dfrac{\uppartial f}{\uppartial x}
 \)连续来替代。
@@ -659,8 +661,8 @@ y=f(x) \,\mbox{或者}\, f: \overline{\symcal{I} } \subseteq\symbb{R}     \mapst
 
 朱鹭子：对，现在你可以考虑以下这种，如果你没法把 \(x'\)分离出来怎么办？
 \[
-F(x,x',t)=0
-.\]
+	F(x,x',t)=0
+	.\]
 这种呢？
 
 琪露诺：啊……我感觉……可以试试隐函数存在定理，只要在邻域内 \(\dfrac{\uppartial F}{\uppartial x'}\Bigg|_{(t_0,x_0)}\neq 0\)的话，那我就可以在这里把 \(x'\) 解出来。
@@ -672,7 +674,7 @@ F(x,x',t)=0
 
 朱鹭子：我和你说个问题，如果有这样一种解，它的并不属于通解，但它也是微分方程的解，而且满足一种特殊的性质：
 \begin{itemize}
-\item 这条曲线的每一点处都有一条通解曲线与其相切。
+	\item 这条曲线的每一点处都有一条通解曲线与其相切。
 \end{itemize}
 这种曲线被称为上述通解积分曲线族的\textbf{包络}。
 
@@ -681,7 +683,7 @@ F(x,x',t)=0
 朱鹭子：在这里我可以给出一些例子：
 
 \begin{center}
-\includegraphics{envelope.pdf}
+	\includegraphics{envelope.pdf}
 \end{center}
 
 假如有这样一些直线，它的 \(y\)轴截距和 \(x\)轴截距加起来是 1，并且那两个截距都大于零，图中画出了一些这样的直线（灰色部分），那么黑色曲线就是它的包络线。
@@ -694,15 +696,15 @@ F(x,x',t)=0
 
 朱鹭子：实际上我们知道那些通解，或者更广泛地，曲线族的形式可以表示为：
 \[
-F(t,x,c_1)=0
-.\]
+	F(t,x,c_1)=0
+	.\]
 
 那么包络线的方程是会满足：
 \[
-\begin{cases}\\[-2em]
-	F(t,x,c_1) =0, \\
-	\dfrac{\uppartial F}{\uppartial c_1}=0.
-\end{cases}\tag{E}
+	\begin{cases}\\[-2em]
+		F(t,x,c_1) =0, \\
+		\dfrac{\uppartial F}{\uppartial c_1}=0.
+	\end{cases}\tag{E}
 \]
 
 针对 \(c_1\)的参数方程。但是满足这方程的曲线可能有很多，其中并不一定有包络线。但毫无疑问的是，包络线的确是一种特殊的存在。现在我们来看看包络线和微分方程的关系：
@@ -717,15 +719,15 @@ F(t,x,c_1)=0
 
 朱鹭子：对，所以对于初始条件 \(x(t_0)=x_0\)，应当有：
 \[
-\dfrac{\uppartial F(t,x,x')}{\uppartial x'}\Bigg|_{(t_0,x_0)}
-.\]
+	\dfrac{\uppartial F(t,x,x')}{\uppartial x'}\Bigg|_{(t_0,x_0)}
+	.\]
 
 但这只是最基本的条件，事实上，由E式子我们知道，我们把 \(\dx\) 看成是 \(c_1\)……然后实际上这个\ruby[g]{包络}{奇解}应该满足：
 \[
-\begin{cases}\\[-2em]
-	F(t,x,x')=0 , \\
-	\dfrac{\uppartial F}{\uppartial x'}=0.
-\end{cases}
+	\begin{cases}\\[-2em]
+		F(t,x,x')=0 , \\
+		\dfrac{\uppartial F}{\uppartial x'}=0.
+	\end{cases}
 \]
 
 将这玩意把 \(x'\)消去就是包络线要满足的方程了，同理，这只是其中一个条件而已。
@@ -738,8 +740,8 @@ F(t,x,c_1)=0
 
 朱鹭子：这倒是有个出名的例子，叫做Clairaut微分方程：
 \[
-x=t\dx+f\left( \dx\tag{ſ} \right)
-.\]
+	x=t\dx+f\left( \dx\tag{ſ} \right)
+	.\]
 
 琪露诺：这是什么奇怪的记号……积分号吗？
 
@@ -747,20 +749,20 @@ x=t\dx+f\left( \dx\tag{ſ} \right)
 
 琪露诺：哦……首先两边对 \(t\)求导，得到：
 \[
-\dx=x\symscr{D} ^2_t(x)+\dx+f'\left( \dx \right)\symscr{D} ^2_t(x)
-.\]
+	\dx=x\symscr{D} ^2_t(x)+\dx+f'\left( \dx \right)\symscr{D} ^2_t(x)
+	.\]
 
 约去两边的 \(\dx\)得到：
 \[
-\symscr{D} ^2_t(x)\left( x+f'\left( \dx \right)  \right) =0
-.\]
+	\symscr{D} ^2_t(x)\left( x+f'\left( \dx \right)  \right) =0
+	.\]
 
 所以事实上是 \(\symscr{D} ^2_t(x)=0\implies \dx=c_1\)和 \(x+f'\left( \dx \right)=0 \)。
 
 接下来我只需要积分就可以……哦直接代方程……就可以：
 \[
-x=c_1x+f(c_1)
-.\]
+	x=c_1x+f(c_1)
+	.\]
 
 哇是一坨子直线。所以你的意思是说另外一个 \(x+f'\left( \dx \right)=0\)其实是这些直线的包络吗？
 
@@ -776,18 +778,18 @@ x=c_1x+f(c_1)
 
 朱鹭子：事实上的确比一般的一阶微分方程要麻烦不少：
 \[
-\symscr{L} (x)= f(t)
-.\]
+	\symscr{L} (x)= f(t)
+	.\]
 
 其中，我们认为 \(\symscr{L} \)是一个线性算子，就像之前提到的一样。接下来我们来考虑下最基本的齐次方程：
 \[
-\symscr{L} (x)=0\tag{HOMs}\label{HOMs}
-.\]
+	\symscr{L} (x)=0\tag{HOMs}\label{HOMs}
+	.\]
 
 我们来研究它解的结构。首先，如果（假如有的话） \(x_1(t),\cdots x_k(t)\) 都是它的解，那么这个呢：
 \[
-x_{\rm new}= \sum_{i=1}^{k} c_i x_i
-.\]
+	x_{\rm new}= \sum_{i=1}^{k} c_i x_i
+	.\]
 
 实际上就是 \(x_1(t),\cdots x_k(t)\) 的线性组合，这个是不是ODE的解呢？
 
@@ -796,8 +798,8 @@ x_{\rm new}= \sum_{i=1}^{k} c_i x_i
 朱鹭子：实际上我们可以这样子：
 
 \[
-\symscr{L} \left( \sum_{i=1}^{k} c_i x_i \right) =\sum_{i=1}^{k}\symscr{L}\left(  c_i x_i\right) =\sum_{i=1}^{k} c_i\underset{0}{\underbrace{\symscr{L}\left(  x_i\right)}}=0\label{djyl}
-.\]
+	\symscr{L} \left( \sum_{i=1}^{k} c_i x_i \right) =\sum_{i=1}^{k}\symscr{L}\left(  c_i x_i\right) =\sum_{i=1}^{k} c_i\underset{0}{\underbrace{\symscr{L}\left(  x_i\right)}}=0\label{djyl}
+	.\]
 
 上面的等号分别用到了 \(\symscr{L} \)算子的\hyperref[linearofl]{\underline{函数线性}}的两个方面。这实际上被称为\textbf{叠加原理}。
 
@@ -817,11 +819,11 @@ x_{\rm new}= \sum_{i=1}^{k} c_i x_i
 
 朱鹭子：确实可以用行列式，首先看下针对函数的的线性相关/无关：
 \begin{itemize}
-\item 如果存在不全为 0 的常数 \(c_1,\cdots ,c_k\)，以及函数 \(x_1(t),\cdots x_k(t)\) 使得：
-		\[
-			\sum_{i=1}^{k} c_i x_i(t)\equiv 0
-			.\]
-		在 \(t \in\symcal I\)上面恒成立，这意味着这些函数在区间 \(\symcal{I} \) 上线性相关，否则就是线性无关。
+	\item 如果存在不全为 0 的常数 \(c_1,\cdots ,c_k\)，以及函数 \(x_1(t),\cdots x_k(t)\) 使得：
+	      \[
+		      \sum_{i=1}^{k} c_i x_i(t)\equiv 0
+		      .\]
+	      在 \(t \in\symcal I\)上面恒成立，这意味着这些函数在区间 \(\symcal{I} \) 上线性相关，否则就是线性无关。
 \end{itemize}
 
 实际上就是把线性相关的容差扩展到区间上来（大致来说）。
@@ -830,13 +832,13 @@ x_{\rm new}= \sum_{i=1}^{k} c_i x_i
 
 朱鹭子：但实际上是不一样的。同样，我们可以用行列式的值是否为0来判断（实际上不能）一坨东西是不是真的线性相关，比如Wronsky行列式：
 \[
-\symscr{W}_t \left( x_1,\cdots x_k \right) \coloneq \begin{vmatrix}
-	x_1(t)         & x_2(t)         & \cdots & x_k(t)         \\
-	x_1'(t)        & x_2'(t)        & \cdots & x_k'(t)        \\
-	\vdots         & \vdots         &        & \vdots         \\
-	x_1^{(k-1)}(t) & x_2^{(k-1)}(t) & \cdots & x_k^{(k-1)}(t) \\
-\end{vmatrix}
-.\]
+	\symscr{W}_t \left( x_1,\cdots x_k \right) \coloneq \begin{vmatrix}
+		x_1(t)         & x_2(t)         & \cdots & x_k(t)         \\
+		x_1'(t)        & x_2'(t)        & \cdots & x_k'(t)        \\
+		\vdots         & \vdots         &        & \vdots         \\
+		x_1^{(k-1)}(t) & x_2^{(k-1)}(t) & \cdots & x_k^{(k-1)}(t) \\
+	\end{vmatrix}
+	.\]
 
 琪露诺：诶？为什么和求导有关系？
 
@@ -844,36 +846,36 @@ x_{\rm new}= \sum_{i=1}^{k} c_i x_i
 不管如何，这个行列式可以在某种程度上反应函数是否是线性相关的。
 事实上有以下这些定理：
 \begin{itemize}
-\item 如果函数们线性相关，那么她们的Wronsky行列式为0。
+	\item 如果函数们线性相关，那么她们的Wronsky行列式为0。
 
-		这个其实可以轻易得到存在一组非0的常数 \(C_1,\cdots C_n\) 使得：
-		\[
-			\sum_{i=1}^{k} C_i(t)x_i(t)=0\xlongequal[]{\mbox{\tiny 连续求导 \(k\) 次}} \begin{bmatrix}
-				\sum_{i=1}^{k} C_i x_i(t) \\    \sum_{i=1k}^{k} C_i x_i'(t) \\    \vdots \\    \sum_{i=1}^{k} C_i x^{(k-1)}(t) \\\end{bmatrix}
-			\equiv \symbf 0 \implies\symbfscr{W} \cdot\symbfit C \equiv\symbf 0
-			.\]
+	      这个其实可以轻易得到存在一组非0的常数 \(C_1,\cdots C_n\) 使得：
+	      \[
+		      \sum_{i=1}^{k} C_i(t)x_i(t)=0\xlongequal[]{\mbox{\tiny 连续求导 \(k\) 次}} \begin{bmatrix}
+			      \sum_{i=1}^{k} C_i x_i(t) \\    \sum_{i=1k}^{k} C_i x_i'(t) \\    \vdots \\    \sum_{i=1}^{k} C_i x^{(k-1)}(t) \\\end{bmatrix}
+		      \equiv \symbf 0 \implies\symbfscr{W} \cdot\symbfit C \equiv\symbf 0
+		      .\]
 
-		其中我们不妨设 \(\symbfscr{W}\) 是Wronsky矩阵（即Wronsky行列式去掉行列式符号的形式），而 \(\symbfit C \) 是一个系数矩阵 \(\begin{bmatrix}
-			C_1 &    C_2 &  \cdots  &    C_k \end{bmatrix}^{\rm T}\)，我们知道 \(\symbfit C\) 是有非零解的，这意味着 \(\symscr{W} \equiv 0\).
-		另外要指出的事情是，其逆定理一般是不成立的，举个例子吧：\(1,t,\cdots t^{k-1},\symrm{e} ^{-1 / t^2 }\)，这一些函数，注意到当 \(t=0\)时，\(\symrm{e} ^{-1 / x^2 }\)的每一阶导都为零，所以此时Wronsky行列式必然有一列全是0，此时行列式为0，但实际上这个函数序列是线性无关的。
-\item 另外一个同样重要的是，如果 \(x_1,\cdots, x_k\) 都是方程 \(\symscr{L} (x)=0\) 的解，那么上面这个“逆定理”反而是成立的。实际上我们可以用的除了刚才那些，还有由于这些函数是ODE的解而使用的存在唯一性定理。
+	      其中我们不妨设 \(\symbfscr{W}\) 是Wronsky矩阵（即Wronsky行列式去掉行列式符号的形式），而 \(\symbfit C \) 是一个系数矩阵 \(\begin{bmatrix}
+		      C_1 &    C_2 &  \cdots  &    C_k \end{bmatrix}^{\rm T}\)，我们知道 \(\symbfit C\) 是有非零解的，这意味着 \(\symscr{W} \equiv 0\).
+	      另外要指出的事情是，其逆定理一般是不成立的，举个例子吧：\(1,t,\cdots t^{k-1},\symrm{e} ^{-1 / t^2 }\)，这一些函数，注意到当 \(t=0\)时，\(\symrm{e} ^{-1 / x^2 }\)的每一阶导都为零，所以此时Wronsky行列式必然有一列全是0，此时行列式为0，但实际上这个函数序列是线性无关的。
+	\item 另外一个同样重要的是，如果 \(x_1,\cdots, x_k\) 都是方程 \(\symscr{L} (x)=0\) 的解，那么上面这个“逆定理”反而是成立的。实际上我们可以用的除了刚才那些，还有由于这些函数是ODE的解而使用的存在唯一性定理。
 \end{itemize}
 
 琪露诺：为什么这里满足存在唯一性定理的条件呢？
 
 朱鹭子：这里会涉及到高阶微分方程的解的存在唯一性，事实上我们可以把它变成 \(n\) 个一阶线性方程，实际上就是一个线性方程组，具体的存在唯一性这里不再阐述。暂且解决完这个之后，我们继续：
 \begin{itemize}
-\item ……另外一个同样重要的是，如果 \(x_1,\cdots, x_k\) 都是方程 \(\symscr{L} (x)=0\) 的解，那么上面这个“逆定理”反而是成立的。实际上我们可以用的除了刚才那些，还有由于这些函数是ODE的解而使用的存在唯一性定理。
-		事实上，这个所谓逆定理指的是：如果 \(x_1,\cdots, x_k\) 都是方程 \(\symscr{L} (x)=0\) 的解且在 \(t \in\symcal{I} \) 上面线性无关，则 \(\symscr{W}_t \left( x_1,\cdots x_k \right)\neq 0,\,\forall t\in\symcal{I} \)。我们可以采用反证法，如果真的有这么一个 \(t_0\) 存在，使得 \(\symscr{W}_t \left( x_1,\cdots x_k \right)\big|_{t_0} \coloneq \symscr{W}( t_0 ) =0 \)，那么事实上考虑这样的方程组：
-		\[
-			\symbfscr{W}\left( t_0 \right) \cdot \symbfit C \equiv 0
-			.\]
-		注意这只是针对 \(t_0\) 一个点的方程，由于 \(\symscr{W}( t_0 ) =0\)，上面这个方程必然有非零解 \(C_1,\cdots ,C_k\)，则考虑下面这个函数：
-		\[
-			x_{\rm add}(t)=\sum_{i=1}^{k} C_i x_i(t),\, t\in\symcal{I} \label{gouzaoofxadd}
-			.\]
+	\item ……另外一个同样重要的是，如果 \(x_1,\cdots, x_k\) 都是方程 \(\symscr{L} (x)=0\) 的解，那么上面这个“逆定理”反而是成立的。实际上我们可以用的除了刚才那些，还有由于这些函数是ODE的解而使用的存在唯一性定理。
+	      事实上，这个所谓逆定理指的是：如果 \(x_1,\cdots, x_k\) 都是方程 \(\symscr{L} (x)=0\) 的解且在 \(t \in\symcal{I} \) 上面线性无关，则 \(\symscr{W}_t \left( x_1,\cdots x_k \right)\neq 0,\,\forall t\in\symcal{I} \)。我们可以采用反证法，如果真的有这么一个 \(t_0\) 存在，使得 \(\symscr{W}_t \left( x_1,\cdots x_k \right)\big|_{t_0} \coloneq \symscr{W}( t_0 ) =0 \)，那么事实上考虑这样的方程组：
+	      \[
+		      \symbfscr{W}\left( t_0 \right) \cdot \symbfit C \equiv 0
+		      .\]
+	      注意这只是针对 \(t_0\) 一个点的方程，由于 \(\symscr{W}( t_0 ) =0\)，上面这个方程必然有非零解 \(C_1,\cdots ,C_k\)，则考虑下面这个函数：
+	      \[
+		      x_{\rm add}(t)=\sum_{i=1}^{k} C_i x_i(t),\, t\in\symcal{I} \label{gouzaoofxadd}
+		      .\]
 
-		由于\hyperref[dlyl]{\underline{叠加原理}}，\(x_{\rm add}(t)=\)是方程\hyperref[HOMs]{\underline{（HOMs）}}的解。那它满足的初始条件是什么呢？
+	      由于\hyperref[dlyl]{\underline{叠加原理}}，\(x_{\rm add}(t)=\)是方程\hyperref[HOMs]{\underline{（HOMs）}}的解。那它满足的初始条件是什么呢？
 \end{itemize}
 
 琪露诺：诶？为什么要考察初始条件，这不就一个普通的叠加吗？
@@ -882,10 +884,10 @@ x_{\rm new}= \sum_{i=1}^{k} c_i x_i
 
 琪露诺：\(\symbfscr{W}\left( t_0 \right) \cdot \symbfit C \equiv= 0\) 的解？那就意味着……
 \[
-\begin{bmatrix}
-	\sum_{i=1}^{k} C_i x_i(t_0) \\    \sum_{i=1k}^{k} C_i x_i'(t_0) \\    \vdots \\    \sum_{i=1}^{k} C_i x^{(k-1)}(t_0) \\\end{bmatrix}
-\equiv \symbf 0 \implies \sum_{i=1}^{k} C_i x_i^{(m)}(t_0)\equiv 0,\,m=0,1,\cdots k-1
-.\]
+	\begin{bmatrix}
+		\sum_{i=1}^{k} C_i x_i(t_0) \\    \sum_{i=1k}^{k} C_i x_i'(t_0) \\    \vdots \\    \sum_{i=1}^{k} C_i x^{(k-1)}(t_0) \\\end{bmatrix}
+	\equiv \symbf 0 \implies \sum_{i=1}^{k} C_i x_i^{(m)}(t_0)\equiv 0,\,m=0,1,\cdots k-1
+	.\]
 
 这个是什么初始条件……
 
@@ -895,8 +897,8 @@ x_{\rm new}= \sum_{i=1}^{k} c_i x_i
 
 朱鹭子：我们要讨论的可不是这个。事实上，这些初值条件实际上等价于：
 \[
-\symscr{D} ^i_t(x_{\rm add}(t))\equiv 0,\,i=0,1,\cdots k-1
-.\]
+	\symscr{D} ^i_t(x_{\rm add}(t))\equiv 0,\,i=0,1,\cdots k-1
+	.\]
 
 刚好 \(k\) 个，事实上对于一个 \(k\) 阶方程，这 \(k\) 个初始条件足以确定一个唯一解，那么实际上我们可以认为 \(x_{\rm add}(t)\) 是一个 \(k\) 解ODE的\textbf{唯一}解。你意识到什么问题没有？
 
@@ -916,20 +918,20 @@ x_{\rm new}= \sum_{i=1}^{k} c_i x_i
 
 朱鹭子：注意到我们是怎么样\hyperref[gouzaoofxadd]{\underline{（构造）}} \(x_{\rm add}\) 的：
 \[
-x_{\rm add}(t)=\sum_{i=1}^{k} C_i x_i(t),\, t\in\symcal{I}
-.\]
+	x_{\rm add}(t)=\sum_{i=1}^{k} C_i x_i(t),\, t\in\symcal{I}
+	.\]
 
 这意味着
 \[
-\sum_{i=1}^{k} C_i x_i(t)\equiv 0
-.\]
+	\sum_{i=1}^{k} C_i x_i(t)\equiv 0
+	.\]
 
 琪露诺：哦哦然而事实上根本不可能有这件是存在吧，由于 \(C_1,\cdots ,C_k\)不全为零，这意味着 \(x_1,\cdots x_k\)线性相关了！
 
 朱鹭子：确实，但一开始我们就认为 \(x_1,\cdots x_k\) 是线性无关的，因此导出了矛盾，所以
 \[
-\symscr{W}_t \left( x_1,\cdots x_k \right) \neq 0,\,\forall t\in\symcal{I}
-.\]
+	\symscr{W}_t \left( x_1,\cdots x_k \right) \neq 0,\,\forall t\in\symcal{I}
+	.\]
 
 这个是成立的。在刚才的讨论中，我们意识到对于这样的Wronsky矩阵，在某一点处为0就可以推出定义域上的函数值都是0。
 
@@ -937,13 +939,13 @@ x_{\rm add}(t)=\sum_{i=1}^{k} C_i x_i(t),\, t\in\symcal{I}
 
 朱鹭子：这个嘛……你可以去问问那个九尾妖狐，在这里（喝水）没什么时间说这个。好，我们知道了大致有关Wronsky行列式的两个结论，在这里总结一下：
 \begin{itemize}
-\item 如果 \(x_1,\cdots x_k\) 在 \(\symcal{I} \)线性相关，则在 \(\symcal{I} \) 上Wronsky行列式恒为零。
-\item 如果\(x_1,\cdots x_k\) 是方程 \(\symscr{L} (x)=0\) 的解，且在 \(\symcal{I} \)线性无关，则在 \(\symcal{I} \) 上Wronsky行列式恒不为零。
+	\item 如果 \(x_1,\cdots x_k\) 在 \(\symcal{I} \)线性相关，则在 \(\symcal{I} \) 上Wronsky行列式恒为零。
+	\item 如果\(x_1,\cdots x_k\) 是方程 \(\symscr{L} (x)=0\) 的解，且在 \(\symcal{I} \)线性无关，则在 \(\symcal{I} \) 上Wronsky行列式恒不为零。
 \end{itemize}
 
 事实上第一个可以等价于：
 \[
-\boxed{\mbox{如果只要有一点 \(t_0\) 对应的 Wronsky 行列式不为零，则\(x_1,\cdots x_k\)线性无关。}}
+	\boxed{\mbox{如果只要有一点 \(t_0\) 对应的 Wronsky 行列式不为零，则\(x_1,\cdots x_k\)线性无关。}}
 \]
 
 琪露诺：这不就是逆否命题吗？
@@ -954,13 +956,13 @@ x_{\rm add}(t)=\sum_{i=1}^{k} C_i x_i(t),\, t\in\symcal{I}
 
 朱鹭子：因为首先，存在唯一性定理保证这个初始条件对应的解必然存在且唯一，此时我们要验证的其实是上面 \(n\) 个解线性无关的情况存在，为了保证这样，我们需要看一下盒子里的内容，保证Wronsky 行列式至少有一点不为零，实际上这一点就对应了初始条件。看，如果Wronsky 行列式长这样：
 \[
-\symscr{W} (t_0)=\begin{vmatrix}
-	1      & 0      & \cdots & 0      \\
-	0      & 1      & \cdots & 0      \\
-	\vdots & \vdots &        & \vdots \\
-	0      & 0      & \cdots & 1      \\
-\end{vmatrix}=1
-.\]
+	\symscr{W} (t_0)=\begin{vmatrix}
+		1      & 0      & \cdots & 0      \\
+		0      & 1      & \cdots & 0      \\
+		\vdots & \vdots &        & \vdots \\
+		0      & 0      & \cdots & 1      \\
+	\end{vmatrix}=1
+	.\]
 
 实际上对应了初始条件。
 
@@ -968,18 +970,18 @@ x_{\rm add}(t)=\sum_{i=1}^{k} C_i x_i(t),\, t\in\symcal{I}
 
 朱鹭子：只是让他不为0罢了，实际上这个行列式对应了初始条件：
 \[
-\begin{bmatrix}
-	x_1(t_0) & x_1'(t_0) & \cdots & x_1^{(n-1)}(t_0) \\
-	x_2(t_0) & x_2'(t_0) & \cdots & x^{(n-1)}_2(t_0) \\
-	\vdots   & \vdots    &        & \vdots           \\
-	x_n(t_0) & x_n'(t_0) & \cdots & x_n^{(n-1)}(t_0) \\
-\end{bmatrix}=\begin{bmatrix}
-	1      & 0      & \cdots & 0      \\
-	0      & 1      & \cdots & 0      \\
-	\vdots & \vdots &        & \vdots \\
-	0      & 0      & \cdots & 1      \\
-\end{bmatrix}
-.\]
+	\begin{bmatrix}
+		x_1(t_0) & x_1'(t_0) & \cdots & x_1^{(n-1)}(t_0) \\
+		x_2(t_0) & x_2'(t_0) & \cdots & x^{(n-1)}_2(t_0) \\
+		\vdots   & \vdots    &        & \vdots           \\
+		x_n(t_0) & x_n'(t_0) & \cdots & x_n^{(n-1)}(t_0) \\
+	\end{bmatrix}=\begin{bmatrix}
+		1      & 0      & \cdots & 0      \\
+		0      & 1      & \cdots & 0      \\
+		\vdots & \vdots &        & \vdots \\
+		0      & 0      & \cdots & 1      \\
+	\end{bmatrix}
+	.\]
 
 这个实际上对应了 \(n\) 组初始条件，每组条件对应一个解 \(x_i(t)\)，由于存在唯一性定理，这些解 \(x_1,\cdots ,x_n\)必然存在，而且她们对应的 Wronsky 行列式在 \(t=t_0\) 处不为0，这就意味着这实际上是 \(n\) 阶方程的 \(n\) 个线性无关解。
 
@@ -987,8 +989,8 @@ x_{\rm add}(t)=\sum_{i=1}^{k} C_i x_i(t),\, t\in\symcal{I}
 
 朱鹭子：线性方程， \(n\) 阶线性方程的通解最多只有 \(n\) 个独立参数，这所谓的通解可以表示为：
 \[
-x_{\rm G}=\sum_{i=1}^{n} c_i x_i
-.\]
+	x_{\rm G}=\sum_{i=1}^{n} c_i x_i
+	.\]
 
 其中 \(x_i\) 是方程的一组线性无关解。这意味着一个 \(n\) 阶齐次线性ODE\textbf{必然}有 \(n\) 个线性无关的解。这被称为该ODE的基本解组。
 
@@ -1010,13 +1012,13 @@ x_{\rm G}=\sum_{i=1}^{n} c_i x_i
 
 朱鹭子：对线性方程来说，可以用唯一性定理。实际上，常数变易其实是利用了齐次和非齐次之间的关系，比如：
 \[
-c_1(t)x_1(t)
-.\]
+	c_1(t)x_1(t)
+	.\]
 
 我求导完之后就是：
 \[
-c_1'(t)x_1(t)+c_1(t)x_1'(t)
-.\]
+	c_1'(t)x_1(t)+c_1(t)x_1'(t)
+	.\]
 
 实际上上面两个可以分别对应方程的齐次部分和非齐次部分。
 
@@ -1025,25 +1027,25 @@ c_1'(t)x_1(t)+c_1(t)x_1'(t)
 朱鹭子：那让我们看一个具体的例子：
 
 \begin{tho}{高阶非齐次线性微分方程的常数变易解法}
-在\textbf{已经知道基本解组} \(x_1(t),\cdots x_n(t)\)的情况下， \(n\)阶微分方程  \(\symscr{L} (x)=f(t)\)的所有解可以表示成如下形式：
-% \[
-% 	x_{\rm All}= \sum_{i=1}^{n} x_i(t) \, \cdot \int 	\dfrac{\scriptstyle	\begin{vNiceMatrix}[first-row,columns-width = 0.1cm,cell-space-limits = 1pt]\renewcommand{\arraycolsep}{0pt}
-% 			                                 &                             &                     & \raisebox{-1ex}{$\!\!\!\!\!\scriptscriptstyle k-{\rm column}\!\!\!\!\!\!\!$} &                     &                             \\
-% 			\scriptstyle \scriptstyle x_1(t) & \scriptstyle x_2(t)         & \scriptstyle \cdots & \scriptstyle 0                                & \scriptstyle \cdots & \scriptstyle x_n(t)         \\[-3pt]
-% 			\scriptstyle x_1'(t)             & \scriptstyle x_2'(t)        & \scriptstyle \cdots & \scriptstyle 0                                & \scriptstyle \cdots & \scriptstyle x_n'(t)        \\[-3pt]
-% 			\scriptstyle \vdots              & \scriptstyle \vdots         & \scriptstyle \cdots & \scriptstyle \vdots                           & \scriptstyle \cdots & \scriptstyle \vdots         \\[-3pt]
-% 		\scriptstyle x_1^{(n-1)}(t)     &\!\! \!\scriptstyle x_n^{(n-1)}(t) \!\!\!& \scriptstyle \cdots & \scriptstyle 1                                & \scriptstyle \cdots &\!\! \!\scriptstyle x_n^{(n-1)}(t) \!\!\\
-% 		\end{vNiceMatrix}}{\symscr{W} (t)}f(t) \,\mathrm{d}t
-% 	.\]
-\[
-	x_{\rm Sol}= \sum_{i=1}^{n} x_i(t) \, \cdot \int\left(  \raisebox{-2.5em}{\(\dfrac{{
-		\begin{vmatrix}
-			\scriptstyle x_1(t)         & \scriptstyle x_2(t)                       & \scriptstyle \cdots & \scriptstyle 0      & \scriptstyle \cdots & \scriptstyle x_n(t)                     \\[-3pt]
-			\scriptstyle x_1'(t)        & \scriptstyle x_2'(t)                      & \scriptstyle \cdots & \scriptstyle 0      & \scriptstyle \cdots & \scriptstyle x_n'(t)                    \\[-3pt]
-			\scriptstyle \vdots         & \scriptstyle \vdots                       & \scriptstyle \cdots & \scriptstyle \vdots & \scriptstyle \cdots & \scriptstyle \vdots                     \\[-3pt]
-			\scriptstyle x_1^{(n-1)}(t) & \!\! \!\scriptstyle x_n^{(n-1)}(t) \!\!\! & \scriptstyle \cdots & \scriptstyle 1      & \scriptstyle \cdots & \!\! \!\scriptstyle x_n^{(n-1)}(t) \!\! \\[3pt]
-		\end{vmatrix}\kern-4em\raisebox{1.8em}{$\kern-8em\overset{i}{\overbrace{\phantom{zzxvxvxvxx3wixcb}}}$\kern 4.6em}}}{\symscr{W} (t)}\)}f(t) \right) \,\mathrm{d}t
-	.\]
+	在\textbf{已经知道基本解组} \(x_1(t),\cdots x_n(t)\)的情况下， \(n\)阶微分方程  \(\symscr{L} (x)=f(t)\)的所有解可以表示成如下形式：
+	% \[
+	% 	x_{\rm All}= \sum_{i=1}^{n} x_i(t) \, \cdot \int 	\dfrac{\scriptstyle	\begin{vNiceMatrix}[first-row,columns-width = 0.1cm,cell-space-limits = 1pt]\renewcommand{\arraycolsep}{0pt}
+	% 			                                 &                             &                     & \raisebox{-1ex}{$\!\!\!\!\!\scriptscriptstyle k-{\rm column}\!\!\!\!\!\!\!$} &                     &                             \\
+	% 			\scriptstyle \scriptstyle x_1(t) & \scriptstyle x_2(t)         & \scriptstyle \cdots & \scriptstyle 0                                & \scriptstyle \cdots & \scriptstyle x_n(t)         \\[-3pt]
+	% 			\scriptstyle x_1'(t)             & \scriptstyle x_2'(t)        & \scriptstyle \cdots & \scriptstyle 0                                & \scriptstyle \cdots & \scriptstyle x_n'(t)        \\[-3pt]
+	% 			\scriptstyle \vdots              & \scriptstyle \vdots         & \scriptstyle \cdots & \scriptstyle \vdots                           & \scriptstyle \cdots & \scriptstyle \vdots         \\[-3pt]
+	% 		\scriptstyle x_1^{(n-1)}(t)     &\!\! \!\scriptstyle x_n^{(n-1)}(t) \!\!\!& \scriptstyle \cdots & \scriptstyle 1                                & \scriptstyle \cdots &\!\! \!\scriptstyle x_n^{(n-1)}(t) \!\!\\
+	% 		\end{vNiceMatrix}}{\symscr{W} (t)}f(t) \,\mathrm{d}t
+	% 	.\]
+	\[
+		x_{\rm Sol}= \sum_{i=1}^{n} x_i(t) \, \cdot \int\left(  \raisebox{-2.5em}{\(\dfrac{{
+						\begin{vmatrix}
+							\scriptstyle x_1(t)         & \scriptstyle x_2(t)                       & \scriptstyle \cdots & \scriptstyle 0      & \scriptstyle \cdots & \scriptstyle x_n(t)                     \\[-3pt]
+							\scriptstyle x_1'(t)        & \scriptstyle x_2'(t)                      & \scriptstyle \cdots & \scriptstyle 0      & \scriptstyle \cdots & \scriptstyle x_n'(t)                    \\[-3pt]
+							\scriptstyle \vdots         & \scriptstyle \vdots                       & \scriptstyle \cdots & \scriptstyle \vdots & \scriptstyle \cdots & \scriptstyle \vdots                     \\[-3pt]
+							\scriptstyle x_1^{(n-1)}(t) & \!\! \!\scriptstyle x_n^{(n-1)}(t) \!\!\! & \scriptstyle \cdots & \scriptstyle 1      & \scriptstyle \cdots & \!\! \!\scriptstyle x_n^{(n-1)}(t) \!\! \\[3pt]
+						\end{vmatrix}\kern-4em\raisebox{1.8em}{$\kern-8em\overset{i}{\overbrace{\phantom{zzxvxvxvxx3wixcb}}}$\kern 4.6em}}}{\symscr{W} (t)}\)}f(t) \right) \,\mathrm{d}t
+		.\]
 \end{tho}
 
 琪露诺：\emoji{😅}
@@ -1119,13 +1121,13 @@ c_1'(t)x_1(t)+c_1(t)x_1'(t)
 
 朱鹭子：这样吧，我给你大概说下，本身我们是知道对于一个线性微分方程 \(\symscr{L} (x)=0\) ，在已知其基本解组 \(x_i\)的情况下，我们可以认为它的所有解如下：
 \[
-x_{\rm All,\ HOM} = \sum_{i=1}^{n} c_i x_i(t)
-.\]
+	x_{\rm All,\ HOM} = \sum_{i=1}^{n} c_i x_i(t)
+	.\]
 
 指的其实就是其线性组合，现在我们应用常数变易法，\textbf{假设}这样一个非齐次的线性方程的解是：
 \[
-x_{\rm Sol} \coloneq \sum_{i=1}^{n} c_i(t) x_i(t)
-.\]
+	x_{\rm Sol} \coloneq \sum_{i=1}^{n} c_i(t) x_i(t)
+	.\]
 
 好，但是这样有个问题——琪露诺！你来回答，出了什么问题？
 
@@ -1133,8 +1135,8 @@ x_{\rm Sol} \coloneq \sum_{i=1}^{n} c_i(t) x_i(t)
 
 朱鹭子：事实上，常数变易本身是没有问题的，但是真正出问题的时候，我们现在只有：
 \[
-\symscr{L} (x_{\rm Sol}) = \symscr{L} \left( \sum_{i=1}^{n} c_i(t)x_i(t) \right) =0
-.\]
+	\symscr{L} (x_{\rm Sol}) = \symscr{L} \left( \sum_{i=1}^{n} c_i(t)x_i(t) \right) =0
+	.\]
 
 这一条方程，但是我们要求的是……
 
@@ -1158,8 +1160,8 @@ x_{\rm Sol} \coloneq \sum_{i=1}^{n} c_i(t) x_i(t)
 
 朱鹭子：我给一个，你看看：
 \[
-\sum_{i=1}^{n}\symscr{D} _t(x_i)\cdot \symscr{D} _t(c_i)=0
-.\]
+	\sum_{i=1}^{n}\symscr{D} _t(x_i)\cdot \symscr{D} _t(c_i)=0
+	.\]
 
 是线性的吗？
 
@@ -1171,8 +1173,8 @@ x_{\rm Sol} \coloneq \sum_{i=1}^{n} c_i(t) x_i(t)
 
 朱鹭子：是为了方便计算，且听我说。我们看看刚才的 \(x_{\rm Sol}=\sum_{i=1}^{n} c_i(t)x_i(t)\)，左右两边求导得到：
 \[
-\symscr{D} _t\left( x_{\rm Sol} \right) = \sum_{i=1}^{n}\left(  \symscr{D} _t(c_i)x_i+\symscr{D} _t(x_i)c_i\right)  =\underset{0}{\underbrace{ \sum_{i=1}^{n}\symscr{D} _t(c_i)x_i}}+\sum_{i=1}^{n}\symscr{D} _t(x_i)c_i=\sum_{i=1}^{n}\symscr{D} _t(x_i)c_i
-.\]
+	\symscr{D} _t\left( x_{\rm Sol} \right) = \sum_{i=1}^{n}\left(  \symscr{D} _t(c_i)x_i+\symscr{D} _t(x_i)c_i\right)  =\underset{0}{\underbrace{ \sum_{i=1}^{n}\symscr{D} _t(c_i)x_i}}+\sum_{i=1}^{n}\symscr{D} _t(x_i)c_i=\sum_{i=1}^{n}\symscr{D} _t(x_i)c_i
+	.\]
 
 看！这样我们实际上就简化了 \(\symscr{D} _t\left( x_{\rm Sol} \right) \)，只通过一次条件，另外，我问一下为什么我要消去这个 \(\sum_{i=1}^{n}\symscr{D} _t(c_i)x_i\) 而不是 \(\sum_{i=1}^{n}\symscr{D} _t(x_i)c_i\)？
 
@@ -1184,64 +1186,64 @@ x_{\rm Sol} \coloneq \sum_{i=1}^{n} c_i(t) x_i(t)
 
 朱鹭子：事实上，是为了保持求导次数一致，我们知道 \(\symscr{L} \) 的表示是：
 \[
-\symscr{D} ^n+\sum_{i=1}^{n-1} a_i(t)\symscr{D} _t^i
-.\]
+	\symscr{D} ^n+\sum_{i=1}^{n-1} a_i(t)\symscr{D} _t^i
+	.\]
 
 观察到不同阶导前面乘上的函数是不一样的，然而我们要保持 \(\symscr{D} ^n(x_i)+\sum_{i=1}^{n-1} a_i(t)\symscr{D} _t^i (x_i) = 0\) 这个良好的性质，我们需要让 \(\symscr{D} _t^k(x_{\rm Sol})\) 应该对应 \(\symscr{D} _t^k(x_i)\) ，这样子的话，包含所有这些 \(x_i\) 的到时候可以消掉。我们继续，我们现在知道了：
 \[
-\symscr{D} _t\left( x_{\rm Sol} \right) =\sum_{i=1}^{n}\symscr{D} _t(x_i)c_i
-.\]
+	\symscr{D} _t\left( x_{\rm Sol} \right) =\sum_{i=1}^{n}\symscr{D} _t(x_i)c_i
+	.\]
 
 我们继续求导顺便再给出一个条件：
 \[
-\symscr{D}^2 _t\left( x_{\rm Sol} \right) =\sum_{i=1}^{n}\symscr{D}^2 _t(x_i)c_i+\underset{\mbox{\tiny 令这个为零}}{\underbrace{\sum_{i=1}^{n}\symscr{D} _t(c_i)\symscr{D} _t(x_i)}}=\sum_{i=1}^{n}\symscr{D}^2 _t(x_i)c_i
-.\]
+	\symscr{D}^2 _t\left( x_{\rm Sol} \right) =\sum_{i=1}^{n}\symscr{D}^2 _t(x_i)c_i+\underset{\mbox{\tiny 令这个为零}}{\underbrace{\sum_{i=1}^{n}\symscr{D} _t(c_i)\symscr{D} _t(x_i)}}=\sum_{i=1}^{n}\symscr{D}^2 _t(x_i)c_i
+	.\]
 
 琪露诺：哇，和第一次求导的时候长得差不多。
 
 朱鹭子：没错，事实上我可以一直这样做，直到我用完了 \(n-1\) 个条件：只要带上 \(\symscr{D} _t(c_i)\) 的求和就让他为零，这样我就可以保证对 \(x_{\rm Sol}\) 的导数阶数和对 \(x_i\) 的导数阶数相等，因此我给出的 \(n-1\) 个条件和推论应该是：
 \[
-\begin{bmatrix}
-	\sum_{i=1}^{n} \symscr{D} _t(c_i)x_i \\    \sum_{i=1}^{n} \symscr{D} _t(c_i)\symscr{D} _t(x_i) \\    \vdots \\    \sum_{i=1}^{n} \symscr{D} _t(c_i)\symscr{D}^{n-2} _t(x_i) \\\end{bmatrix}=\symbf 0 \implies \begin{bmatrix}
-	\symscr{D} _t(x_{\rm Sol}) \\ \symscr{D} ^2_t(x_{\rm Sol})    \\   \vdots  \\    \symscr{D} _t^{n-1}(x_{\rm Sol}) \\\end{bmatrix}=\begin{bmatrix}
-	\sum_{i=1}^{n}\symscr{D} _t(x_i)c_i \\    \sum_{i=1}^{n} \symscr{D} _t^2(x_i)c_i \\    \vdots \\  \sum_{i=1}^{n} \symscr{D} _t^{n_-1}(x_i)c_i   \\\end{bmatrix}
-.\]
+	\begin{bmatrix}
+		\sum_{i=1}^{n} \symscr{D} _t(c_i)x_i \\    \sum_{i=1}^{n} \symscr{D} _t(c_i)\symscr{D} _t(x_i) \\    \vdots \\    \sum_{i=1}^{n} \symscr{D} _t(c_i)\symscr{D}^{n-2} _t(x_i) \\\end{bmatrix}=\symbf 0 \implies \begin{bmatrix}
+		\symscr{D} _t(x_{\rm Sol}) \\ \symscr{D} ^2_t(x_{\rm Sol})    \\   \vdots  \\    \symscr{D} _t^{n-1}(x_{\rm Sol}) \\\end{bmatrix}=\begin{bmatrix}
+		\sum_{i=1}^{n}\symscr{D} _t(x_i)c_i \\    \sum_{i=1}^{n} \symscr{D} _t^2(x_i)c_i \\    \vdots \\  \sum_{i=1}^{n} \symscr{D} _t^{n_-1}(x_i)c_i   \\\end{bmatrix}
+	.\]
 接下来，我把他带进 \(\symscr{L} (x_{\rm Sol})=\symscr{D} _t^n(x_{\rm Sol})+ \sum_{i=1}^{n-1} a_i(t)\symscr{D} _t^i(x_{\rm Sol})\)，你就能发现我们是怎么对付“求导”这个最大的不稳定因素的：
 \[
-\symscr{L} (x_{\rm Sol}) =\symscr{D} _t^n(x_{\rm Sol}) +\sum_{i=1}^{n-1} a_i(t)\symscr{D} _t^i(x_{\rm Sol}) =\symscr{D} _t\left(  \symscr{D} _t^{n-1}(x_{\rm Sol}) \right) + \sum_{i=1}^{n} a_i(t)
-\sum_{j=1}^{n} c_j\symscr{D} _t^j(x_j)\tag{$\mathrm{SOL}^n$}
-.\]
+	\symscr{L} (x_{\rm Sol}) =\symscr{D} _t^n(x_{\rm Sol}) +\sum_{i=1}^{n-1} a_i(t)\symscr{D} _t^i(x_{\rm Sol}) =\symscr{D} _t\left(  \symscr{D} _t^{n-1}(x_{\rm Sol}) \right) + \sum_{i=1}^{n} a_i(t)
+	\sum_{j=1}^{n} c_j\symscr{D} _t^j(x_j)\tag{$\mathrm{SOL}^n$}
+	.\]
 
 琪露诺：看起来非常复杂……虽然你只是把所有东西都代进去而已，但是这个二重求和……
 
 朱鹭子：确实，但是在这里我们可以先互换啊\emoji{😀}：
 \[
-\begin{aligned}
-	(\mathrm{SOL}^n) & = \underset{\symscr{D} _t\left(\sum_{j=1}^{n} \symscr{D} _t^{n_-1}(x_j)c_j   \right) \,=\, \sum_{j=1}^{n}\symscr{D} ^n_t(x_j)c_j+\symscr{D} _t^{n-1}(x_j)\symscr{D} (c_j)}{\underbrace{\symscr{D} _t\left(  \symscr{D} _t^{n-1}(x_{\rm Sol}) \right)}} + \sum_{i=1}^{n} a_i(t)
-	\sum_{j=1}^{n} c_j\symscr{D} _t^j(x_j)                                                                                                                                                                                                                                                               \\
-						& =\sum_{j=1}^{n}\symscr{D} ^n_t(x_j)c_j+\symscr{D} _t^{n-1}(x_j)\symscr{D}_t (c_j)+\sum_{j=1}^{n} c_j\sum_{i=1}^{n} a_i(t)
-	\symscr{D} _t^j(x_j)                                                                                                                                                                                                                                                                                 \\
-						& =\underset{\sum_{j=1}^{n} c_j\symscr{L} (x_j)=0}{\underbrace{\sum_{j=1}^{n} c_j\left( \symscr{D} _t^n(x_j)+\sum_{i=1}^{n} a_i(t)\symscr{D} _t^i(x_j) \right)}}+\sum_{j=1}^{n}\symscr{D} _t^{n-1}(x_j)\symscr{D} _t(c_j)=\sum_{j=1}^{n}\symscr{D} _t^{n-1}(x_j)\symscr{D} _t(c_j).
-\end{aligned}
+	\begin{aligned}
+		(\mathrm{SOL}^n) & = \underset{\symscr{D} _t\left(\sum_{j=1}^{n} \symscr{D} _t^{n_-1}(x_j)c_j   \right) \,=\, \sum_{j=1}^{n}\symscr{D} ^n_t(x_j)c_j+\symscr{D} _t^{n-1}(x_j)\symscr{D} (c_j)}{\underbrace{\symscr{D} _t\left(  \symscr{D} _t^{n-1}(x_{\rm Sol}) \right)}} + \sum_{i=1}^{n} a_i(t)
+		\sum_{j=1}^{n} c_j\symscr{D} _t^j(x_j)                                                                                                                                                                                                                                                               \\
+		                 & =\sum_{j=1}^{n}\symscr{D} ^n_t(x_j)c_j+\symscr{D} _t^{n-1}(x_j)\symscr{D}_t (c_j)+\sum_{j=1}^{n} c_j\sum_{i=1}^{n} a_i(t)
+		\symscr{D} _t^j(x_j)                                                                                                                                                                                                                                                                                 \\
+		                 & =\underset{\sum_{j=1}^{n} c_j\symscr{L} (x_j)=0}{\underbrace{\sum_{j=1}^{n} c_j\left( \symscr{D} _t^n(x_j)+\sum_{i=1}^{n} a_i(t)\symscr{D} _t^i(x_j) \right)}}+\sum_{j=1}^{n}\symscr{D} _t^{n-1}(x_j)\symscr{D} _t(c_j)=\sum_{j=1}^{n}\symscr{D} _t^{n-1}(x_j)\symscr{D} _t(c_j).
+	\end{aligned}
 \]
 
 琪露诺：\emoji{😪😪😪😪😪}
 
 朱鹭子：别担心，虽然看起来很复杂，但最后的结果其实相当简单啊：
 \[
-\symscr{L} (x_{\rm Sol})=\sum_{j=1}^{n}\symscr{D} _t^{n-1}(x_j)\symscr{D} _t(c_j) =f(t)
-.\]
+	\symscr{L} (x_{\rm Sol})=\sum_{j=1}^{n}\symscr{D} _t^{n-1}(x_j)\symscr{D} _t(c_j) =f(t)
+	.\]
 
 琪露诺：那这有什么用呢？
 
 朱鹭子：看，我们刚才给出了 \(n-1\) 个方程，但实际上我们要解出 \(c_i\) 必然还需要一个，而 \(x_{\rm Sol}=\sum_{i=1}^{n} x_i(t) c_i(t)\) 并不能算解出 \(c_i\) 的方程，因为我们本身就要解出 \(c_i\) 才知道 \(x_{\rm Sol}\) 的，而这 \(\sum_{j=1}^{n}\symscr{D} _t^{n-1}(x_j)\symscr{D} _t(c_j) =f(t)\)就是最后的方程，如果把这个方程和我们写出来的那 \(n-1\)方程一起写出来：
 \[
-\begin{bmatrix}
-	\sum_{i=1}^{n} \symscr{D} _t(c_i)x_i \\    \sum_{i=1}^{n} \symscr{D} _t(c_i)\symscr{D} _t(x_i) \\    \vdots \\    \sum_{i=1}^{n} \symscr{D} _t(c_i)\symscr{D}^{(n-2)} _t(x_i) \\
-	\sum_{i=1}^{n} \symscr{D} _t(c_i)\symscr{D}^{(n-1)} _t(x_i)
-\end{bmatrix}= \begin{bmatrix}
-	0 \\    0 \\    \vdots \\    0 \\    f(t) \\\end{bmatrix}
-.\]
+	\begin{bmatrix}
+		\sum_{i=1}^{n} \symscr{D} _t(c_i)x_i \\    \sum_{i=1}^{n} \symscr{D} _t(c_i)\symscr{D} _t(x_i) \\    \vdots \\    \sum_{i=1}^{n} \symscr{D} _t(c_i)\symscr{D}^{(n-2)} _t(x_i) \\
+		\sum_{i=1}^{n} \symscr{D} _t(c_i)\symscr{D}^{(n-1)} _t(x_i)
+	\end{bmatrix}= \begin{bmatrix}
+		0 \\    0 \\    \vdots \\    0 \\    f(t) \\\end{bmatrix}
+	.\]
 
 看到这个你想到了什么没有，尤其是左边矩阵里面这个求和？
 
@@ -1249,38 +1251,38 @@ x_{\rm Sol} \coloneq \sum_{i=1}^{n} c_i(t) x_i(t)
 
 朱鹭子：没错确实是矩阵相乘，实际上：
 \[
-\begin{bmatrix}
-	\sum_{i=1}^{n} \symscr{D} _t(c_i)x_i \\    \sum_{i=1}^{n} \symscr{D} _t(c_i)\symscr{D} _t(x_i) \\    \vdots \\    \sum_{i=1}^{n} \symscr{D} _t(c_i)\symscr{D}^{(n-2)} _t(x_i) \\
-	\sum_{i=1}^{n} \symscr{D} _t(c_i)\symscr{D}^{(n-1)} _t(x_i)
-\end{bmatrix}= \underset{\symbfscr W(t)}{\underbrace{\begin{bmatrix}
-	x_1                & x_2                & \cdots & x_n                \\
-	\symscr{D} _t(x_1) & \symscr{D} _t(x_2) & \cdots & \symscr{D} _t(x_n) \\
-	\vdots             & \vdots             &        & \vdots             \\
-	\symscr{D}^{n-1} _t(x_1) & \symscr{D}^{n-1} _t(x_2)     & \cdots & \symscr{D}^{n-1} _t(x_n)     \\
-\end{bmatrix} }}\cdot \begin{bmatrix}
-	\symscr{D} _t(c_1) \\   \symscr{D} _t(c_2) \\    \vdots \\    \symscr{D} _t(c_n) \\\end{bmatrix}=\begin{bmatrix}
-	0 \\      \vdots \\    0 \\    f(t) \\\end{bmatrix}
-.\]
+	\begin{bmatrix}
+		\sum_{i=1}^{n} \symscr{D} _t(c_i)x_i \\    \sum_{i=1}^{n} \symscr{D} _t(c_i)\symscr{D} _t(x_i) \\    \vdots \\    \sum_{i=1}^{n} \symscr{D} _t(c_i)\symscr{D}^{(n-2)} _t(x_i) \\
+		\sum_{i=1}^{n} \symscr{D} _t(c_i)\symscr{D}^{(n-1)} _t(x_i)
+	\end{bmatrix}= \underset{\symbfscr W(t)}{\underbrace{\begin{bmatrix}
+				x_1                      & x_2                      & \cdots & x_n                      \\
+				\symscr{D} _t(x_1)       & \symscr{D} _t(x_2)       & \cdots & \symscr{D} _t(x_n)       \\
+				\vdots                   & \vdots                   &        & \vdots                   \\
+				\symscr{D}^{n-1} _t(x_1) & \symscr{D}^{n-1} _t(x_2) & \cdots & \symscr{D}^{n-1} _t(x_n) \\
+			\end{bmatrix} }}\cdot \begin{bmatrix}
+		\symscr{D} _t(c_1) \\   \symscr{D} _t(c_2) \\    \vdots \\    \symscr{D} _t(c_n) \\\end{bmatrix}=\begin{bmatrix}
+		0 \\      \vdots \\    0 \\    f(t) \\\end{bmatrix}
+	.\]
 
 琪露诺：噢噢噢噢噢噢噢噢哦哦哦哦哦哦哦！！！！！！！！！！！！我懂了！！！所以你的意思是说，由于 \(x_1,\cdots ,x_n\) 一开始就是线性无关的，所以 \(\symbfscr W\) 的行列式必然恒不为零，所以它必然恒有逆！
 
 朱鹭子：在区间 \(\symcal{I} \) 上。没错，所以这样子我们就可以知道：
 \[
-\begin{bmatrix}
-	\symscr{D} _t(c_1) \\   \symscr{D} _t(c_2) \\    \vdots \\    \symscr{D} _t(c_n) \\\end{bmatrix} = \symbfscr W^{-1}(t)\cdot\begin{bmatrix}
-	0 \\      \vdots \\    0 \\    f(t) \\\end{bmatrix}
-.\]
+	\begin{bmatrix}
+		\symscr{D} _t(c_1) \\   \symscr{D} _t(c_2) \\    \vdots \\    \symscr{D} _t(c_n) \\\end{bmatrix} = \symbfscr W^{-1}(t)\cdot\begin{bmatrix}
+		0 \\      \vdots \\    0 \\    f(t) \\\end{bmatrix}
+	.\]
 
 然后观察到 \(f(t)\) 对应的向量只有最后一个元素，因此实际上只有 \( \symbfscr W^{-1}(t)\) 的最后一列是有用的，因此利用Cramer法则（我们求解的是 \( \symscr{D} _t(c_i)\)所以最后还要积分一下）就可以化成：
 \[
-x_{\rm Sol}= \sum_{i=1}^{n} x_i(t) \, \cdot \int\left(  \raisebox{-2.5em}{\(\dfrac{{
-	\begin{vmatrix}
-		\scriptstyle x_1(t)         & \scriptstyle x_2(t)                       & \scriptstyle \cdots & \scriptstyle 0      & \scriptstyle \cdots & \scriptstyle x_n(t)                     \\[-3pt]
-		\scriptstyle x_1'(t)        & \scriptstyle x_2'(t)                      & \scriptstyle \cdots & \scriptstyle 0      & \scriptstyle \cdots & \scriptstyle x_n'(t)                    \\[-3pt]
-		\scriptstyle \vdots         & \scriptstyle \vdots                       & \scriptstyle \cdots & \scriptstyle \vdots & \scriptstyle \cdots & \scriptstyle \vdots                     \\[-3pt]
-		\scriptstyle x_1^{(n-1)}(t) & \!\! \!\scriptstyle x_n^{(n-1)}(t) \!\!\! & \scriptstyle \cdots & \scriptstyle 1      & \scriptstyle \cdots & \!\! \!\scriptstyle x_n^{(n-1)}(t) \!\! \\[3pt]
-	\end{vmatrix}\kern-4em\raisebox{1.8em}{$\kern-8em\overset{i}{\overbrace{\phantom{zzxvxvxvxx3wixcb}}}$\kern 4.6em}}}{\symscr{W} (t)}\)}f(t) \right) \,\mathrm{d}t
-.\]
+	x_{\rm Sol}= \sum_{i=1}^{n} x_i(t) \, \cdot \int\left(  \raisebox{-2.5em}{\(\dfrac{{
+					\begin{vmatrix}
+						\scriptstyle x_1(t)         & \scriptstyle x_2(t)                       & \scriptstyle \cdots & \scriptstyle 0      & \scriptstyle \cdots & \scriptstyle x_n(t)                     \\[-3pt]
+						\scriptstyle x_1'(t)        & \scriptstyle x_2'(t)                      & \scriptstyle \cdots & \scriptstyle 0      & \scriptstyle \cdots & \scriptstyle x_n'(t)                    \\[-3pt]
+						\scriptstyle \vdots         & \scriptstyle \vdots                       & \scriptstyle \cdots & \scriptstyle \vdots & \scriptstyle \cdots & \scriptstyle \vdots                     \\[-3pt]
+						\scriptstyle x_1^{(n-1)}(t) & \!\! \!\scriptstyle x_n^{(n-1)}(t) \!\!\! & \scriptstyle \cdots & \scriptstyle 1      & \scriptstyle \cdots & \!\! \!\scriptstyle x_n^{(n-1)}(t) \!\! \\[3pt]
+					\end{vmatrix}\kern-4em\raisebox{1.8em}{$\kern-8em\overset{i}{\overbrace{\phantom{zzxvxvxvxx3wixcb}}}$\kern 4.6em}}}{\symscr{W} (t)}\)}f(t) \right) \,\mathrm{d}t
+	.\]
 
 琪露诺：原来是这样……但是感觉无论是对人类还是对妖怪来说计算量都是太大了吧？
 
@@ -1288,8 +1290,8 @@ x_{\rm Sol}= \sum_{i=1}^{n} x_i(t) \, \cdot \int\left(  \raisebox{-2.5em}{\(\dfr
 
 琪露诺：二阶的话也是代进去嘛，不过倒是有计算可行性：
 \[
-x_{\rm Sol}= x_1(t)\int \dfrac{-x_2(t)f(t)}{\symscr{W}(t)}  \,\mathrm{d}t+x_2(t)\int \dfrac{x_1(t)f(t)}{\symscr{W}(t) } \,\mathrm{d}t
-.\]
+	x_{\rm Sol}= x_1(t)\int \dfrac{-x_2(t)f(t)}{\symscr{W}(t)}  \,\mathrm{d}t+x_2(t)\int \dfrac{x_1(t)f(t)}{\symscr{W}(t) } \,\mathrm{d}t
+	.\]
 
 看起来正常多了，虽然解一个二阶方程用Cramer法则就是有大病。
 
@@ -1307,24 +1309,24 @@ x_{\rm Sol}= x_1(t)\int \dfrac{-x_2(t)f(t)}{\symscr{W}(t)}  \,\mathrm{d}t+x_2(t)
 
 朱鹭子：的确是这样，我们看下面这个方程：
 \[
-\symscr{L}_c (x)\coloneq\symscr{D} _t^n(x)+ \sum_{i=1}^{n-1} a_i\symscr{D} ^i_t(x)=0
-.\]
+	\symscr{L}_c (x)\coloneq\symscr{D} _t^n(x)+ \sum_{i=1}^{n-1} a_i\symscr{D} ^i_t(x)=0
+	.\]
 我们称为常系数线性齐次微分方程。
 
 琪露诺：变成了常数之后应该好搞很多吧？
 
 朱鹭子：是，我们不妨考虑 \( x =\symrm{e} ^{\lambda t}\) 。至于为什么要这么设，实际上是因为对于一阶的：\( \dx+ax=0\) 的解是 \(x= c_1\symrm{e} ^{-at}\) ，所以我们照葫芦画瓢：
 \[
-\symscr{L}_c (x) = \symscr{D} _t^n\left( \symrm{e} ^{\lambda t} \right) + \sum_{i=1}^{n-1} a_i\symscr{D} ^i_t\left( \symrm{e} ^{\lambda t} \right) 
-=\left( \lambda ^n+ \sum_{i=1}^{n-1} a_i \lambda ^i \right)\symrm{e} ^{\lambda t}=0\implies \lambda ^n+ \sum_{i=1}^{n-1} a_i \lambda ^i =0
+	\symscr{L}_c (x) = \symscr{D} _t^n\left( \symrm{e} ^{\lambda t} \right) + \sum_{i=1}^{n-1} a_i\symscr{D} ^i_t\left( \symrm{e} ^{\lambda t} \right)
+	=\left( \lambda ^n+ \sum_{i=1}^{n-1} a_i \lambda ^i \right)\symrm{e} ^{\lambda t}=0\implies \lambda ^n+ \sum_{i=1}^{n-1} a_i \lambda ^i =0
 \]
 
 琪露诺：哇！变成最基本的代数方程了！接下来不就是解那个 \(n\) 阶方程就可以了吗？
 
 朱鹭子：实际上也没有这么简单，这个方程被称为常系数线性齐次方程组的特征方程，事实上：
 \begin{enumerate}
-\setcounter{enumi}{0}
-\item 如果方程 \(\lambda ^n+ \sum_{i=1}^{n-1} a_i \lambda ^i =0\) 有 \(n\) 个不同的解 \(\lambda_1,\cdots ,\lambda _n \) 那么这个常系数线性齐次分方程的基本解组就是 \( \symrm{e} ^{\lambda _1t},\cdots ,\symrm{e} ^{\lambda_nt}\)。
+	\setcounter{enumi}{0}
+	\item 如果方程 \(\lambda ^n+ \sum_{i=1}^{n-1} a_i \lambda ^i =0\) 有 \(n\) 个不同的解 \(\lambda_1,\cdots ,\lambda _n \) 那么这个常系数线性齐次分方程的基本解组就是 \( \symrm{e} ^{\lambda_1t},\cdots ,\symrm{e} ^{\lambda_nt}\)。
 \end{enumerate}
 
 琪露诺：这不是没什么问题吗？
@@ -1335,22 +1337,22 @@ x_{\rm Sol}= x_1(t)\int \dfrac{-x_2(t)f(t)}{\symscr{W}(t)}  \,\mathrm{d}t+x_2(t)
 
 朱鹭子：的确，事实上：
 \begin{enumerate}
-\setcounter{enumi}{1}
-\item 如果方程 \(\lambda ^n+ \sum_{i=1}^{n-1} a_i \lambda ^i =0\) 有根 \(\lambda _1,\cdots \lambda_k\) 对应重数 \(m_1,\cdots ,m_k\) ，其中 \(\sum_{i=1}^{k} m_i=n\) ，那么这个常系数线性齐次分方程的基本解组就是：
-\[
-t^j\symrm{e} ^{\lambda_i t},\,j=0,1,\cdots m_i-1,\,i=1,\cdots k
-.\]
+	\setcounter{enumi}{1}
+	\item 如果方程 \(\lambda ^n+ \sum_{i=1}^{n-1} a_i \lambda ^i =0\) 有根 \(\lambda_1,\cdots \lambda_k\) 对应重数 \(m_1,\cdots ,m_k\) ，其中 \(\sum_{i=1}^{k} m_i=n\) ，那么这个常系数线性齐次分方程的基本解组就是：
+	      \[
+		      t^j\symrm{e} ^{\lambda_i t},\,j=0,1,\cdots m_i-1,\,i=1,\cdots k
+		      .\]
 \end{enumerate}
 
 琪露诺：？这啥，怎么那么多符号，看不懂的啦……
 
 朱鹭子：举个例子，如果特征方程是这样的 \((\lambda -5)^n(\lambda -1)(\lambda -4)^m\) ，那么它对应的常系数线性齐次分方程的基本解组就是：
 \[
-\begin{aligned}
-&\symrm{e} ^{5t},t\symrm{e} ^{5t},\cdots t^{n-1}\symrm{e} ^{5t}, \\ 
-&\symrm{e} ^{t},\\
-&\symrm{e} ^{5t},t\symrm{e} ^{4t},\cdots ,t^{m-1}\symrm{e} ^{4t}.
-\end{aligned}
+	\begin{aligned}
+		 & \symrm{e} ^{5t},t\symrm{e} ^{5t},\cdots t^{n-1}\symrm{e} ^{5t},  \\
+		 & \symrm{e} ^{t},                                                  \\
+		 & \symrm{e} ^{5t},t\symrm{e} ^{4t},\cdots ,t^{m-1}\symrm{e} ^{4t}.
+	\end{aligned}
 \]
 
 琪露诺：这样下去倒的确是 \(n\) 个线性无关解没错了，但为什么是在前面乘上 \(t^i\)  呢？
@@ -1361,22 +1363,22 @@ t^j\symrm{e} ^{\lambda_i t},\,j=0,1,\cdots m_i-1,\,i=1,\cdots k
 
 朱鹭子：不妨只设只有一个重根 \(\lambda_1 \) ，重数为 \(m_1\) ，则用常数变易法设这根对应的解是 \( c(t)\symrm{e} ^{\lambda t}\)。则：
 \[
-\symscr{D} _t^k (c(t)\symrm{e} ^{\lambda t})=\symrm{e} ^{\lambda t}\sum_{i=0}^{k} \binom{k}{i}\lambda ^i\symscr{D} ^{k-i}_t(c)
-.\]
+	\symscr{D} _t^k (c(t)\symrm{e} ^{\lambda t})=\symrm{e} ^{\lambda t}\sum_{i=0}^{k} \binom{k}{i}\lambda ^i\symscr{D} ^{k-i}_t(c)
+	.\]
 
 琪露诺：？这是求 \(k\) 阶导？
 
 朱鹭子：是，事实上这是依赖高阶导数的Leibniz公式：
 \[
-\symscr{D} _t^k(a\cdot b)= \sum_{i=0}^{k} \binom{k}{i}\symscr{D} ^{k-i}_t(a)\cdot \symscr{D} ^{i}_t(b)
-.\]
+	\symscr{D} _t^k(a\cdot b)= \sum_{i=0}^{k} \binom{k}{i}\symscr{D} ^{k-i}_t(a)\cdot \symscr{D} ^{i}_t(b)
+	.\]
 
 考虑到这个 \(\sum_{i=0}^{k} \binom{k}{i}\lambda ^i\symscr{D} ^{k-i}_t(c)\)也是常系数线性的，那么实际上：
 \[
-\begin{aligned}
-\symscr{L} _c(c(t)\symrm{e} ^{\lambda t}) &= \symrm{e} ^{\lambda t}\sum_{i=0}^{n} \binom{n}{i}\lambda ^i\symscr{D} ^{n-i}_t(c)+\sum\limits_{k=1}^{n-1} a_i\symrm{e} ^{\lambda t}\sum_{i=0}^{k} \binom{k}{i}\lambda ^i\symscr{D} ^{k-i}_t(c)\\ 
-&=\symrm{e} ^{\lambda t}\underline{\left( \sum_{i=0}^{n} \binom{n}{i}\lambda ^i\symscr{D} ^{n-i}_t(c)+ \sum\limits_{k=1}^{n-1} a_i\sum_{i=0}^{k} \binom{k}{i}\lambda ^i\symscr{D} ^{k-i}_t(c)\right) }=0.
-\end{aligned}
+	\begin{aligned}
+		\symscr{L} _c(c(t)\symrm{e} ^{\lambda t}) & = \symrm{e} ^{\lambda t}\sum_{i=0}^{n} \binom{n}{i}\lambda ^i\symscr{D} ^{n-i}_t(c)+\sum_{k=1}^{n-1} a_i\symrm{e} ^{\lambda t}\sum_{i=0}^{k} \binom{k}{i}\lambda ^i\symscr{D} ^{k-i}_t(c)         \\
+		                                          & =\symrm{e} ^{\lambda t}\underline{\left( \sum_{i=0}^{n} \binom{n}{i}\lambda ^i\symscr{D} ^{n-i}_t(c)+ \sum_{k=1}^{n-1} a_i\sum_{i=0}^{k} \binom{k}{i}\lambda ^i\symscr{D} ^{k-i}_t(c)\right) }=0.
+	\end{aligned}
 \]
 
 则下划线部分也是常系数线性的，因此不妨设为 \(\overline{\symscr{L} _c}(c)\)。
@@ -1385,37 +1387,37 @@ t^j\symrm{e} ^{\lambda_i t},\,j=0,1,\cdots m_i-1,\,i=1,\cdots k
 
 朱鹭子：确实，但我们目的不是为了计算，只要是它是常系数线性的就可以，现在已经变成：
 \[
-\symscr{L} _c(c\cdot\symrm{e} ^{\lambda t}) = \overline{\symscr{L} _c}(c)\symrm{e} ^{\lambda t}=0\implies\overline{\symscr{L} _c}(c)=0
-.\]
+	\symscr{L} _c(c\cdot\symrm{e} ^{\lambda t}) = \overline{\symscr{L} _c}(c)\symrm{e} ^{\lambda t}=0\implies\overline{\symscr{L} _c}(c)=0
+	.\]
 
 琪露诺：所以我们要解一个新的常系数线性？
 
 朱鹭子：当然不可能直接解，为了方便讨论，我们不妨设两个线性算符的对应的特征方程为：
 \[
-\begin{aligned}
-\symscr{L} : \lambda ^n +\sum\limits_{i=1}^{n-1} a_i \lambda ^i\eqcolon A(\lambda ), \\ 
-\overline{\symscr{L}} : \lambda ^n +\sum\limits_{i=1}^{n-1} b_i \lambda ^i\eqcolon B(\lambda ).
-\end{aligned}
+	\begin{aligned}
+		\symscr{L} : \lambda ^n +\sum_{i=1}^{n-1} a_i \lambda ^i\eqcolon A(\lambda ), \\
+		\overline{\symscr{L}} : \lambda ^n +\sum_{i=1}^{n-1} b_i \lambda ^i\eqcolon B(\lambda ).
+	\end{aligned}
 \]
 
 琪露诺：诶为什么这个超级怪的 \( \overline{\symscr{L} }\) 的 \(n\) 阶导数前面的系数也是 1 呢？
 
 朱鹭子：这个啊，仔细看上面这个方程：
 \[
-B(\lambda )=\underline{\sum_{i=0}^{n} \binom{n}{i}\lambda ^i\symscr{D} ^{n-i}_t(c)}+ \sum\limits_{k=1}^{n-1} a_i\sum_{i=0}^{k} \binom{k}{i}\lambda ^i\symscr{D} ^{k-i}_t(c)
-.\]
+	B(\lambda )=\underline{\sum_{i=0}^{n} \binom{n}{i}\lambda ^i\symscr{D} ^{n-i}_t(c)}+ \sum_{k=1}^{n-1} a_i\sum_{i=0}^{k} \binom{k}{i}\lambda ^i\symscr{D} ^{k-i}_t(c)
+	.\]
 
 实际上能产生 \(n\) 阶导数的也只有下换线部分吧？你把 \(i=0\)代进去即可，其他看起来很恐怖，但是其实都是常数（只不过很复杂）罢了，这里我们完全可以不考虑。接下来就是线性算符和特征方程之间的关系：
 \[
-\symscr{L} (\symrm{e} ^{kx})=A(k)\symrm{e} ^{kx},\,\overline{\symscr{L}} (\symrm{e} ^{kx})=B(k)\symrm{e} ^{kx}
-.\]
+	\symscr{L} (\symrm{e} ^{kx})=A(k)\symrm{e} ^{kx},\,\overline{\symscr{L}} (\symrm{e} ^{kx})=B(k)\symrm{e} ^{kx}
+	.\]
 
 琪露诺：对，因为 \(\symrm{e} ^{kx}\) 求导不会变，所以完全可以提出来，再加上求导算符乘上的都是常数，所以最后实际上变成了一个 \(\symrm{e} ^{kx}\) 乘上一个固定多项式的情形。
 
 朱鹭子：没错，接下来是重点，要知道我们还有这个哇：
 \[
-\symscr{L} (c \cdot \symrm{e} ^{kx})=\overline{\symscr{L} }(c)\symrm{e} ^{kx}
-.\]
+	\symscr{L} (c \cdot \symrm{e} ^{kx})=\overline{\symscr{L} }(c)\symrm{e} ^{kx}
+	.\]
 
 注意到 \(\overline{\symscr{L} }\) 的定义虽然复杂，但实际上并没有和 \(t\) 有关系，也就是说不管是什么样的函数 \(c\) 上式都是满足的。
 
@@ -1423,25 +1425,25 @@ B(\lambda )=\underline{\sum_{i=0}^{n} \binom{n}{i}\lambda ^i\symscr{D} ^{n-i}_t(
 
 朱鹭子：接下来看：
 \[
-\symscr{L} ( \symrm{e} ^{k x}\cdot \symrm{e} ^{\lambda x})=\overline{\symscr{L} }(\symrm{e} ^{k x})\symrm{e} ^{\lambda x}=\underline{B(k)\symrm{e} ^{(k+\lambda )x}}
-.\]
+	\symscr{L} ( \symrm{e} ^{k x}\cdot \symrm{e} ^{\lambda x})=\overline{\symscr{L} }(\symrm{e} ^{k x})\symrm{e} ^{\lambda x}=\underline{B(k)\symrm{e} ^{(k+\lambda )x}}
+	.\]
 
 同时
 \[
-\symscr{L} ( \symrm{e} ^{k x}\cdot \symrm{e} ^{\lambda x}) =\underline{ A(\lambda +k)\symrm{e} ^{(k+\lambda )x}}
-.\]
+	\symscr{L} ( \symrm{e} ^{k x}\cdot \symrm{e} ^{\lambda x}) =\underline{ A(\lambda +k)\symrm{e} ^{(k+\lambda )x}}
+	.\]
 
 注意下划线部分，我们可以得到：
 \[
-A(\lambda +k)=B(k)
-.\]
+	A(\lambda +k)=B(k)
+	.\]
 
 琪露诺：哇，所以这就是把这个抽象的多项式表达出来了？
 
 朱鹭子：确实，但是还有哦，之前过了，这个 \(\lambda \) 是多项式 \(A\) 的 \(m\)重根，这意味着：
 \[
-\symscr{D} _k^i(A(\lambda +k))\bigr|_{k=0} =\symscr{D} _k^i(B(k))\bigr|_{k=0}=0,\,i=0,1,\cdots m-1
-.\]
+	\symscr{D} _k^i(A(\lambda +k))\bigr|_{k=0} =\symscr{D} _k^i(B(k))\bigr|_{k=0}=0,\,i=0,1,\cdots m-1
+	.\]
 
 琪露诺：所以是依靠 \(\lambda \) 是 \(A\) 的 \(m\) 重零点来推出这个的吗？
 
@@ -1451,20 +1453,20 @@ A(\lambda +k)=B(k)
 
 朱鹭子：看起来好像是这样子，但实际上不一样哦，如果 \(B(k)\) 是这样子的话，那不就意味着 \(B(k)\) 的形式是：
 \[
-k^n+\sum\limits_{i=m}^{n-1} b_ik^i
-.\]
+	k^n+\sum_{i=m}^{n-1} b_ik^i
+	.\]
 
 对应的常系数线性微分方程实际上就变成：
 \[
-\symscr{D} ^n_t(x)+\sum\limits_{i=m}^{n-1} b_i \symscr{D} ^i_t(x)=0
-.\]
+	\symscr{D} ^n_t(x)+\sum_{i=m}^{n-1} b_i \symscr{D} ^i_t(x)=0
+	.\]
 
 琪露诺：诶？是可以等价的吗，原来还可以从特征方程反推常系数微分方程的哇。
 
 朱鹭子：为什么不可以呢？还记得我们最初的特征方程怎么得到的吗：
 \[
-\symscr{L} _c \coloneq\symscr{D} ^n_t+ \sum\limits_{i=1}^{n-1} a_i\symscr{D} _t^i \implies\mbox{特征方程}= \lambda  ^n+ \sum\limits_{i=1}^{n-1} a_i\lambda^i 
-.\]
+	\symscr{L} _c \coloneq\symscr{D} ^n_t+ \sum_{i=1}^{n-1} a_i\symscr{D} _t^i \implies\mbox{特征方程}= \lambda  ^n+ \sum_{i=1}^{n-1} a_i\lambda^i
+	.\]
 
 这不全是一对一的吗？你不用担心说什么奇怪的 \(\symrm{e} ^{kt}\)变换会害了方程，让它脱离和常系数微分方程的关系，实际上没这回事。
 
@@ -1472,17 +1474,17 @@ k^n+\sum\limits_{i=m}^{n-1} b_ik^i
 
 朱鹭子：那我们继续吧，我们知道为了求解 \(c\) ，我们要面对微分方程是：
 \[
-\symscr{D} ^n_t(c)+\sum\limits_{i=m}^{n-1} b_i \symscr{D} ^i_t(c)=0
-.\]
+	\symscr{D} ^n_t(c)+\sum_{i=m}^{n-1} b_i \symscr{D} ^i_t(c)=0
+	.\]
 
 琪露诺：这不还是一个 \(n\) 阶吗？
 
 朱鹭子：对，但是它除了各种各样我们不清楚的指数解，还有其他解哦，你看它最小阶数的导数都是 \(m\) 次捏。
 
-琪露诺：\emoji{🤔🤔🤔🤔🤔🤔🤔🤔🤔}……难不成你只的是：
+琪露诺：\emoji{🤔🤔🤔🤔🤔🤔🤔🤔🤔}……难不成你指的是：
 \[
-1,t,\cdots t^{m-1}
-.\]
+	1,t,\cdots t^{m-1}
+	.\]
 这些吗？
 
 朱鹭子：没错，更准确来说是他们的线性组合，所以实际上我们要求的 \(c\) 就是这些了。
@@ -1495,8 +1497,8 @@ k^n+\sum\limits_{i=m}^{n-1} b_ik^i
 
 朱鹭子：没错。当然，还有一件事是你要证明：
 \[
-t^j\symrm{e} ^{\lambda_i t},\,j=0,1,\cdots m_i-1,\,i=1,\cdots k
-.\]
+	t^j\symrm{e} ^{\lambda_i t},\,j=0,1,\cdots m_i-1,\,i=1,\cdots k
+	.\]
 是（在任何区域上）线性无关的。
 
 琪露诺：看起来是那么地显然……
@@ -1507,8 +1509,8 @@ t^j\symrm{e} ^{\lambda_i t},\,j=0,1,\cdots m_i-1,\,i=1,\cdots k
 
 朱鹭子：复根啊，你只需要用到Euler三角公式：
 \[
-\symrm{e} ^{\symrm{i} b}=\cos b+\symrm{i} \sin b
-.\]
+	\symrm{e} ^{\symrm{i} b}=\cos b+\symrm{i} \sin b
+	.\]
 所以实际上对应的是 \(\cos bt\)和\(\sin bt\)……
 
 琪露诺：等等！为什么一个根可以对应两个线性无关…… \(\cos bt\) 和 \(\sin bt\) 应该都是线性无关的吧……除了 \(b=0\) ？
@@ -1519,8 +1521,8 @@ t^j\symrm{e} ^{\lambda_i t},\,j=0,1,\cdots m_i-1,\,i=1,\cdots k
 
 朱鹭子：好问题，事实上，复根总是成对出现的。对于一个多项式 \(P\)：
 \[
-P(a +b\symrm{i}  )=0 \iff P(a-b\symrm{i} )=0
-.\]
+	P(a +b\symrm{i}  )=0 \iff P(a-b\symrm{i} )=0
+	.\]
 
 所以实际上是两个复根同时对应了 \(\cos bt\) 和 \(\sin bt\) 。
 
@@ -1532,133 +1534,333 @@ P(a +b\symrm{i}  )=0 \iff P(a-b\symrm{i} )=0
 
 朱鹭子：对于一个\textbf{实系数}多项式：
 \[
-P(\lambda ) = \sum\limits_{i=1}^{n} a_i \lambda ^i
-.\]
+	P(\lambda ) = \sum_{i=1}^{n} a_i \lambda ^i
+	.\]
 
 我们可以考虑共轭运算 \(^*\)，由于共轭满足以下性质：
 \[
-\begin{aligned}
-&a^*+b^*=(a+b)^*,\\ 
-&(a^n)^*=(a^*)^n,\,a,b\in\symbb{C} ,\,n\in\symbb{R} .
-\end{aligned}
+	\begin{aligned}
+		 & a^*+b^*=(a+b)^*,                                     \\
+		 & (a^n)^*=(a^*)^n,\,a,b\in\symbb{C} ,\,n\in\symbb{R} .
+	\end{aligned}
 \]
 
 所以实际上：
 \[
-P(\lambda^* ) = \sum\limits_{i=1}^{n} a_i (\lambda^* )^i  = \sum\limits_{i=1}^{n}  (a_i\lambda^i ) ^*=\left( \sum\limits_{i=1}^{n}  a_i\lambda^i \right) ^*=P(\lambda )^*
-.\]
+	P(\lambda^* ) = \sum_{i=1}^{n} a_i (\lambda^* )^i  = \sum_{i=1}^{n}  (a_i\lambda^i ) ^*=\left( \sum_{i=1}^{n}  a_i\lambda^i \right) ^*=P(\lambda )^*
+	.\]
 
 因此如果 \(P(r)=0 \iff P(r^*)=0\)。
 
 琪露诺：哇，原来如此。感觉世界一下子那啥起来了。
 
-朱鹭子：那啥……
-\newpage
-\phantom{2}
-\vspace{2em}
-\begin{spacing}{2}
-\thispagestyle{empty}
-\rightline{\Huge\parbox{1em}{\fontsize{60pt}{80pt}{\bfseries 八云蓝和橙}}\hspace{2em}}
-\end{spacing}
-\clearpage
-\setcounter{section}{0}
-% \section{一阶微分方程的简单换元法}
+朱鹭子：那啥……你想说什么……
 
-% 橙：蓝大人，这道题怎么做啊：
-% \[
-% 	\dx = \dfrac{t^2 +x^2 +tx}{tx}
-% 	.\]
-
-% 求它的通积分。
-
-% 蓝：显然是 \(\ln(x+t)-\dfrac{x}{t}=c_1 \)（笑）。
+琪露诺：没。
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{brace.tex}
+% \input{一阶微分方程的简单换元法.tex}
 \input{存在唯一性定理的推导思路.tex}
 
+\section{二阶线性微分方程的幂级数解法}
+
+\subsection{方程常点邻域内的解}
+蓝：由于（非常清楚地）普通的线性方程的基本解组毫无规律可言，因此用级数去近似解也是一种不错的思路。
+
+朱鹭子：照你这么说也是确实……但用级数解法不就得考虑敛散性的问题了么？
+
+蓝：的确，在这里我们只讨论最能接受的二阶线性微分方程：
+\[
+	\symscr{D} _t^2(w)+p(z)\dw+q(t)w=0
+	.\]
+
+并且我们给定了在 \(z_0\) 点处的初值条件，那么我们要考虑的其实是在 \(\left\vert z-z_0 \right\vert <R\) 这个圆盘上面的解，事实上：
+
+\begin{tho}{常点附近级数解的存在性}
+	如果 \(p(z)\) 和 \(q(z)\) 在 \(\left\vert z-z_0 \right\vert <R\)内单值解析，则方程
+	\[
+		\ddw+p(z)\dw+q(z)w=0
+		.\]
+	必然存在一个唯一解，且该唯一解在 \(\left\vert z-z_0 \right\vert <R\) 上亦单值解析。
+\end{tho}
+朱鹭子：解析的话就意味着条件太强了啊……
+
+蓝：事实上这其实代表着 \(p(z)\) 在 \(q(z)\) 在 \(z_0\) 解析的情形，此时这个点被称为方程的\textbf{常点}。
+
+朱鹭子：诶？你的意思是说即使那俩函数在 \(z_0\) 点不解析也是依然可以有解的吗？
+
+蓝：是的，这个我们之后再讨论。由于解 \(w(z)\) 是解析的，那么我们也就可以在 \(\left\vert z-z_0 \right\vert <R\) 上将其展开成\textbf{Taylor级数}：
+\[
+	w(z)= \sum_{n=0}^{\infty} a_n(z-z_0)^n
+	.\]
+
+朱鹭子：看起来我只要把这方程里面的 \(p(z)\) 和 \(q(z)\) 也展开成Taylor级数，代进去就可以得到解的各个系数之间的递推公式。
+
+蓝：看上去的确如此，但不要忘记，这个方程是有两个线性无关解的，因此你得到的递推公式可能会相当乱。
+
+朱鹭子：这倒是。
+
+蓝：我这里倒是有个非常不错的例子：
 
 
+\begin{tcolorbox}[colback=gray!20,colframe=gray!150,fonttitle=\bfseries,arc=0mm,leftrule=1mm,toprule=0mm,bottomrule=0mm,rightrule=0mm]
+	求Airy方程
+	\[
+		\ddw -zw=0 \tag{Airy}
+		.\]
+	在 \( \mathring{U}_{\varepsilon }(0)\) 上的解。
+	\tcbline
+
+	事实上容易知道这个 \(p(z)\equiv 0\) 和 \(q(z) =z\)在复平面上解析，因此不妨设解 \(w=\sum_{n=0}^{\infty} a_n z^n\)，因此代入方程 (Airy) 可以用得到：
+	\[
+		\sum_{n=2}^{\infty} a_n n(n-1) z^{n-2}-\sum_{n=0}^{\infty} a_n z^{n+1}=0
+		.\]
+	整理一下就可以得到：
+	\[
+		2a_2+\sum_{n=1}^{\infty} ( (n+1)(n+2)a_{n+2}-a_{n-1}t)z^{n}=0
+		.\]
+	因此由Taylor展开的唯一性可以得到：
+	\[
+		\begin{cases}
+			\\[-2.2em]
+			a_2=0， \\
+			(n+1)(n+2)a_{n+2}-a_{n-1}=0.
+		\end{cases}
+	\]
+	因此我们得到了递推公式：
+	\[
+		\begin{cases}
+			\\[-2.2em]\
+			a_{3n-1}=0,                         \\
+			a_{3n}= \dfrac{a_{3n-3}}{3n(3n-1)}, \\
+			a_{3n+1}= \dfrac{a_{3n-2}}{3n(3n+1)},
+		\end{cases}\, n\in\symbb{N} ^+.
+	\]
+	因此我们要考量的其实是 \(a_0\) 和 \(a_1\)，实际上这两个系数就对应了方程 (Airy) 的两个线性无关解：
+	\[
+		a_{3n}= \frac{a_0}{\prod_{i=1}^{n} 3i(3i-1) } = \frac{a_0\prod_{i=1}^{n} (3i-2)}{(3n)!}
+		.\]
+\end{tcolorbox}
+
+在这里我们不得不借助Γ函数——这个你是知道的吧？
 
 
+朱鹭子：那是自然。
 
 
-% \clearpage
-% \[
-% 	\sum_{k=1}^{n-1} \dfrac{1}{1-\cos  \dfrac{2k\symup \pi }{n}}= \dfrac{n^2 -1}{6}
-% 	.\]
+蓝：那就好，因此：
 
-% 考虑 \(\dfrac{1}{1-\cos \dfrac{2k\symup\pi}{n}}=\dfrac{1}{2}\csc ^2 \dfrac{k\symup \pi}{n}=\dfrac{1}{2}\left( 1+\cot ^2\dfrac{k\symup \pi}{n} \right) \)\
 
-% 考虑方程
+\begin{tcolorbox}[colback=gray!20,colframe=gray!150,fonttitle=\bfseries,arc=0mm,leftrule=1mm,toprule=0mm,bottomrule=0mm,rightrule=0mm]
+	\[
+		a_{3n}=\frac{a_0\prod_{i=1}^{n} (3i-2)}{(3n)!} = \frac{a_0 3^n\prod_{i=1}^{n} \left( i-\frac{2}{3} \right) }{\Gamma (3n+1)}=
+		\frac{a_0 3^n \Gamma \left( n+\frac{1}{3} \right)  }{\Gamma (3n+1)\Gamma \left( \frac{1}{3} \right) }
+		.\]
 
-% \[
-% 	\cos n\theta +\symrm{i} \sin n\theta=\left( \cos \theta +\symrm{i} \sin \theta  \right)^n=\sum_{k=0}^{n}\binom{n}{k}\symrm{i} ^k\cos^{n-k} \theta \sin ^k\theta
-% 	.\]
+	用同样的手法得到：
+	\[
+		a_{3n+1}=	\frac{a_1 3^n \Gamma \left( n+\frac{2}{3} \right)  }{\Gamma (3n+1)\Gamma \left( \frac{1}{3} \right) }
+		.\]
 
-% 得到：
-% \[
-% 	\begin{aligned}
-% 		 & \sin n\theta=\Im\left(\sum_{k=0}^{n}\binom{n}{k}\symrm{i} ^k\cos^{n-k} \theta \sin ^k\theta  \right) =\sum_{k=0}^{\left\lfloor n /2 \right\rfloor} \binom{n}{2k+1}(-)^k\cos^{n-2k-1} \theta \sin ^{2k+1}\theta =0 \\
-% 		 & \implies \sum_{k=0}^{\left\lfloor n /2 \right\rfloor} \binom{n}{2k+1}(-)^k\cot^{n-2k-1} \theta =0 .
-% 	\end{aligned}
-% \]
+	因此我们就可以得到两个线性无关解：
+	\[
+		\begin{cases}
+			\\[-2.2em]
+			w_1(z)= \sum_{n=0}^{\infty} 	\dfrac{3^n \Gamma \left( n+\frac{1}{3} \right)  }{\Gamma (3n+1)\Gamma \left( \frac{1}{3} \right) } z^{3n}, \\[6pt]
+			w_2(z)=\sum_{n=0}^{\infty}  \dfrac{3^n \Gamma \left( n+\frac{2}{3} \right)  }{\Gamma (3n+1)\Gamma \left( \frac{1}{3} \right) } z^{3n+1}.
+		\end{cases}
+	\]
 
-% 由 Vieta 定理可以得到：
+	另外地，我们会设 \(\Ai(z)\coloneq\dfrac{w_1(z)}{3^{\frac{2}{3}} \Gamma \left(\frac{2}{3}\right)}-\dfrac{w_2(z)}{3^{\frac{1}{3}} \Gamma \left(\frac{1}{3}\right)},\,\Bi(z)\coloneq \dfrac{w_1(z)}{3^{\frac{1}{6}}\Gamma \left( \frac{2}{3} \right) }+\dfrac{w_2(z)}{3^{\frac{1}{6}}\Gamma \left( \frac{1}{3} \right) }\)。
+\end{tcolorbox}
 
-% \[
-% 	\begin{aligned}
-% 		 & \sum_{k=1}^{n-1} 	\cot \dfrac{k\symup \pi}{n}=0,\,\sum_{1\leqslant i_1<i_2\leqslant n-1} 	\cot \dfrac{i_1\symup \pi}{n}\cot \dfrac{i_2\symup \pi}{n}= -\dfrac{ \binom{n}{3}}{ \binom{n}{1}}= -\dfrac{(n-1)(n-2)}{6}                                      \\
-% 		 & \implies\sum_{k=1}^{n-1} 	\left( \cot \dfrac{k\symup \pi}{n} \right) ^2=\sum_{k=1}^{n-1} 	\cot \dfrac{k\symup \pi}{n}-2\sum_{1\leqslant i_1<i_2\leqslant n-1} 	\cot \dfrac{i_1\symup \pi}{n}\cot \dfrac{i_2\symup \pi}{n}= \dfrac{(n-1)(n-2)}{3} .
-% 	\end{aligned}
-% \]
+朱鹭子：诶？为什么要这么设呢？
 
-% 故原式
-% \[
-% 	\sum_{k=1}^{n-1} \dfrac{1}{1-\cos  \dfrac{2k\symup \pi }{n}}=\dfrac{1}{2}\sum_{k=1}^{n-1}\left( 1+\cot ^2\dfrac{k\symup \pi}{n} \right) =n-1+ \dfrac{(n-1)(n-2)}{3}= \dfrac{n^2 -1}{6}
-% 	.\]
-% \clearpage
-% \textit{\lipsum{10}}
-% \newpage
-% \section{Picard-Lindelöf定理}
-% 设 \(I\subseteq\symbb{R} \)是开区间， \(B\subseteq\symbb{B} \)是Banach空间，而 \(f:  I\times B\mapsto \symbb{B}\) 是连续映射，且在 \(\hat{U}(x_0,r_x), \hat{U}(t_0,r_t)\) 上满足局部Lipschitz条件:
-% \[
-% 	\exists (t,x_1),(t,x_2) \in \hat{U}(x_0,r_x)\times \hat{U}(t_0,r_t),\,\forSol L\in\symbb{R} ,\, \left\| f(t,x_1)-f(t,x_2) \right\|_{\symbb{B} }\leqslant L \left\| x_1-x_2 \right\|_{\symbb{B} }
-% \]
+蓝：事实上是这样的：
 
-% 则
-% \[
-% 	\exists (t_0,x_0)\in I\times B,\, \dfrac{\mathrm{d}x}{\mathrm{d}t}=f(t,x),\,x(t_0)=x_0
-% 	.\]
+\begin{center}
+	\includegraphics[]{Ai and Bi func.pdf}
+\end{center}
 
-% 在 \(t_0\)的邻域 \(\hat{U}(t_0,\varepsilon )\)内存在唯一解。
+这是两个函数的图像，\(\Ai(z)\) 在 \(z\to +\infty \) 的时候会趋向于0，实际上：
+\[
+	\Ai(z)\sim \frac{1}{2 \sqrt{\symup\pi }}\cdot \frac{\symrm{e} ^{-{2 z^{3/2}}/{3}}}{ \sqrt[4]{z}},\, z\to +\infty
+	.\]
 
-% 考虑在 \(\hat{U}(t_0,\varepsilon )\) 到 \(B\)连续映射集合 \(\symbf{O} \)，则赋予其度量为：
-% \[
-% 	{\symcal{D}}_{\symbf{O} } (a(t),b(t))=\sup_{t\in\hat{U}(t_0,\varepsilon )} \left\| a(t)-b(t) \right\|_{\symbb{B} }
-% 	.\]
+至于 \(\Bi(z)\) 有：
+\[
+	\Bi(z)\sim\frac{1}{\sqrt{\symup \pi }}\cdot  \dfrac{\symrm{e} ^{2\symrm{z} ^{3/2}/3}}{\sqrt[4]{z}},\, z\to +\infty
+	.\]
 
-% 则接下来证明该度量空间完备（略）
+我们在这里暂时先不讨论当 \(z\to \infty\) 的时候，幂级数解会变成什么样子。
 
-% 考虑映射 \(\symscr{P}\)：
-% \[
-% 	\symscr{P}\cdot a(t)= t_0+\int_{t_0}^t f(t,a(t)) \,\mathrm{d}s
-% 	.\]
+好，这就是方程常点邻域内的解。同时，我们也可以根据需要进行解析延拓。
+\subsection{方程极点邻域内的解}
+朱鹭子：那如果不是常点呢？
 
-% \[
-% 	\left\| \symscr{P}\cdot a(t)-x_0 \right\|_{\symbb{B} } \leqslant \sup_{t\in\hat{U}(t_0,\varepsilon )} \left\|\int_{t_0}^t f(t,a(t)) \,\mathrm{d}s  \right\|_{\symbb{B} }\leqslant M\varepsilon <r_x
-% 	.\]
+蓝：不是常点那就麻烦多了，我们只讨论极点而不讨论本征奇点了。
 
-% 故此时\(\symscr{P} :\symbf{O}\mapsto \symbf{O} \) ，同时考虑：
-% \[
-% 	\begin{aligned}
-% 		 & {\symcal{D}}_{\symbf{O} } (\symscr{P}\cdot a(t),\symscr{P}\cdot b(t))=\sup_{t\in\hat{U}(t_0,\varepsilon )} \left\| \symscr{P}\cdot a(t)-\symscr{P}\cdot b(t) \right\|_{\symbb{B} }                 \\
-% 		 & \leqslant\sup_{t\in\hat{U}(t_0,\varepsilon )}  \left\| \int_{t_0}^t f(t,a(t))-f(t,b(t)) \,\mathrm{d}s  \right\|_{\symbb{B} }\leqslant \varepsilon L \left\| a(t)-b(t) \right\|_{\symbb{B} } \to 0.
-% 	\end{aligned}
-% \]
+\begin{tho}[]{极点附近级数解的存在性}
+	如果 \(z_0\)是方程的\textbf{孤立极点}，则在 \(\mathring{U}_\varepsilon (z_0)\) 上，存在两个线性无关解：\vspace{2em}
+	\[
+		\begin{cases}
+			\\[-3.5em]
+			\begin{cases}
+				% \\[-2.2em]\
+				\displaystyle w_1(z)=(z-z_0)^{\rho _1}\sum\limits_{n=-\infty}^{\infty} a_n (z-z_0)^n, \\[4pt]
+				\displaystyle w_2(z)=(z-z_0)^{\rho _2}\sum\limits_{n=-\infty}^{\infty} b_n (z-z_0)^n.
+			\end{cases}           & \rho _1-\rho _2\notin\symbb{Z}.           \\[30pt]
+			\begin{cases}
+				% \\[-2.2em]\
+				\displaystyle w_1(z)=(z-z_0)^{\rho _1}\sum\limits_{n=-\infty}^{\infty} a_n (z-z_0)^n, \\
+				\displaystyle w_2(z)=gw_1(z)\ln (z-z_0)+(z-z_0)^{\rho _1}\sum\limits_{n=-\infty}^{\infty} b_n (z-z_0)^n
+			\end{cases} & \rho _1-\rho _2\in\symbb{Z}.
+			\\[-1.5em]
+		\end{cases}
+	\]
+	\vspace{0em}
+\end{tho}
 
-% 因此 \(\symscr{P} :\symbf{O}\mapsto \symbf{O} \)是个压缩映射，由Banach不动点原理可以给出其具有\textbf{唯一不动点} \( S(t)\in\symbf{O} \)，则该解满足：
-% \[
-% 	\dfrac{\mathrm{d}x}{\mathrm{d}t}=f(t,x),\,x(t_0)=x_0
-% 	.\]
+请允许我说明一些事情，就是这个 \(w_1(z)\ln (z-z_0) \) 的来源。
+
+朱鹭子：荣幸之至。
+
+蓝：这段东西可能会很长，我会用一个小型盒子把它包起来。
+
+\begin{tcolorbox}[colback=gray!20,colframe=gray!150,fonttitle=\bfseries,arc=0mm,leftrule=1mm,toprule=0mm,bottomrule=0mm,rightrule=0mm,breakable]
+	\setlength{\lineskip}{5pt}
+	\setlength{\lineskiplimit}{2.5pt}
+	首先我们要证明的是，若 \(w_1\) 是方程：
+	\[
+		\symscr{D} _t^2(w)+p(z)\dw+q(t)w=0
+		.\]
+	的解，而且在区域 \(\symcal{I}_1\) 上解析，那么如果 \( W_1\) 是 \(w_1\) 在 \(\symcal{I} _2\) 上面的解析延拓，且 \(\symcal{I} _1 \cap\symcal{I} _2 \neq  \varnothing\)，则 \( W_1\) 是方程在 \(\symcal{I} _2\) 上面的解。
+	\begin{tcolorbox}[colback=gray!10,colframe=gray!40,fonttitle=\bfseries,arc=0mm,leftrule=1mm,toprule=0mm,bottomrule=0mm,rightrule=0mm,breakable]
+		\color{gray!120}
+		这个的证明其实并不难，为了考虑 \( W_1\) 和 \(w_1\) 的差别，不妨构造：
+		\[
+			D(z)=\symscr{D} _t^2(W_1)+p(z)\symscr{D} _t(W_1)+q(t)W_1
+			.\]
+		我们的目的就是要证明在 \(\symcal{I} _2\) 上 \(D(z)\equiv 0\)，因为 \(D(z)\) 在\(\symcal{I} _2\) 上解析，所以实际上这个函数是 \(\symscr{D} _t^2(w)+p(z)\dw+q(t)w\) 在 \(\symcal{I} _2\) 上的解析延拓，由于在 \(\symcal{I} _1 \cap\symcal{I} _2 \neq  \varnothing\) 上面 \(D(z)=D(z)=\symscr{D} _t^2(w_1)+p(z)\symscr{D} _t(w_1)+q(t)w_1\equiv 0\)，故由解析延拓可知， \(D(z)\) 在\(\symcal{I} _2\) 也恒为零，因此 \(W_1(z)\) 也是方程的解。
+	\end{tcolorbox}
+	接下来是证明两个线性无关解 \(w_1,w_2\)的延拓\(W_1,W_2\)线性无关：
+	\begin{tcolorbox}[colback=gray!10,colframe=gray!40,fonttitle=\bfseries,arc=0mm,leftrule=1mm,toprule=0mm,bottomrule=0mm,rightrule=0mm,breakable]	\color{gray!120}
+		由之前关于Wronsky行列式的讨论知道：
+		\[
+			\symscr{W} (t) =\symscr{W} (t_0)\exp \left( -\int_{t_0}^t p(s) \,\mathrm{d}s  \right)
+			.\]
+		因此考虑由\(\symcal{I}_1\)到 \(\symcal{I} _2\) 的积分路径，事实上由于 \(w_1,w_2\)线性无关，必然对于 \(\forall t_0\in\symcal{I} _1\) 都有 \(\symscr{W} (t_0)\neq 0\) ，因此沿该路线积分后，\(\symcal{I} _2\) 上的任一点也不为零，又因为\(W_1,W_2\)是方程的解，因此他们之间线性无关。
+	\end{tcolorbox}
+	由上面所述，由于真正的线性无关解就只有 \(w_1,w_2\) 两个，因此它们的延拓可以用其线性组合表示出来（因为其也是方程的解）：
+	\[
+		\begin{bmatrix}
+			W_1 \\    W_2 \\\end{bmatrix} =\symbfit{T}\cdot \begin{bmatrix}
+			w_1 \\    w_2 \\\end{bmatrix}
+		.\]
+	由于 \(W_1,W_2\) 线性无关，因此 \(\left\vert\symbfit{T}  \right\vert \neq 0\)。
+
+	现在我们考虑一种特殊的延拓，那就是 \(w_1,w_2\) 沿着 \(z_0\) 旋转一周时候的解析延拓 \(W_1,W_2\) （依然使用这个记法，后续中我们默认用大写表示解析延拓）。这样做是为了方便讨论 \(w_1,w_2\) 本身的多值性。
+
+	考虑一种特殊的解：
+	\[
+		w_{\mathrm{m} }= a_1 w_1 +a_2w_2 = \begin{bmatrix}
+			a_1 & a_2 \\
+		\end{bmatrix}^{\mathrm T}\cdot \begin{bmatrix}
+			w_1 \\    w_2 \\\end{bmatrix}
+		.\]
+	满足：\(W_{\mathrm{m} } = \lambda w_{\mathrm{m}}\)，这样做是为了方便讨论。
+
+	事实上，这样的 \(w_{\mathrm{m}}\) 必然是存在的，因为：
+	\[
+		W_{\mathrm{m}} =  \begin{bmatrix}
+			a_1 & a_2 \\
+		\end{bmatrix}^{\mathrm T}\cdot \begin{bmatrix}
+			W_1 \\    W_2 \\\end{bmatrix} =  \begin{bmatrix}
+			a_1 & a_2 \\
+		\end{bmatrix}^{\symrm{T}}\cdot  \symbfit{T} \cdot \begin{bmatrix}
+			w_1 \\    w_2 \\\end{bmatrix}= \lambda w_{\mathrm{m}} =\lambda \cdot  \begin{bmatrix}
+			a_1 & a_2 \\
+		\end{bmatrix}^{\mathrm T}\cdot \begin{bmatrix}
+			w_1 \\    w_2 \\\end{bmatrix}
+		.\]
+	考虑到 \(\begin{bmatrix}
+		w_1 \\    w_2 \\\end{bmatrix}\) 是线性无关的，因此 \(\lambda \) 实际上是矩阵 \(\symbfit{T} \) 的特征值，由于\(\left\vert\symbfit{T}  \right\vert \neq 0\)，因此必然存在（而且不为零），只是有无重根的区别罢了。
+	\begin{itemize}
+		\item 现在先考虑没有重根 \(\lambda_1,\lambda _2\)的情况，此时两个线性无关解中必然有一个多值函数，因为我们按照上面的求法得到了 \(w_{\mathrm m,\lambda_1}\) 与 \(w_{\mathrm m,\lambda _2}\) 必然是线性无关的，否则必然有
+		      \[
+			      \dfrac{w_{\mathrm m,\lambda_1}}{w_{\mathrm m,\lambda _2}}=c_1 \implies \dfrac{W_{\mathrm m,\lambda_1}}{W_{\mathrm m,\lambda _2}} = \dfrac{\lambda_1 }{\lambda _2}\cdot\dfrac{w_{\mathrm m,\lambda_1}}{w_{\mathrm m,\lambda _2}} = \dfrac{\lambda_1 }{\lambda _2}\cdot c_1
+		      \]
+		      但同时 \(\dfrac{W_{\mathrm m,\lambda_1}}{W_{\mathrm m,\lambda _2}} \) 也是解析的，事实上它是 \(c_1\) 的解析延拓，因此必然有 \(\dfrac{W_{\mathrm m,\lambda_1}}{W_{\mathrm m,\lambda _2}}\equiv c_1\)，这就得到了 \( \dfrac{\lambda_1}{\lambda _2}=1\) 与两根相异矛盾。
+
+		      因此我们将会得到两个线性无关的 \(W_{\mathrm{m}}\) ，而观察到绕一圈之后其值会有变化（如果没有变化要求 \(\lambda =1\) ，但因为此时讨论 \(\lambda \)有两个不同根的情况，故必然要讨论多值函数）。这意味着我们即使连在 \(z_0 \) 附近将解展开成Laurent级数都做不到。
+
+		      但另外一件事是这个函数：
+		      \[
+			      g(z)\coloneq (z-z_0)^{ \frac{\ln \lambda }{2\symup \pi\symrm{i} }}
+			      .\]
+		      当然正常情况下是多值的，其绕 \(z_0\)一圈后的延拓 \(G(z) = \exp\left( 2\symup \pi \symrm{i} \cdot  \dfrac{\ln \lambda }{2\symup \pi\symrm{i} }\right)\cdot (z-z_0)^{ \frac{\ln \lambda }{2\symup \pi\symrm{i} }}=\lambda g(z)\)，这意味着如果 \(w_{\mathrm{m}}\) 和 \(g(z)\) 同时绕 \(z_0\) 一圈进行延拓，那么他们的商会互相抵消，也就是：
+		      \[
+			      \dfrac{w_{\mathrm{m}}}{g(z)}\, \mbox{是单值的}
+			      .\]
+			又由于解析性，因此我们可以认为 \(\dfrac{w_{\mathrm{m}}}{g(z)}\)在整个延拓域（包括原域）都是\textbf{单值解析}的，那么就可以将其展开成Laurent级数：
+			\[
+				\dfrac{w_{\mathrm{m}}}{g(z)}=\sum\limits_{n=-\infty}^{\infty} a_n (z-z_0)^n \implies w_{\mathrm{m}} = (z-z_0)^{ \frac{\ln \lambda }{2\symup \pi\symrm{i} }} \sum\limits_{n=-\infty}^{\infty} a_n (z-z_0)^n
+			.\]
+			由于这样的 \(w_{\mathrm{m}}\) 有两个，不妨设 \( \rho =  \dfrac{\ln \lambda }{2\symup \pi\symrm{i} }\) ，则就得到了我们定理的第一部分：
+		\[
+			\begin{cases}
+			\displaystyle w_1(z)=(z-z_0)^{\rho _1}\sum\limits_{n=-\infty}^{\infty} a_n (z-z_0)^n, \\[4pt]
+			\displaystyle w_2(z)=(z-z_0)^{\rho _2}\sum\limits_{n=-\infty}^{\infty} b_n (z-z_0)^n.
+		\end{cases}  \, \rho _1-\rho _2\notin\symbb{Z}.          
+		\]
+		这里的 \(\rho _1-\rho _2\notin\symbb{Z}\) 是为了让 \( \exp (2\symup \pi \symrm{i} \rho_1 )\neq\exp (2\symup \pi \symrm{i} \rho_2 )\) ，即 \(\lambda_1\neq \lambda _2\)。
+		\item 现在来考虑如果矩阵 \(\symbfit{T} \) 的特征值有重根的情形：此时我们只能找到一个 \(w_{\mathrm{m},\lambda_1}\) ，为了找到另外的解 \(w_{\rm a}\)（且与 \(w_{\mathrm{m},\lambda_1 }\) 线性无关，我们考虑：
+  \[
+  W_{\rm a} = \begin{bmatrix}
+	  b_1 & b_2 \\\end{bmatrix}^{\symrm{T} } \cdot \begin{bmatrix}
+		  w_{\mathrm{m},\lambda_1} \\    w_{\rm a} \\\end{bmatrix}
+  .\]
+  此时实际上是用 \(w_{\mathrm{m},\lambda_1}\) 和 \(w_{\rm a}\) 两个函数作为基来表示微分方程的解空间，
+  \[
+  \begin{bmatrix}
+	  W_{\mathrm m,\lambda_1 } \\  W_{\rm a}   \\\end{bmatrix}=\symbfit{T}_{\rm new} \cdot   \begin{bmatrix}
+	w_{\mathrm{m},\lambda_1} \\    w_{\rm a} \\\end{bmatrix}=\begin{bmatrix}
+		\lambda_1 & b_1 \\
+		0 & b_2 \\
+	\end{bmatrix}\cdot \begin{bmatrix}
+		w_{\mathrm{m},\lambda_1 } \\    w_{\rm a} \\\end{bmatrix}
+  .\]
+  考虑到我们为了找到 \(w_{\mathrm{m}}\) 在这个矩阵下面的表示，我们要求它的特征值，但是 \( w_{\mathrm{m}}\) 对应的特征值是不会矩阵 \(\symbfit{T} \) 和 \( \symbfit T_{\rm new}\)  所影响，因此 \( \symbfit T_{\rm new}\) 的特征值依然是 \( \lambda_1\) 这样实际上就是：
+  \[
+  \left\vert \symbfit T_{\rm new}- \lambda \symbfit E \right\vert = 0 \implies(\lambda_1-\lambda )(b_2-\lambda )=0 
+  .\]
+  我们清楚知道 \(\lambda_1\) 是二重根，因此 \(b_2=\lambda_1\)。这就意味着：
+  \[
+  W_{\rm a}=a_1 w_{\mathrm{m},\lambda_1}+ w_{\rm a}
+  .\]
+  以及
+  \[
+  W_{\mathrm{m},\lambda_1}= \lambda_1w_{\mathrm{m},\lambda_1}
+  .\]
+  得到：
+  \[
+  \frac{W_{\rm a}}{W_{\mathrm{m},\lambda_1}}= \frac{w_{\rm a}}{w_{\mathrm{m},\lambda_1}}+ \frac{b_1}{\lambda_1}
+  .\]
+  这就意味着函数 \(\dfrac{w_{\rm a}}{w_{\mathrm{m},\lambda_1}}\) 绕 \(z_0\) 点一周之后，它的值会增加 \( \dfrac{b_1}{\lambda_1}\)，实际上 \( \dfrac{b_1}{\lambda_1} \cdot \dfrac{\ln (z-z_0)}{2\symup \pi \symrm{i} }\) 也是如此，因此：
+   \[
+   \frac{w_{\rm a}}{w_{\mathrm{m},\lambda_1}}-\dfrac{b_1}{\lambda_1} \cdot \dfrac{\ln (z-z_0)}{2\symup \pi \symrm{i} }\,\mbox{是单值的}  
+   .\]
+   然后把它展开成Laurent级数：
+
+\end{itemize}
+\[
+    \frac{w_{\rm a}}{w_{\mathrm{m},\lambda_1}}-\dfrac{b_1}{\lambda_1} \cdot \frac{\ln (z-z_0)}{2\symup \pi \symrm{i} }=\sum\limits_{n=-\infty}^{\infty} c_n (z-z_0)^n\implies w_{\rm a} =gw_{\mathrm{m},\lambda_1}\ln (z-z_0)+(z-z_0)^{\rho _1}\sum\limits_{n=-\infty}^{\infty} d_n (z-z_0)^n
+   .\]
+\end{tcolorbox}
+到这里就结束了。
+
+朱鹭子：好！酣畅淋漓！
 \end{document}

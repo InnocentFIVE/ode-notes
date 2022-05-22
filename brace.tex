@@ -1,0 +1,23 @@
+\newpage
+\phantom{2}
+\vspace{2em}
+\begin{spacing}{2}
+\thispagestyle{empty}
+\rightline{\Huge\parbox{1em}{\fontsize{60pt}{80pt}{\bfseries 八云蓝和橙}}\hspace{2em}}
+\end{spacing}
+\clearpage
+\titleformat{\section}[display]
+{}{\newpage\thispagestyle{forsection}
+\filright{\hrule width 1cm\vskip-1.95em}\hspace*{1cm}
+\enspace
+{\LARGE\char"E001}
+\enspace
+\raisebox{0.8ex}{$\underset{\mbox{\tiny\textit{SECTION}}}{\textbf{\textit{\Huge{\Alph{section}}}}}$}
+\enspace{\LARGE\char"E002}
+\enspace
+\titlerule}{1em}{\vspace{-3ex}\Large\bfseries\rightline}
+\makeatletter
+\let\c@tcb@cnt@tho\undefined
+\makeatother
+\renewtcbtheorem[auto counter,number within=section,number freestyle={\noexpand\Alph{section}.\noexpand\alph{\tcbcounter}}]{tho}{定理}{colback=gray!20,colframe=gray!150,fonttitle=\bfseries,arc=0mm,leftrule=0mm,toprule=0mm,bottomrule=1mm,rightrule=0mm}{th}
+\setcounter{section}{0}

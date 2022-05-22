@@ -1,0 +1,58 @@
+\documentclass[UTF8,9pt]{article}
+\usepackage{ctex}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{upgreek}
+\usepackage{graphicx}
+\usepackage[a4paper,scale=0.75]{geometry}
+\usepackage{unicode-math}
+\usepackage{tcolorbox}
+\usepackage{fontspec}
+\usepackage{tikz}
+\usepackage{extarrows}
+\usepackage{pxrubrica}
+\usepackage{fancyhdr}
+\usepackage{lipsum}
+\usepackage{ulem}
+\usetikzlibrary{patterns}
+\tcbuselibrary{skins} 
+\tcbuselibrary{breakable}
+\pagestyle{fancy}
+\setmainfont{EB Garamond}[Ligatures=Rare]
+\setmathfont{Garamond-Math.otf}[StylisticSet={2, 7, 9}]
+\setmathfont{Garamond-Math.otf}[StylisticSet={2, 7, 9, 8}, version=a]
+\setmathfont[range = "0211C]{Latin Modern Math}
+\renewcommand{\symcal}[1]{{\mathversion{a}\mbox{$\symscr{#1}$}}}
+\xeCJKDeclareSubCJKBlock{symbolCJK}{"2018 , "201C , "300C , "300E , "3014 , "FF08 , "FF3B , "FF5B ,"3008 , "300A , "3016 , "3010 ,"2014 , "2026 , "3001 , "3002 , "FF0C , "FF0E , "FF1A , "FF1B ,"FF01 ,"FF1F , "FF05 , "3015 , "FF09 , "FF3D , "FF5D , "3009 ,"300B , "3017 , "3011 , "2019 , "201D , "300D , "300F}
+\setCJKmainfont[symbolCJK=Source Han Serif SC]{GenWanMin TW TTF}
+\everymath{\displaystyle}
+\begin{document}
+\setlength{\lineskip}{5pt}
+\setlength{\lineskiplimit}{2.5pt}
+
+
+\section{Euler 方程}
+
+Euler方程是一种特殊的线性微分方程：
+\[
+\symscr{E}_n(x)\coloneq \sum\limits_{i=1}^{n} a_it^i\symscr{D}_t ^i(x)=0
+.\]
+
+实际上存在初等解法，设 \(y=\ln t\) ，则：
+\[
+\begin{aligned}
+t\symscr{D}_t (x) &=t\symscr{D}_y (x) \symscr{D}_t (y)=t\symscr{D}_y(x)\frac{1}{t},\\ 
+t^2 \symscr{D}^2_t (x) &= t^2 \symscr{D} _t(  \symscr{D}_t (x)) = t^2 \symscr{D} _t\left(  \frac{ \symscr{D}_y(x)}{t} \right) =-\symscr{D}_y (x)+t\symscr{D} _y^2(x)\symscr{D} _t(y) =\symscr{D} _y^2(x)-\symscr{D} _y(x).
+\end{aligned}
+\]
+事实上有：
+\[
+   t^{n} \symscr{D}^n_t (x)  = \sum\limits_{i=0}^{n-1} (\symscr{D} _y-i)(x) =\symscr{D}_y (\symscr{D}_y-1)\dotsm (\symscr{D}-n+1)x
+.\]
+此处可以用数学归纳法证明，但是非常繁琐，此处从略。
+
+因此我们将 \(\symscr{E}_n(x)\) 转变成了一个同阶的常系数线性微分方程，因此可以按照方法解之得到 \(y\) ，最后按照 \(y=\ln t\) 代入即可。
+
+\end{document}
