@@ -28,6 +28,87 @@
 \xeCJKDeclareSubCJKBlock{symbolCJK}{"2018 , "201C , "300C , "300E , "3014 , "FF08 , "FF3B , "FF5B ,"3008 , "300A , "3016 , "3010 ,"2014 , "2026 , "3001 , "3002 , "FF0C , "FF0E , "FF1A , "FF1B ,"FF01 ,"FF1F , "FF05 , "3015 , "FF09 , "FF3D , "FF5D , "3009 ,"300B , "3017 , "3011 , "2019 , "201D , "300D , "300F}
 \setCJKmainfont[symbolCJK=Source Han Serif SC]{GenWanMin TW TTF}
 \everymath{\displaystyle}
+\Umathcode`\/="4 "0 "002F
+\Umathcode"2044="4 "0 "2044
+\Umathcode"2215="4 "0 "2215
+\Umathcode"2F98="4 "0 "2F98
+\Umathcode`\\="4 "0 "005C
+\Umathcode"2216="4 "0 "2216
+\Umathcode"29F5="4 "0 "29F5
+\Umathcode"29F9="4 "0 "29F9
+\makeatletter
+\def\mup@tch{\mathchoice{\mskip-\thinmuskip}{\mskip-\thinmuskip}{}{}}
+\def\s@beforep@tch{\mathchoice{}{}{\mbox{}}{\mbox{}}}
+\DeclareOption{rm}{\@ifpackageloaded{unicode-math}
+{\def\@@dif{\symrm{d}}}{\def\@@dif{\mathrm{d}}}}
+\DeclareOption{normal}{\def\@@dif{d}}
+\DeclareOption{partial}{\def\fixdif@partial@bool{1}}
+\DeclareOption{nopartial}{\def\fixdif@partial@bool{0}}
+\ExecuteOptions{rm,partial}
+\ProcessOptions\relax
+\def\fixdif@partial@true{1}
+\ifx\fixdif@partial@bool\fixdif@partial@true
+\AtEndOfPackage{\letdif{\partial}{partial}}
+\fi
+\gdef\resetdfont#1{\let\@@dif\relax%
+\def\@@dif{#1{d}}}
+\def\@dif{\ifmmode%
+\mathinner{\@@dif}\mup@tch%
+\fi}
+\let\d@accent\d
+\gdef\d{\ifmmode\@dif\else\expandafter\d@accent\fi}
+\def\@letdif#1#2{\AtBeginDocument{
+\ifcsname #2@old\endcsname\else
+\expandafter\let\csname #2@old\expandafter\endcsname%
+\csname #2\endcsname
+\fi
+\gdef#1{\mathinner{\csname #2@old\endcsname}\mup@tch}
+}}
+\def\s@letdif#1#2{\AtBeginDocument{
+\ifcsname #2@old\endcsname\else
+\expandafter\let\csname #2@old\expandafter\endcsname%
+\csname #2\endcsname
+\fi
+\gdef#1{\mathinner{\s@beforep@tch\csname #2@old\endcsname\mbox{}}\mup@tch}
+}}
+\def\letdif{\@ifstar\s@letdif\@letdif}
+\long\def\@newdif#1#2{\AtBeginDocument{
+\ifdefined#1
+\PackageError{fixdif}{\string#1 is already defined.}
+{Try another command instead of \string#1.}
+\else
+\long\gdef#1{\mathinner{#2}\mup@tch}
+\fi
+}}
+\long\def\s@newdif#1#2{\AtBeginDocument{
+\ifdefined#1
+\PackageError{fixdif}{\string#1 is already defined.}
+{Try another command instead of \string#1.}
+\else
+\long\gdef#1{\s@beforep@tch\mathinner{#2\mbox{}}\mup@tch}
+\fi
+}}
+\def\newdif{\@ifstar\s@newdif\@newdif}
+\long\def\@renewdif#1#2{\AtBeginDocument{
+\ifdefined#1
+\long\gdef#1{\mathinner{#2}\mup@tch}
+\else
+\PackageError{fixdif}{\string#1 has not been defined yet.}
+{You should use \string\newdif instead of \string\renewdif.}
+\fi
+}}
+\long\def\s@renewdif#1#2{\AtBeginDocument{
+\ifdefined#1
+\long\gdef#1{\s@beforep@tch\mathinner{#2\mbox{}}\mup@tch}
+\else
+\PackageError{fixdif}{\string#1 has not been defined yet.}
+{You should use \string\newdif instead of \string\renewdif.}
+\fi
+}}
+\def\renewdif{\@ifstar\s@renewdif\@renewdif}
+\makeatother
+
+
 \begin{document}
 \setlength{\lineskip}{5pt}
 \setlength{\lineskiplimit}{2.5pt}
@@ -37,22 +118,25 @@
 
 Euler方程是一种特殊的线性微分方程：
 \[
-\symscr{E}_n(x)\coloneq \sum\limits_{i=1}^{n} a_it^i\symscr{D}_t ^i(x)=0
-.\]
+   \symscr{E}_n(x)\coloneq \sum\limits_{i=1}^{n} a_it^i\symscr{D}_t ^i(x)=0
+   .\]
 
 实际上存在初等解法，设 \(y=\ln t\) ，则：
 \[
-\begin{aligned}
-t\symscr{D}_t (x) &=t\symscr{D}_y (x) \symscr{D}_t (y)=t\symscr{D}_y(x)\frac{1}{t},\\ 
-t^2 \symscr{D}^2_t (x) &= t^2 \symscr{D} _t(  \symscr{D}_t (x)) = t^2 \symscr{D} _t\left(  \frac{ \symscr{D}_y(x)}{t} \right) =-\symscr{D}_y (x)+t\symscr{D} _y^2(x)\symscr{D} _t(y) =\symscr{D} _y^2(x)-\symscr{D} _y(x).
-\end{aligned}
+   \begin{aligned}
+      t\symscr{D}_t (x)      & =t\symscr{D}_y (x) \symscr{D}_t (y)=t\symscr{D}_y(x)\frac{1}{t},                                                                                                                                   \\
+      t^2 \symscr{D}^2_t (x) & = t^2 \symscr{D} _t(  \symscr{D}_t (x)) = t^2 \symscr{D} _t\left(  \frac{ \symscr{D}_y(x)}{t} \right) =-\symscr{D}_y (x)+t\symscr{D} _y^2(x)\symscr{D} _t(y) =\symscr{D} _y^2(x)-\symscr{D} _y(x).
+   \end{aligned}
 \]
 事实上有：
 \[
    t^{n} \symscr{D}^n_t (x)  = \sum\limits_{i=0}^{n-1} (\symscr{D} _y-i)(x) =\symscr{D}_y (\symscr{D}_y-1)\dotsm (\symscr{D}-n+1)x
-.\]
+   .\]
 此处可以用数学归纳法证明，但是非常繁琐，此处从略。
 
 因此我们将 \(\symscr{E}_n(x)\) 转变成了一个同阶的常系数线性微分方程，因此可以按照方法解之得到 \(y\) ，最后按照 \(y=\ln t\) 代入即可。
 
+\[
+∯ x \d x
+.\]
 \end{document}

@@ -95,7 +95,7 @@
 
 那么方程还会有解吗？
 
-橙，琪露诺，露娜：没有。
+橙、琪露诺、露娜：没有。
 
 蓝：没错，因为它\textbf{唯一}的解并不是有理数，然而我们换一种视角能够发现，如果设：
 \[
@@ -122,7 +122,7 @@
 蓝：这样吧，我们知道，我们要求得有理数之间的距离用的是让两个有理数相减的方法，但事实上，这个距离可以更为抽象，只要满足一下三点就可以：
 
 
-\begin{enumerate}
+\begin{enumerate}\kaiti
 	\item 两点之间的距离大于等于零: \(\symcal d(A,B)\geqslant 0\)，\(\symcal d(A,B)=0  \iff  A=B\)
 	\item \(A\)到 \(B\) 的距离等于 \(B\) 到 \(A\)的距离：\(\symcal d(A,b)=\symcal d(b,A)\)
 	\item 满足三角不等式：\(\symcal d(A,B)\leqslant \symcal d(A,C)+\symcal d(C,B)\)
@@ -195,9 +195,9 @@
 橙：原来如此，所以单单看压缩这一非常直观的东西可以通过象的距离和源的距离看出来。
 
 蓝：没错，现在这个 \(M\) 就是一个压缩映射了：
-\begin{itemize}
+\begin{itemize}\kaiti
 	\item 将集合 \(\symbb{G} \)映射到自身。
-	\item $\forall  a,b\in\symbb{G} ,\,d(a,b)> d(M(a),M(b))$。
+	\item $\forall  a,b\in\symbb{G} ,\,\symcal d(a,b)> \symcal d(M(a),M(b))$。
 \end{itemize}
 
 而压缩映射就有一个非常著名的定理：不动点定理，也就是说，对上面的 \(M\)来说的话，必然有\textbf{唯一}的 \(y\)，满足：
@@ -220,10 +220,10 @@
 露娜、橙、莉格露：我超，是不动点！
 
 蓝：所以说这种抽象的东西能够讨论到更广泛的范围中去嘛……现在我定义这样一个Banach空间 \(\symbb{F} \)：
-\begin{itemize}
+\begin{itemize}\kaiti
 	\item 这个空间的元素 \(f(t)\)是从 \(\symbb{I}  \in \symbb{R} \) 到 \(\symbb{R} \)的连续函数，即定义在 \(\symbb{I} \)上的连续函数。
-	\item 这个空间的度量 \(\symcal d(a(t),b(t))= \sup_{t\in \symbb{I}}\left\vert a(t)-b(t) \right\vert \)。
-	\item 范数可以有 \( \left\| a(t) \right\|_{\symbb{F} }=\sup_{t\in \symbb{I}}\left\vert a(t) \right\vert\)。
+	\item 这个空间的度量 \(\displaystyle \symcal d(a(t),b(t))= \sup_{t\in \symbb{I}}\left\vert a(t)-b(t) \right\vert \)。
+	\item 范数可以有 \( \displaystyle \left\| a(t) \right\|_{\symbb{F} }=\sup_{t\in \symbb{I}}\left\vert a(t) \right\vert\)。
 \end{itemize}
 
 接下来证明这个空间是完备的。在这里由于时间原因就不证了，可以通过构造Cauthy序列然后用三角不等式证明。然后就是那个著名的\textbf{压缩映射}了。我们知道， \(\symbb{F} \)空间上的点都是一个从 \(\symbb{I}\) 到 \(\symbb{R} \)的连续函数，那么我们需要定义一个对函数的映射。现在我们要紧的是，这个映射和ODE有什么关系。

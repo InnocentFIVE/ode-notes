@@ -1,0 +1,37 @@
+\titleformat{\section}[display]
+{}{\newpage\thispagestyle{forsection}
+	\filright{\hrule width 1cm\vskip-1.95em}\hspace*{1cm}
+	\enspace
+	{\LARGE\char"E001}
+	\enspace
+	\raisebox{0.8ex}{$\underset{\mbox{\tiny\textit{SECTION}}}{\textbf{\textit{\Huge{\arabic{section}}}}}$}
+	\enspace{\LARGE\char"E002}
+	\enspace
+	\titlerule}{1em}{\vspace{-3ex}\Large\bfseries\rightline}
+
+\titleformat{\subsection}[hang]
+{}{\normalsize\filright\raisebox{-1.3ex}{\huge\char"B6}\kern-2.3ex{\color{white}\normalsize\arabic{subsection}}\enspace}{0.5em}{\normalsize\bfseries}
+
+\pagestyle{empty}
+\setlength{\lineskip}{5pt}
+\setlength{\lineskiplimit}{2.5pt}
+
+\setcounter{section}{-1}
+
+\section*{前言}
+
+这篇文章（如果写得完的话）应该是一篇 ODE 的小短文，按照笔者的想法，笔者更倾向于将叙述形式变为两个人之间的对话，这两个人就叫做“朱鹭子”和“琪露诺”吧（笑），至于为什么……那只是因为笔者喜欢罢了（笑）。
+
+由于笔者才疏学浅，其中必定错漏百出，请多指教。
+
+\rightline{\ruby[g]{小飞舞}{Innocent\ FIVE}}
+\newpage
+\tableofcontents
+\newpage
+\phantom{2}
+\vspace{2em}
+\begin{spacing}{2}
+	\rightline{\Huge\parbox{1em}{\fontsize{60pt}{80pt}{\bfseries 朱鹭子和琪露诺}}\hspace{2em}}
+\end{spacing}
+\clearpage
+\pagestyle{fancy}

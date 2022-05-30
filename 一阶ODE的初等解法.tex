@@ -1,0 +1,471 @@
+\section{一阶ODE的初等解法}
+朱鹭子：一阶的ODE在某种意义上是最简单的ODE了，所以我们可以先来研究它。我们知道，ODE事关待求解函数 \(x(t)\) 的导数，这个导数可能是很高阶的，比如：
+
+\[
+	\symscr{D} ^n_t (x)=f(t,x)
+	.\]
+
+此时我们……
+
+琪露诺：等等等等，这个 \(\symscr{D} \) 是什么……
+
+朱鹭子：哦这个啊，我们管它叫“求导算符”，这里这样写指的是对 \( t\) 求 \(n\)次导，同时，我们也默认 \(x\) 是关于 \(t\) 的函数。我么继续，上面这个式子是一个 \(n\)阶的ODE，我们不想讨论它，我们直接来看最简单的：
+\[
+	\symscr{D} _t (x)=f(t)g(x)
+	.\]
+这种被称为“变量分离方程”。
+\subsection{变量分离方程}
+朱鹭子：这种我们可以这样做：
+\[
+	\dfrac{\symscr{D} _t(x)}{g(x)}= f(t)
+	.\]
+两边积分就可以得到：
+\[
+	\int \dfrac{1}{g(x)} \,\mathrm{d}x =\int f(t) \,\mathrm{d}t \tag{A}
+	.\]
+
+琪露诺：诶等等，这个 \(\symscr{D} _t(x)\) 到哪里去了？
+
+朱鹭子：啊这个的话……实际上是有
+\[
+	\int \dfrac{1}{g(x)} \,\mathrm{d}x =\int \dfrac{\symscr{D} _t(x)}{g(x)} \,\mathrm{d}t
+	.\]
+这个，这个你不是有学的吗？
+
+琪露诺：呃我忘了……
+
+朱鹭子：啊这……好，现在我们看 A 方程的两边，左边只和 \(x\) 有关，右边只和 \(t\)有关，那么我们实际上就把 \(x(t)\)解出来了，虽然用的是隐式方程的表示法。
+
+琪露诺：原来如此，这有什么要注意的地方吗？
+
+朱鹭子：有，积分记得加上常数。接下来我们来看另外一种方程。
+\subsection{线性微分方程}
+朱鹭子：好，我们来看看这种：
+\[
+	\dx{}+p(t)x=f(t)\tag{B}
+	.\]
+这种被称为线性微分方程。
+
+琪露诺：\emoji{🤔}诶……这个线性指的是什么意思呢……
+
+朱鹭子：我们可以这样理解。假设 \(x_1\)和 \(x_2\)都是方程  B 的解，那么我们考虑：
+\[
+	x_3=cx_1+(1-c)x_2
+	.\]
+这个是不是方程B的解呢？
+
+琪露诺：\emoji{😥}好像是的。
+
+朱鹭子：对，没错，这里实际上是有：
+\[
+	\begin{cases}\\[-2em]
+		\symscr{D} _t^n(x_1+x_2)=\symscr{D} _t^n(x_1)+\symscr{D} _t^n(x_2), \\
+		\symscr{D} _t^n(cx_1)=c\cdot \symscr{D} _t^n(x_1).
+	\end{cases}\tag{C}
+\]
+这里指的是求导算符的函数线性，另外我们考虑更普遍的形式：
+\[\label{linearofl}
+	\begin{aligned}
+		 & \symscr{L}_1 =\symscr{D} _t^n +a_{n-1}(t)\symscr{D} _t^{n-1}+\cdots a_1(t)\symscr{D} _t +a_0(t)=\symscr{D} _t^{n-1}+\sum_{i=1}^{n-1} a_{i}(t)\symscr{D} _t^i , \\
+		 & \symscr{L}_2 =\symscr{D} _t^n +b_{n-1}(t)\symscr{D} _t^{n-1}+\cdots b_1(t)\symscr{D} _t +b_0(t)=\symscr{D} _t^{n-1}+\sum_{i=1}^{n-1} b_{i}(t)\symscr{D} _t^i.
+	\end{aligned}
+\]
+那么算符 \(\symscr{L}_1 \)和 \(\symscr{L} _2\)满足：
+\[
+	\left(\symscr{L} _1+\symscr{L} _2 \right) (x)=\symscr{L} _1(x)+\symscr{L} _2 (x)
+	.\]
+这被称为算符线性。
+
+因此合并起来就是：
+
+\[
+	\left( \symscr{L} _1+\symscr{L} _2 \right) \left( x_1+x_2 \right) =\symscr{L} _1(x_1)+\symscr{L} _1(x_2)+\symscr{L} _2(x_1)+\symscr{L} _2(x_2)
+	.\]
+
+琪露诺：哦哦，原来线性指的是我可以随意拆掉括号啊……
+
+朱鹭子：不可以哦，只是满足C方程罢了，你只能在规定的范围内行动。虽说如此，线性方程确实是比较简单的一类。好，我们来看B方程，这个怎么解呢？
+
+琪露诺：我在寺子屋里见过这些题，一般来说左边都是一些函数的导数，然后两边积分就可以求出函数出来。
+
+朱鹭子：没错，但是在这里，这个 \(p(x)\) 是如此随机，左边很可能不是个新函数的导数，我们应该怎么办呢？
+
+琪露诺：\emoji{😭}呜哇哇……
+
+朱鹭子：事实上，我们可以乘上一个新的函数，改变左边那一坨的结构：
+\[
+	B \implies h(t)\dx{}+h(t)p(t)x=f(t)h(t)\tag{D}
+	.\]
+
+琪露诺：可是这样左边还是很怪啊，看起来根本不像个导数……
+
+朱鹭子：是的，所以我们硬来，考虑新的函数 \(h(t)x\)，那么它的导数就是：
+\[
+	\symscr{D} _t\left( h(t) x(t)  \right)= h(t) \dx +\symscr{D} _t(h(t))x
+	.\]
+这样我们观察D式，我们可以强行要求：
+\[
+	h(t)p(t)=\symscr{D} _t\left( h(t) \right)
+	.\]
+
+琪露诺：看起来像那个巫女的作风……
+
+朱鹭子：不是哦，\newsout{灵梦哪有那么聪明}。好了，接下来我们的任务就是解出这个奇怪的 \(h(t)\)，还记得变量分离方程吗？\(h(t)\)的约束就是这个变量分离方程哦。
+
+琪露诺：记得，所以我们只要：
+\[
+	h(t)p(t)=\symscr{D} _t\left( h(t) \right) \implies \int \dfrac{1}{h(t)} \,\mathrm{d}h =\int p(t) \,\mathrm{d}t
+	.\]
+
+这意味着：
+
+\[
+	\ln h(t)= \int p(t) \,\mathrm{d}t \implies h(t)=\symrm{e} ^{\int p(t) \,\mathrm{d}t }
+	.\]
+
+朱鹭子：不对哦，你积分没加常数。
+
+琪露诺：呜哇……那加了常数之后，就是：
+\[
+	\ln h(t)= \int p(t) \,\mathrm{d}t +c_1\implies h(t)=\symrm{e} ^{c_1}\cdot \symrm{e} ^{\int p(t) \,\mathrm{d}t }
+	.\]
+
+是这样吗？
+
+朱鹭子：其实你可以不加的，因为你有一个积分号没有被消掉……但先不管这个，我们可以看到 \(h\)我们已经求出来了，接下来呢？
+
+琪露诺：那这个  \(c_1\)怎么确定啊？
+
+朱鹭子：不用确定，都是满足条件的不是吗？为了容易算我们就让它是0好了。
+
+琪露诺：哦哦，那这样子C方程就是：
+\[
+	\symscr{D} _t(h(t)x)=f(t)h(t)
+	.\]
+
+这是一个变量分离方程，我可以对它进行积分：
+\[
+	h(t)x= \int f(t)h(t) \,\mathrm{d}t \implies x= \dfrac{\displaystyle \int f(t)h(t) \,\mathrm{d}t}{h(t)}
+	.\]
+
+最后是代入 \(h(t)\)的方程得到：
+\[
+	x=\dfrac{\displaystyle \int f(t)\symrm{e} ^{\int p(t) \,\mathrm{d}t } \,\mathrm{d}t}{\symrm{e} ^{\int p(t) \,\mathrm{d}t }}
+	.\]
+
+哇，这啥啊……
+
+朱鹭子：你做的是正确的，这就是B方程的解啦。
+
+\subsection{常数变易法}
+
+琪露诺：原来如此，所以这一节我完全懂了对吧。
+
+朱鹭子：不是哦，再和你说些东西，我们回过头考虑一种更简单的情况：
+\[
+	\dx+p(t)x=0
+	.\]
+
+琪露诺：我知道我知道，这是分离变量方程！
+
+朱鹭子：对，他的解是 \(x=c_1\exp \left(- \int p(t) \,\mathrm{d}t  \right) \) ，我们反倒可以这样考虑，这个 \(c_1\) 并不是一个常数，而是一个函数 \(c_1(t)\)，此时 \(x=c_1(t)\exp \left(- \int p(t) \,\mathrm{d}t  \right)\)反倒是方程B的解，那么会发生什么事呢？
+
+琪露诺：我猜猜……将这个新东西带进去之后会得到一个新的方程。
+
+朱鹭子：没错，我们试试看：
+\[
+	\begin{aligned}
+		 & \phantom{=}\ \,\,\dx+p(t)x=\underline{\symscr{D} _t\left( c_1(t)\exp \left(- \int p(t) \,\mathrm{d}t  \right) \right)} +p(t) c_1(t)\exp \left(- \int p(t) \,\mathrm{d}t  \right)
+		\\
+		 & =\underline{\symscr{D} _t(c_1(t))\exp \left(- \int p(t) \,\mathrm{d}t  \right)+c_1(t)\exp \left(- \int p(t) \,\mathrm{d}t  \right)(-p(t))}+p(t) c_1(t)\exp \left(- \int p(t) \,\mathrm{d}t  \right) \\
+		 & = \symscr{D} _t(c_1(t))\exp \left(- \int p(t) \,\mathrm{d}t  \right) =f(t).
+	\end{aligned}
+\]
+
+琪露诺：所以这个 \(c_1(t)\)就满足：
+\[
+	c_1'(t)=f(t)\exp \left(\int p(t) \,\mathrm{d}t  \right) \implies c_1(t)=\int \left[ f(t)\exp \left(\int p(t) \,\mathrm{d}t  \right)  \right]  \,\mathrm{d}t
+	.\]
+
+天……这太多积分号了叭……
+
+朱鹭子：确实，但这玩意不是和你之前求的B方程的解差不多吗？
+
+琪露诺：哦也是，那这个方法有什么用呢？
+
+朱鹭子：用处多了，以后我们在解更普遍的方程会用到这个解法，这被称为\textbf{常数变易法}.
+
+琪露诺：哦……
+
+朱鹭子：接下来我们看些更神奇的。
+
+\subsection{恰当微分方程}
+考虑一些更通用的情况：
+\[
+	\dx=f(x,t)
+	.\]
+
+我们可以把它写成微分形式：
+
+\[
+	f(x,t)\,\symrm{d} t-\symrm{d} x=0
+	.\]
+
+再考虑更一般的情况：
+
+\[
+	T(x,t)\,\symrm{d} t+ X(x,t)\,\symrm{d} x=0
+	.\]
+
+琪露诺：这是啥……
+
+朱鹭子：看到了吗？这其实是微分方程的一种特殊写法，看到这你想到了什么？
+
+琪露诺：\emoji{🤔}……第二类线积分？
+
+朱鹭子：没错！第二类线积分里面有些很好算的情况，那就是“路径无关”的时候，此时应该由什么判别呢？
+
+琪露诺：\emoji{😥}由Green公式应该有：
+
+\[
+	\dfrac{\uppartial T}{\uppartial x}=\dfrac{\uppartial X}{\uppartial t}
+	.\]
+
+朱鹭子：在函数性质良好的前提下，可以这么做，那么如果是路径无关的话接下来这么求解方程呢？
+
+琪露诺：呃……
+
+朱鹭子：事实上，路径无关场就是梯度场，这意味着存在一个函数 \(u\) 使得：
+\[
+	\dfrac{\uppartial u}{\uppartial t}=T,\qquad \dfrac{\uppartial u}{\uppartial x}=X
+	.\]
+所以方程就变成了：
+\[
+	\dfrac{\uppartial u}{\uppartial t}\,\symrm{d} t+ \dfrac{\uppartial u}{\uppartial x}\,\symrm{d} x=0
+	.\]
+
+左边就是 \(u\)的全微分啦，所以我们就有：
+
+\[
+	u=c_1
+	.\]
+
+这样就解出了 \(x\)了。
+
+琪露诺：那如果没有路径无关怎么办？
+
+朱鹭子：你可以想一下，我们之前怎么解决不是全微分的问题的。
+
+琪露诺：\emoji{😥}难道你说的是，乘上一个新的函数？
+
+朱鹭子：可以这样做，看看吧：
+\[
+	\dfrac{\uppartial u}{\uppartial t}=hT,\qquad \dfrac{\uppartial u}{\uppartial x}=hX
+	.\]
+
+接下来呢？
+
+琪露诺：呃……不知道了。
+
+朱鹭子：事实上我们可以考虑Young定理：
+\[
+	\dfrac{\uppartial ^2u}{\uppartial x \uppartial t}=\dfrac{\uppartial ^2u}{\uppartial t \uppartial u}\implies \dfrac{\uppartial (hT)}{\uppartial x}=\dfrac{\uppartial (hX)}{\uppartial t}
+	.\]
+
+接下来我们可以用乘法法则分离它们：
+\[
+	X \dfrac{\uppartial h}{\uppartial t}-T \dfrac{\uppartial h}{\uppartial x}=\left( \dfrac{\uppartial T}{\uppartial x}-\dfrac{\uppartial X}{\uppartial t} \right) h
+	.\]
+
+琪露诺：好的，那这个方程怎么解？
+
+朱鹭子：事实上这是一个偏微分方程……单纯解它比解原来的ODE更困难。
+
+琪露诺：啊这……这不就是……寄了吗？
+
+朱鹭子：差不多吧，不过的确有一些比较简单的情况。
+
+\begin{itemize}
+	\item 当 \( \dfrac{\dfrac{\uppartial T}{\uppartial x}-\dfrac{\uppartial X}{\uppartial t}}{X} =p(t)\) 与 \(x\) 无关的时候。我们有：
+	      \[
+		      h(t,x)=\exp \left( \int p(t)\,\mathrm{d}t  \right)
+		      .\]
+	\item 当 \( \dfrac{\dfrac{\uppartial T}{\uppartial x}-\dfrac{\uppartial X}{\uppartial t}}{T} =q(x)\) 与 \(t\) 无关的时候。我们有：
+	      \[
+		      h(t,x)=\exp \left(- \int q(x)\,\mathrm{d}x \right)
+		      .\]
+	\item 当 \( {\dfrac{\uppartial T}{\uppartial x}-\dfrac{\uppartial X}{\uppartial t}}=p(t)X-q(x)T\)的时候。我们有：
+	      \[
+		      h(t,x)=c_1 \exp \left( \int p(t) \,\mathrm{d}t +\int q(x) \,\mathrm{d}x  \right)
+		      .\]
+\end{itemize}
+
+琪露诺：前两个还好，第三个也太那啥了，这个只有天才才能看出来吧。
+
+朱鹭子：这个不管，反正算是比较简单的情况了（笑）。当然你也可以直接用看就把这个 \(h\)（我们管它叫积分因子）找出来。
+
+琪露诺：这能看出来的吗？
+
+朱鹭子：看你的直觉了……比如说这个？
+\[
+	\left( x^2 +y^2 +x \right) \,\symrm{d} x +y \,\symrm{d} y=0
+	.\]
+
+琪露诺：哇……看起来好难……哭……
+
+朱鹭子：看，其实我们仔细观察的话倒是可以看出一些对偶量：
+\[
+	\left( x^2 +y^2  \right) \,\symrm{d} x +y \,\symrm{d} y+ x \,\symrm{d} x=0
+	.\]
+
+尝试 \(h=\dfrac{1}{x^2 +y^2 }\)，我们可以得到：
+\[
+	\symrm{d} x+ \dfrac{x\,\symrm{d} x+y\,\symrm{d} y}{x^2 +y^2 }=0\implies \symrm{d} x+\symrm{d} \left( \dfrac{1}{2}\ln \left( x^2 +y^2  \right)  \right) =0
+	.\]
+
+所以最后的结果就是：
+\[
+	x+ \dfrac{1}{2}\ln \left( x^2 +y^2  \right)=c_1
+	.\]
+
+琪露诺：这根本不是人能看出来的……
+
+朱鹭子：诶别说，这种对那只九尾策士的确是显然的题……
+
+琪露诺：啊。所以，一阶微分方程就到这里了？
+
+朱鹭子：不对哦，这只是一些基础的，还有一些奇怪的情况需要提及一下。那就是其解的参数表示。
+
+琪露诺：\emoji{😥}好像确实之前没有讲关于参数方程的任何内容呢……
+
+朱鹭子：我们来看一些隐式方程：
+\[
+	x=f(t,x')
+	.\]
+
+这种反倒是将 \(x\) 分离出来了，此时怎么办呢？
+
+琪露诺：\emoji{😣}这不又是一个一般的式子吗，怎么可能会有什么通法？
+
+朱鹭子：你想想看吧，这种和之前的有什么不同？
+
+琪露诺：\emoji{😮}首先是 \(x'\)不能再随意地被分离出来，然后是左边是 \(x\)……
+
+朱鹭子：差不多，想想左边有没有办法变成 \(x'\)呢？
+
+琪露诺：啊，你是说求导？
+
+朱鹭子：对咯：
+
+\[
+	\dx= \dfrac{\uppartial f}{\uppartial t}+ \dfrac{\uppartial f}{\uppartial \left( x' \right) }\symscr{D} _t^2(x)
+	.\]
+
+我们不妨设 \(p= \dx\)，那么这个方程就可以变为：
+
+\[
+	p=\dfrac{\uppartial f}{\uppartial t}+ \dfrac{\uppartial f}{\uppartial p}\symscr{D} _t(p)
+	.\]
+
+琪露诺：可是这个方程不还是很怪吗？也不是有通解的那种……诶等等，这下好像 \(\symscr{D} _t(p)\)就分离出来了：
+\[
+	\symscr{D} _t(p)= \dfrac{p-{\uppartial f}/{\uppartial t}}{{\uppartial f}/{\uppartial p}}
+	.\]
+
+接下来我只要按照前面三种方法做就可以解出 \(p\)，然后积分就可以得到 \(x\)了对吧？
+
+朱鹭子：差不多是这样，但是如果你解出来 \(p\)，但是却是无法分离的，导致你没法直接积分，那该怎么办呢？况且你既然能解出 \(p\)，把它往 \(f\)里面一代，不就把 \(x\)解出来了吗，为什么要积分呢？
+
+琪露诺：啊啊啊哇。
+
+朱鹭子：最令人难受的应该是你解出来得到这个吧：
+
+\[
+	\psi (t,p,c_1)=0
+	.\]
+
+你看，你甚至连通解的参数都是嵌在函数里面的，此时你不考虑参数方程还能怎么办呢？
+
+琪露诺：通解参数是什么哇？
+
+朱鹭子：啊，就里面这个 \(c_1\)，事实上对于一个 \(n\)阶的微分方程，它的通解将会长得像：
+\[
+	x=\psi (t,c_1,c_2,\cdots ,c_n)
+	.\]
+
+其中 \(c_1,c_2,\cdots ,c_n\) 相互独立，这到时候说一下唯一性定理你可能会更明白一些。
+
+琪露诺：好吧，所以最后的参数方程就是：
+\[
+	\begin{cases}\\[-2em]
+		\psi (t,p,c_1)=0, \\
+		x=f(t,p).
+	\end{cases}
+\]
+
+这样咯？那参数就是那个 \(t\)咯。
+
+朱鹭子：\(t\)是自变量，\(p\)才是参数。你要知道 \(p\)才是我们想要消去的那个，所以 \(p\)是参数。
+
+琪露诺：哦。所以这其实是一种“差不多解出来了但还有一步要走”的情况吧？
+
+朱鹭子：的确，看看这种？
+\[
+	t=f(x,x')
+	.\]
+
+这下反倒是自变量被分离出来了。
+
+琪露诺：麻……这是强行走成反函数的路线吗……
+
+朱鹭子：要清楚你现在考虑的是微分结构，不要乱反函数。
+
+琪露诺：呜……首先我左右两边对 \(t\)求导：
+\[
+	1=\dfrac{\uppartial f}{\uppartial x}\symscr{D} _t(x)+ \dfrac{\uppartial f}{\uppartial (x')}\symscr{D} _t^2(x)
+	.\]
+
+然后再设 \(p=\symscr{D} _t(x)\) ，这样子就行啦：
+\[
+	1=\dfrac{\uppartial f}{\uppartial x}p+ \dfrac{\uppartial f}{\uppartial p}\symscr{D} _t(p)
+	.\]
+
+朱鹭子：不错，这也有另外一种方法，那就是上来直接对 \(x\)求导：
+\[
+	\symscr{D} _x(t)=\dfrac{\uppartial f}{\uppartial x}+\dfrac{\uppartial f}{\uppartial p}\symscr{D} _x(p)
+	.\]
+
+然后由于一阶微分形式的不变性，我们可以把它改写为：
+\[
+	\dfrac{1}{p}=\dfrac{\uppartial f}{\uppartial x}+\dfrac{1}{p}\cdot \dfrac{\uppartial f}{\uppartial p}\symscr{D} _t(p)
+	.\]
+
+也和你写的一样哦。
+
+琪露诺：哇塞。
+
+朱鹭子：嗯，来点更怪的例子，如果你最后解出来是这样子的：
+
+\[
+	\begin{cases}\\[-2em]
+
+		x'=X(c) , \\
+		\ t=T(c).
+	\end{cases}
+\]
+
+这种情况呢？你该怎么得到——没有其他条件了—— 那个\(x\)呢？
+
+琪露诺：寄。我试试看，首先是：
+\[
+	\symscr{D} _c(x)=\symscr{D} _t(x)\symscr{D} _c(t)= X(c)T'(c)\implies \begin{cases}\\[-2em]
+		x=\int   X(c)T'(c)\,\mathrm{d}c, \\
+		\ t=T(c).
+	\end{cases}
+\]
+
+依据微分形式不变性好像是这样的？
+
+朱鹭子：的确。总而言之，你就得构造这个 \(\symscr{D} _c(x)\)然后对其积分，虽然得到的结果是参数方程，不过也值了不是吗？
+
+琪露诺：听起来是这样没错啦……
