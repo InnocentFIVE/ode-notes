@@ -25,8 +25,8 @@
 \setCJKmainfont[CharRange={"2014}]{FZXYSJW.TTF}
 \setCJKmainfont[CharRange={"3001}]{GenWanMin JP}
 
-\newcommand{\Ai}{\mathop{\rm Ai}}
-\newcommand{\Bi}{\mathop{\rm Bi}}
+% \newcommand{\Ai}{\mathop{\rm Ai}}
+% \newcommand{\Bi}{\mathop{\rm Bi}}
 
 \fancypagestyle{forsection}
 {
@@ -41,8 +41,13 @@
 
 \newcommand{\res}{\raisebox{-0.3ex}{\mbox{\Large$\symscr{R\kern-0.35ex \scalebox{0.964}{$\symcal e$}{\kern-0.15ex\scalebox{0.8}{$\symscr s$}}}$}}\kern-0.15ex}
 
-\DeclareMathOperator{\besselj}{J}  
-\DeclareMathOperator{\bessely}{Y}  
+\DeclareMathOperator{\besselj}{\,J}  
+\DeclareMathOperator{\bessely}{Y}
+\DeclareMathOperator{\Ai}{Ai}  
+\DeclareMathOperator{\Bi}{Bi}
+\DeclareMathOperator{\laplace}{\symcal{L}}
+
+
 \fancyfoot[RO]{\vskip-8em\rotatebox[origin=r]{-90}{{\LARGE ☙}\enspace{\bfseries\Roman{page}}\enspace{\LARGE ❧}}\kern-2.5em}
 \fancyfoot[LE]{\vskip-8em\hspace{-2.5em}\rotatebox[origin=l]{90}{{\LARGE ☙}\enspace{\bfseries\Roman{page}}\enspace{\LARGE ❧}}}
 \fancyfoot[C]{}
@@ -60,7 +65,7 @@
 \setmathfont[range = "0211C]{Latin Modern Math}
 
 %\everymath{\displaystyle}
-\renewcommand{\symcal}[1]{{\mathversion{a}\mbox{$\symscr{#1}$}}}
+
 \newcommand{\dx}{\symscr{D} _t (x)}
 \newcommand{\dw}{\symscr{D} _z (w)}
 \newcommand{\ddw}{\symscr{D}^2 _z (w)}

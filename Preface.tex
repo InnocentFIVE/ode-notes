@@ -1,3 +1,7 @@
+\let\symcal\undefined
+\DeclareRobustCommand{\symcal}[1]{{\mathpalette\youwillneverusethisnamewhichaboutchi{#1}}}
+\newcommand{\youwillneverusethisnamewhichaboutchi}[2]{\mbox{\mathversion{a}$#1\symscr{#2}$}}
+
 \titleformat{\section}[display]
 {}{\newpage\thispagestyle{forsection}
 	\filright{\hrule width 1cm\vskip-1.95em}\hspace*{1cm}
@@ -35,3 +39,4 @@
 \end{spacing}
 \clearpage
 \pagestyle{fancy}
+
